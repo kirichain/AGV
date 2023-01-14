@@ -9,21 +9,21 @@
 #include <BLEAdvertisedDevice.h>
 
 int scanTime = 1; //In seconds
+int rssi_1, rssi_2, rssi_3;
 BLEScan* pBLEScan;
 BLEAdvertisedDevice device;
-float rssi;
+int rssi;
 
 class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
-    void onResult(BLEAdvertisedDevice advertisedDevice) {
-      //Serial.printf("Advertised Device: %s \n", advertisedDevice.toString().c_str());
-
-      if (advertisedDevice.haveRSSI()){
-        if (advertisedDevice.getName() == "ESP32 1") {
-          Serial.printf("Rssi: %d \n", (int)advertisedDevice.getRSSI());
+    void onResult(BLEAdvertisedDevice advertisedDevice) {     
+        if (advertisedDevice.getName() == "Beacon-1") {
+            rssi_1 = advertisedDevice.getRSSI();
+        } else if (advertisedDevice.getName() == "Beacon-2") {
+            rssi_2 = advertisedDevice.getRSSI();     
+        } else if (advertisedDevice.getName() == "Beacon-3") {
+            rssi_3 = advertisedDevice.getRSSI();       
         }
       }
-      else Serial.printf("\n");   
-    }
 };
 
 void setup() {
@@ -51,4 +51,11 @@ void loop() {
   //Serial.println("Scan done!");
   pBLEScan->clearResults();   // delete results fromBLEScan buffer to release memory
   delay(100);
+
+  Serial.println(String("Beacon 1 = ") + rssi_1);
+  Serial.println();
+  Serial.println(String("Beacon 2 = ") + rssi_2);
+  Serial.println();
+  Serial.println(String("Beacon 3 = ") + rssi_3);
+  Serial.println("***************");
 }
