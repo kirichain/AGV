@@ -8,16 +8,20 @@ serialPort = new SerialPort();
 serialPort.BaudRate = 115200;
 serialPort.PortName = "COM4";
 
-serialPort.Open();
+//serialPort.Open();
 
-while (true)
-{
-    try
-    {
-        string message = serialPort.ReadLine();
-        Console.WriteLine(message);
-    }
-    catch (TimeoutException) { }
-}
+
+//while (true)
+//{
+
+    //try
+    //{
+    //    string message = serialPort.ReadLine();
+    //    Console.WriteLine(message);
+    //}
+    //catch (TimeoutException) { }
+
+//}
+
 
 
