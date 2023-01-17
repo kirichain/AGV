@@ -14,14 +14,15 @@ serialPort.PortName = "COM4";
 //while (true)
 //{
 
-    //try
-    //{
-    //    string message = serialPort.ReadLine();
-    //    Console.WriteLine(message);
-    //}
-    //catch (TimeoutException) { }
+//try
+//{
+//    string message = serialPort.ReadLine();
+//    Console.WriteLine(message);
+//}
+//catch (TimeoutException) { }
 
 //}
-
+Console.WriteLine("Done");
+Console.ReadLine();
 
 
