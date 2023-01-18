@@ -32,6 +32,8 @@ namespace Boards
 
         public void Reading()
         {
+            Console.WriteLine("Reading");
+
             try
             {
                 string serialReading1 = serialPort1.ReadLine();
