@@ -1,0 +1,2 @@
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\win-x64\Console.pdb
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\win-x64\Console.exe
