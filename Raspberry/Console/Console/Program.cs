@@ -16,9 +16,9 @@ mqttClient = new MQTTClient();
 board.Init();
 //mqttClient.Init();
 
-Console.ReadLine();
-
 while (true)
 {
     board.Reading();
 }
+
+Console.ReadLine();
