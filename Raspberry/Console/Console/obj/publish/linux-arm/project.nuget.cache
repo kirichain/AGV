@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "uEeclGtlTkyvTHkXVjF8uWRIJMe++IQnZ7PX5tKbI6cF5+RR9ZZBeYBHYmEt+lsEY+i5Gp25o9ADpBpnY+3rkg==",
+  "success": true,
+  "projectFilePath": "H:\\Dropbox\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\runtime.linux-x64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\runtime.native.system.io.ports\\7.0.0\\runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\runtime.osx-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.io.ports\\7.0.0\\system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.runtime.linux-arm\\7.0.1\\microsoft.netcore.app.runtime.linux-arm.7.0.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.linux-arm\\7.0.1\\microsoft.aspnetcore.app.runtime.linux-arm.7.0.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.host.linux-arm\\7.0.1\\microsoft.netcore.app.host.linux-arm.7.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

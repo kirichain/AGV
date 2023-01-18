@@ -1,0 +1,13 @@
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\Console.exe
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\Console.dll
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\Console.deps.json
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\Console.runtimeconfig.json
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\Console.pdb
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\System.IO.Ports.dll
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\runtimes\linux-arm\native\libSystem.IO.Ports.Native.so
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\runtimes\linux-arm64\native\libSystem.IO.Ports.Native.so
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\runtimes\linux-x64\native\libSystem.IO.Ports.Native.so
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\runtimes\osx-arm64\native\libSystem.IO.Ports.Native.dylib
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\runtimes\osx-x64\native\libSystem.IO.Ports.Native.dylib
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\runtimes\unix\lib\net7.0\System.IO.Ports.dll
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\runtimes\win\lib\net7.0\System.IO.Ports.dll

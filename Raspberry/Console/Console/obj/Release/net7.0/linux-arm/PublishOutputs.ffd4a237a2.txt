@@ -1,0 +1,3 @@
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\linux-arm\Console.pdb
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\linux-arm\libSystem.IO.Ports.Native.so
+H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\linux-arm\Console
