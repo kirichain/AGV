@@ -4,7 +4,7 @@ namespace Boards
 {
     public class Board
     {
-        SerialPort serialPort1, serialPort2, serialPort3, serialPort4;
+        public SerialPort serialPort1, serialPort2, serialPort3, serialPort4;
         public void Init()
         {
             serialPort1 = new SerialPort();
