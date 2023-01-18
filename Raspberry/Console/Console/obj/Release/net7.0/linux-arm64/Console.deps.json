@@ -50,6 +50,10 @@
             "assemblyVersion": "7.0.0.0",
             "fileVersion": "7.0.122.56804"
           },
+          "System.Net.Sockets.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.122.56804"
+          },
           "System.ObjectModel.dll": {
             "assemblyVersion": "7.0.0.0",
             "fileVersion": "7.0.122.56804"

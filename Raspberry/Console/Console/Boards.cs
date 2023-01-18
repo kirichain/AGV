@@ -22,10 +22,10 @@ namespace Boards
             serialPort3.PortName = "/dev/ttyUSB2";
             serialPort4.PortName = "/dev/ttyUSB3";
 
-            //serialPort1.Open();
-            //serialPort2.Open();
-            //serialPort3.Open();
-            //serialPort4.Open();
+            serialPort1.Open();
+            serialPort2.Open();
+            serialPort3.Open();
+            serialPort4.Open();
 
             Console.WriteLine("Boards Init Done");
         }

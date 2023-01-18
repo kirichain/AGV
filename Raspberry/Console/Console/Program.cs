@@ -17,3 +17,8 @@ board.Init();
 //mqttClient.Init();
 
 Console.ReadLine();
+
+while (true)
+{
+    board.Reading();
+}
