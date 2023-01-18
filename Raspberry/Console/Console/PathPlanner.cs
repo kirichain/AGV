@@ -1,4 +1,7 @@
-﻿namespace PathPlanner
+﻿namespace PathPlanners
 {
+    public class PathPlanners
+    {
 
+    }
 }

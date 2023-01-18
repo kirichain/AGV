@@ -1,4 +1,7 @@
-﻿namespace Localizer
+﻿namespace Localizers
 {
+    public class Localizer
+    {
 
+    }
 }

@@ -1,33 +1,19 @@
-﻿using System;
-using System.IO.Ports;
-using System.Threading;
-using Sensors;
-using Boards;
-using SocketClient;
-using MQTTClient;
-using GuidanceSystem;
+﻿using Boards;
+using SocketClients;
+using MQTTClients;
+using GuidanceSystems;
 
-SerialPort serialPort;
+SocketClient socketClient;
+MQTTClient mqttClient;
+Board board;
+GuidanceSystem guider;
 
-serialPort = new SerialPort();
-serialPort.BaudRate = 115200;
-//serialPort.PortName = "COM4";
+socketClient = new SocketClient();
+board = new Board();
+mqttClient = new MQTTClient();
 
-//serialPort.Open();
+//socketClient.Init();
+board.Init();
+//mqttClient.Init();
 
-
-//while (true)
-//{
-
-//try
-//{
-//    string message = serialPort.ReadLine();
-//    Console.WriteLine(message);
-//}
-//catch (TimeoutException) { }
-
-//}
-Console.WriteLine("Done");
 Console.ReadLine();
-
-

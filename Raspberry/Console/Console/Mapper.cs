@@ -1,4 +1,7 @@
-﻿namespace Mapper
+﻿namespace Mappers
 {
+    public class Mapper
+    {
 
+    }
 }
