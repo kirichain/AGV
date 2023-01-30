@@ -5,6 +5,7 @@ namespace Boards
     public class Board
     {
         public SerialPort serialPort1, serialPort2, serialPort3, serialPort4;
+        public bool IsPort1Ready;
         public void Init()
         {
             serialPort1 = new SerialPort();
@@ -28,51 +29,57 @@ namespace Boards
             }
             else
             {
+                serialPort1.Close();
                 while (serialPort1.IsOpen)
                 {
-                    serialPort1.Close();
+
                 }
                 serialPort1.Open();
+                while (!serialPort1.IsOpen)
+                {
+
+                }
+                IsPort1Ready = true;
             }
 
-            if (!serialPort2.IsOpen)
-            {
-                serialPort2.Open();
-            }
-            else
-            {
-                while (serialPort2.IsOpen)
-                {
-                    serialPort2.Close();
-                }
-                serialPort2.Open();
-            }
+            //if (!serialPort2.IsOpen)
+            //{
+            //    serialPort2.Open();
+            //}
+            //else
+            //{
+            //    while (serialPort2.IsOpen)
+            //    {
+            //        serialPort2.Close();
+            //    }
+            //    serialPort2.Open();
+            //}
 
-            if (!serialPort3.IsOpen)
-            {
-                serialPort3.Open();
-            }
-            else
-            {
-                while (serialPort3.IsOpen)
-                {
-                    serialPort3.Close();
-                }
-                serialPort3.Open();
-            }
+            //if (!serialPort3.IsOpen)
+            //{
+            //    serialPort3.Open();
+            //}
+            //else
+            //{
+            //    while (serialPort3.IsOpen)
+            //    {
+            //        serialPort3.Close();
+            //    }
+            //    serialPort3.Open();
+            //}
 
-            if (!serialPort4.IsOpen)
-            {
-                serialPort4.Open();
-            }
-            else
-            {
-                while (serialPort4.IsOpen)
-                {
-                    serialPort4.Close();
-                }
-                serialPort4.Open();
-            }
+            //if (!serialPort4.IsOpen)
+            //{
+            //    serialPort4.Open();
+            //}
+            //else
+            //{
+            //    while (serialPort4.IsOpen)
+            //    {
+            //        serialPort4.Close();
+            //    }
+            //    serialPort4.Open();
+            //}
 
             Console.WriteLine("Boards Init Done");
         }
