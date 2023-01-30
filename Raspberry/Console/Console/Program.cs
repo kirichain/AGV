@@ -18,11 +18,11 @@ Console.WriteLine("Starting now");
 board.Init();
 //mqttClient.Init();
 
-while (!board.IsPort1Ready)
-{ }
-while (board.IsPort1Ready)
-{
-    board.Read();
-}
+//while (!board.IsPort1Ready)
+//{ }
+//while (board.IsPort1Ready)
+//{
+//    board.Read();
+//}
 
 Console.ReadLine();
