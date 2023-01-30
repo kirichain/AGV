@@ -18,7 +18,7 @@ board.Init();
 
 while (true)
 {
-    board.Reading();
+    board.Read();
 }
 
 Console.ReadLine();
