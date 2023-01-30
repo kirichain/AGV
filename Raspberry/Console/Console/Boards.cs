@@ -15,8 +15,6 @@ namespace Boards
             serialPort3 = new SerialPort();
             serialPort4 = new SerialPort();
 
-            //using (serialPort1)
-            //{
             serialPort1.BaudRate = 115200;
             serialPort2.BaudRate = 115200;
             serialPort3.BaudRate = 115200;
@@ -27,7 +25,8 @@ namespace Boards
             serialPort2.PortName = "/dev/ttyUSB1";
             serialPort3.PortName = "/dev/ttyUSB2";
             serialPort4.PortName = "/dev/ttyUSB3";
-
+            //using (serialPort1)
+            //{
             Console.WriteLine("Checking boards");
 
             if (!serialPort1.IsOpen | serialPort1 == null)
@@ -35,21 +34,21 @@ namespace Boards
                 serialPort1.Open();
                 Console.WriteLine("Port 1 opened successfully");
             }
-            else
-            {
-                serialPort1.Close();
-                while (serialPort1.IsOpen)
-                {
-                    Console.WriteLine("port 1 not close successfully");
-                }
-                Console.WriteLine("port 1 closed successfully");
-                serialPort1.Open();
-                while (!serialPort1.IsOpen)
-                {
-                    Console.WriteLine("port 1 not open successfully");
-                }
-                Console.WriteLine("port 1 opened successfully");
-            }
+            //else
+            //{
+            //    serialPort1.Close();
+            //    while (serialPort1.IsOpen)
+            //    {
+            //        Console.WriteLine("port 1 not close successfully");
+            //    }
+            //    Console.WriteLine("port 1 closed successfully");
+            //    serialPort1.Open();
+            //    while (!serialPort1.IsOpen)
+            //    {
+            //        Console.WriteLine("port 1 not open successfully");
+            //    }
+            //    Console.WriteLine("port 1 opened successfully");
+            //}
 
             //if (!serialPort2.IsOpen)
             //{
