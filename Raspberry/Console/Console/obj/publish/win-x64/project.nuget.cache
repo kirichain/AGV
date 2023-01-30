@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VJuK2OuOWHttNm2I3Id0ScJgEFreDHTvOD0zs5Vygp51icrnnuntuINCpOavf0YafoiWHeRkYA/SLvlpBU/MEA==",
+  "dgSpecHash": "Ri2JMbUT96T4HT3kMIvl8k7ETnTUXkMDThs6Yu1Jq1tkPASlsMtKFvIsLij9ajWxV00OO0IMvyuaXS86oO98fg==",
   "success": true,
   "projectFilePath": "H:\\Dropbox\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj",
   "expectedPackageFiles": [
@@ -13,8 +13,7 @@
     "C:\\Users\\Admin\\.nuget\\packages\\system.io.ports\\7.0.0\\system.io.ports.7.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\7.0.1\\microsoft.netcore.app.runtime.win-x64.7.0.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\7.0.1\\microsoft.windowsdesktop.app.runtime.win-x64.7.0.1.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.1\\microsoft.aspnetcore.app.runtime.win-x64.7.0.1.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\7.0.1\\microsoft.netcore.app.crossgen2.win-x64.7.0.1.nupkg.sha512"
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.1\\microsoft.aspnetcore.app.runtime.win-x64.7.0.1.nupkg.sha512"
   ],
   "logs": []
 }
