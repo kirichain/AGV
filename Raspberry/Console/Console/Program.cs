@@ -5,30 +5,29 @@ using GuidanceSystems;
 
 SocketClient socketClient;
 MQTTClient mqttClient;
-Board board;
+Board board_1;
 GuidanceSystem guider;
 
 socketClient = new SocketClient();
-board = new Board();
+board_1 = new Board("/dev/ttyUSB0");
 mqttClient = new MQTTClient();
 
 //socketClient.Init();
-Console.WriteLine("Starting now 12:31");
+Console.WriteLine("Starting now 14:20 PM");
 
-board.Init();
+board_1.Init();
 //mqttClient.Init();
 
-while (!board.isPort1Ready)
+while (!board_1.isPortReady)
 {
     Console.WriteLine("Boards is not ready");
 }
 
 Console.WriteLine("Boards is ready");
 
-while (board.isPort1Ready)
+while (board_1.isPortReady)
 {
-    Console.WriteLine("Reading");
-    board.Read();
+    board_1.Read();
 }
 
 Console.ReadLine();
