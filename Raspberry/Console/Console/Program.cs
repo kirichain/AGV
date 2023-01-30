@@ -27,7 +27,7 @@ Console.WriteLine("Board is ready");
 
 while (board.isPort1Ready)
 {
-    board.Read();
+    //board.Read();
 }
 
 Console.ReadLine();
