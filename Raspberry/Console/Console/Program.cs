@@ -13,7 +13,7 @@ board = new Board();
 mqttClient = new MQTTClient();
 
 //socketClient.Init();
-Console.WriteLine("Starting now");
+Console.WriteLine("Starting now 9:55");
 
 board.Init();
 //mqttClient.Init();

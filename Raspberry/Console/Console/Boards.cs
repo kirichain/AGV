@@ -34,11 +34,13 @@ namespace Boards
                 {
                     Console.WriteLine("Port 1 not close successfully");
                 }
+                Console.WriteLine("Port 1 closed successfully");
                 serialPort1.Open();
                 while (!serialPort1.IsOpen)
                 {
                     Console.WriteLine("Port 1 not open successfully");
                 }
+                Console.WriteLine("Port 1 not opened successfully");
                 IsPort1Ready = true;
             }
 
