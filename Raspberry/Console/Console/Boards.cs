@@ -22,8 +22,8 @@ namespace Boards
             serialPort3.BaudRate = 115200;
             serialPort4.BaudRate = 115200;
 
-            serialPort1.PortName = "COM4";
-            //serialPort1.PortName = "/dev/ttyUSB0";
+            //serialPort1.PortName = "COM4";
+            serialPort1.PortName = "/dev/ttyUSB0";
             serialPort2.PortName = "/dev/ttyUSB1";
             serialPort3.PortName = "/dev/ttyUSB2";
             serialPort4.PortName = "/dev/ttyUSB3";
