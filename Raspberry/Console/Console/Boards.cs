@@ -28,7 +28,10 @@ namespace Boards
             }
             else
             {
-                serialPort1.Close();
+                while (serialPort1.IsOpen)
+                {
+                    serialPort1.Close();
+                }
                 serialPort1.Open();
             }
 

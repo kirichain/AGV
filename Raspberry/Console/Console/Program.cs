@@ -13,6 +13,8 @@ board = new Board();
 mqttClient = new MQTTClient();
 
 //socketClient.Init();
+Console.WriteLine("Starting now");
+
 board.Init();
 //mqttClient.Init();
 
