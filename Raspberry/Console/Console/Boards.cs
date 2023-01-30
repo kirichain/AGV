@@ -32,12 +32,12 @@ namespace Boards
                 serialPort1.Close();
                 while (serialPort1.IsOpen)
                 {
-
+                    Console.WriteLine("Port 1 not close successfully");
                 }
                 serialPort1.Open();
                 while (!serialPort1.IsOpen)
                 {
-
+                    Console.WriteLine("Port 1 not open successfully");
                 }
                 IsPort1Ready = true;
             }
