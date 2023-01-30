@@ -10,27 +10,28 @@ namespace Boards
         public bool isPort1Ready;
         public void Init()
         {
-            serialPort1 = new SerialPort();
-            serialPort2 = new SerialPort();
-            serialPort3 = new SerialPort();
-            serialPort4 = new SerialPort();
-
-            serialPort1.BaudRate = 115200;
-            serialPort2.BaudRate = 115200;
-            serialPort3.BaudRate = 115200;
-            serialPort4.BaudRate = 115200;
-
-            //serialPort1.PortName = "COM4";
-            serialPort1.PortName = "/dev/ttyUSB0";
-            serialPort2.PortName = "/dev/ttyUSB1";
-            serialPort3.PortName = "/dev/ttyUSB2";
-            serialPort4.PortName = "/dev/ttyUSB3";
             //using (serialPort1)
             //{
             Console.WriteLine("Checking boards");
 
             if (!serialPort1.IsOpen | serialPort1 == null)
             {
+                serialPort1 = new SerialPort();
+                serialPort2 = new SerialPort();
+                serialPort3 = new SerialPort();
+                serialPort4 = new SerialPort();
+
+                serialPort1.BaudRate = 115200;
+                serialPort2.BaudRate = 115200;
+                serialPort3.BaudRate = 115200;
+                serialPort4.BaudRate = 115200;
+
+                //serialPort1.PortName = "COM4";
+                serialPort1.PortName = "/dev/ttyUSB0";
+                serialPort2.PortName = "/dev/ttyUSB1";
+                serialPort3.PortName = "/dev/ttyUSB2";
+                serialPort4.PortName = "/dev/ttyUSB3";
+
                 serialPort1.Open();
                 Console.WriteLine("Port 1 opened successfully");
             }
