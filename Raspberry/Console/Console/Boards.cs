@@ -42,15 +42,28 @@ namespace Boards
         {
             Console.WriteLine("Reading");
 
-            try
+            using (serialPort = new SerialPort(portName, 115200))
             {
-                string serialReading = serialPort.ReadLine();           
-                if (serialReading.Length > 0)
+                if (!serialPort.IsOpen)
                 {
-                    Console.WriteLine(serialReading);
-                }           
+                    serialPort.Open();
+                }
+
+                while (!serialPort.IsOpen)
+                {
+                    //Console.WriteLine("Connecting");
+                }
+                //Console.WriteLine("Port" + portName + " opened successfully");
+                try
+                {
+                    string serialReading = serialPort.ReadLine();
+                    if (serialReading.Length > 0)
+                    {
+                        Console.WriteLine(serialReading);
+                    }
+                }
+                catch (TimeoutException) { }
             }
-            catch (TimeoutException) { }
         }
     }
 
