@@ -30,7 +30,7 @@ namespace Boards
 
             Console.WriteLine("Checking boards");
 
-            if (!serialPort1.IsOpen)
+            if (!serialPort1.IsOpen | serialPort1 == null)
             {
                 serialPort1.Open();
                 Console.WriteLine("Port 1 opened successfully");
@@ -113,7 +113,10 @@ namespace Boards
                 //string serialReading3 = serialPort3.ReadLine();
                 //string serialReading4 = serialPort4.ReadLine();
 
-                Console.WriteLine(serialReading1);
+                if (serialReading1.Length > 0)
+                {
+                    Console.WriteLine(serialReading1);
+                }
                 //Console.WriteLine(serialReading2);
                 //Console.WriteLine(serialReading3);
                 //Console.WriteLine(serialReading4);
