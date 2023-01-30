@@ -26,6 +26,15 @@ namespace Boards
                 {
                     serialPort.Open();
                 }
+                else
+                {
+                    serialPort.Dispose();
+                    while (serialPort.IsOpen)
+                    {
+
+                    }
+                    serialPort.Open();
+                }
 
                 while (!serialPort.IsOpen)
                 {
@@ -47,6 +56,15 @@ namespace Boards
             {
                 if (!serialPort.IsOpen)
                 {
+                    serialPort.Open();
+                }
+                else
+                {
+                    serialPort.Dispose();
+                    while (serialPort.IsOpen)
+                    {
+
+                    }
                     serialPort.Open();
                 }
 
