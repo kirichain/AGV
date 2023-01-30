@@ -26,6 +26,7 @@ namespace Boards
             if (!serialPort1.IsOpen)
             {
                 serialPort1.Open();
+                Console.WriteLine("Port 1 opened successfully");
             }
             else
             {
@@ -40,7 +41,7 @@ namespace Boards
                 {
                     Console.WriteLine("Port 1 not open successfully");
                 }
-                Console.WriteLine("Port 1 not opened successfully");
+                Console.WriteLine("Port 1 opened successfully");
                 IsPort1Ready = true;
             }
 
@@ -84,20 +85,7 @@ namespace Boards
             //}
 
             Console.WriteLine("Boards Init Done");
-            try
-            {
-                string serialReading1 = serialPort1.ReadLine();
-                //string serialReading2 = serialPort2.ReadLine();
-                //string serialReading3 = serialPort3.ReadLine();
-                //string serialReading4 = serialPort4.ReadLine();
 
-                Console.WriteLine(serialReading1);
-                //Console.WriteLine(serialReading2);
-                //Console.WriteLine(serialReading3);
-                //Console.WriteLine(serialReading4);
-
-            }
-            catch (TimeoutException) { }
         }
 
         public void Disconnect()
