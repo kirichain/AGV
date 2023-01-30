@@ -20,12 +20,11 @@ board_1.Init();
 //mqttClient.Init();
 
 
-while (board_1.isPortReady)
-{
+//while (board_1.isPortReady)
+//{
 //    board_1.Read();
-}
+//}
 
 
 
-Console.ReadKey();
-board_1.serialPort.Close();
+
