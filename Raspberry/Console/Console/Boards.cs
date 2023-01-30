@@ -29,20 +29,20 @@ namespace Boards
             {
                 serialPort.Open();
             }
-            //else
-            //{
-            //    serialPort.Close();
-            //    while (serialPort.IsOpen)
-            //    {
+            else
+            {
+                serialPort.Close();
+                while (serialPort.IsOpen)
+                {
 
-            //    }
-            //    serialPort.Open();
-            //}
+                }
+                serialPort.Open();
+            }
 
-            //while (!serialPort.IsOpen)
-            //{
-            //    Console.WriteLine("Connecting");
-            //}
+            while (!serialPort.IsOpen)
+            {
+                Console.WriteLine("Connecting");
+            }
 
             Console.WriteLine("Port " + portName + " opened successfully");
 
