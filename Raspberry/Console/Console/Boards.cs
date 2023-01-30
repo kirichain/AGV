@@ -41,7 +41,10 @@ namespace Boards
             }
             else
             {
-                serialPort2.Close();
+                while (serialPort2.IsOpen)
+                {
+                    serialPort2.Close();
+                }
                 serialPort2.Open();
             }
 
@@ -51,7 +54,10 @@ namespace Boards
             }
             else
             {
-                serialPort3.Close();
+                while (serialPort3.IsOpen)
+                {
+                    serialPort3.Close();
+                }
                 serialPort3.Open();
             }
 
@@ -61,7 +67,10 @@ namespace Boards
             }
             else
             {
-                serialPort4.Close();
+                while (serialPort4.IsOpen)
+                {
+                    serialPort4.Close();
+                }
                 serialPort4.Open();
             }
 
