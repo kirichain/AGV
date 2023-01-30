@@ -19,9 +19,12 @@ board.Init();
 //mqttClient.Init();
 
 while (!board.IsPort1Ready)
-{ }
+{
+    Console.WriteLine("Board is not ready");
+}
 while (board.IsPort1Ready)
 {
+    Console.WriteLine("Board is ready");
     board.Read();
 }
 

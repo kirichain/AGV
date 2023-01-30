@@ -23,6 +23,8 @@ namespace Boards
             serialPort3.PortName = "/dev/ttyUSB2";
             serialPort4.PortName = "/dev/ttyUSB3";
 
+            Console.WriteLine("Checking boards");
+
             if (!serialPort1.IsOpen)
             {
                 serialPort1.Open();
