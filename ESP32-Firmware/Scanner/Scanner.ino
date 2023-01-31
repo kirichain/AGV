@@ -50,7 +50,7 @@ void loop() {
   }
   //Serial.println("Scan done!");
   pBLEScan->clearResults();   // delete results fromBLEScan buffer to release memory
-  delay(100);
+  delay(20);
 
-  Serial.println("*" + String("Beacon 1 = ") + rssi_1 + "#" + String("Beacon 2 = ") + rssi_2 + "#" + String("Beacon 3 = ") + rssi_3 + "*");
+  Serial.println("&" + String("Beacon 1 = ") + rssi_1 + "#" + String("Beacon 2 = ") + rssi_2 + "#" + String("Beacon 3 = ") + rssi_3 + "*");
 }

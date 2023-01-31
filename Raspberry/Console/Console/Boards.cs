@@ -8,13 +8,17 @@ namespace Boards
     {
         public SerialPort serialPort, serialPortx;
         public bool isPortReady, isReading, isDisconnect;
-        public string portName, serialReading;
+        static string portName, serialReading, buffer;
+        static char LF = (char)10;
+        static bool isNewReading;
         public Board(string _portName)
         {
             portName = _portName;
             isPortReady = false;
             isReading = false;
             isDisconnect = false;
+            serialReading = "";
+            isNewReading = false;
         }
         public void Init()
         {
@@ -22,7 +26,7 @@ namespace Boards
 
             using (serialPort = new SerialPort(portName, 115200))
             {
-                serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+                //serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
 
                 if (!serialPort.IsOpen)
                 {
@@ -36,7 +40,7 @@ namespace Boards
                 Console.WriteLine("Port " + portName + " opened successfully");
                 isPortReady = true;
                 Console.WriteLine("Board Init Done");
-                Console.ReadKey();
+                //Console.ReadKey();
             }
         }
         public void ReadSerial()
@@ -58,11 +62,32 @@ namespace Boards
         {
             SerialPort sp = (SerialPort)sender;
             string indata = sp.ReadExisting();
+            foreach (char c in indata)
+            {
+                if (isNewReading)
+                {
+                    if (c == '*')
+                    {
+                        serialReading = buffer;
+                        if ((serialReading != "") && (serialReading != " ") && (serialReading[1] != ' '))
+                        {
+                            Console.WriteLine(serialReading);
+                        }
+                        buffer = "";
+                        isNewReading = false;
+                        break;
+                    }
+                    else if ((c != '&') && (c != LF))
+                    {
+                        buffer += c;
+                    }
+                }
+                else if (c == '&')
+                {
+                    isNewReading = true;
+                }
+            }
             //Console.WriteLine("Data Received:");
-            Console.WriteLine(indata);
         }
-
     }
-
-
 }
