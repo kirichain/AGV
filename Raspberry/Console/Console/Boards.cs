@@ -45,7 +45,7 @@ namespace Boards
         {
             SerialPort sp = (SerialPort)sender;
             string indata = sp.ReadExisting();
-            //Console.WriteLine("Data Received:");
+            Console.WriteLine("Data Received:");
             Console.WriteLine(indata);
         }
         public void Read()
