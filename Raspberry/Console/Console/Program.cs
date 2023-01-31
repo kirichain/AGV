@@ -18,7 +18,7 @@ Console.WriteLine("Starting now 9:30 AM");
 //board_1.Init();
 
 Console.WriteLine("Starting reading");
-board_1.Read();
+board_1.Reading();
 //while (true)
 //{
 //    board_1.Init();

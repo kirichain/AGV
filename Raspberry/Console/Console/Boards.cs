@@ -17,7 +17,7 @@ namespace Boards
             isDisconnect = false;
             serialPort = new SerialPort(portName, 115200);
         }
-        public void Init()
+        public void Check()
         {
             Console.WriteLine("Checking boards");
 
@@ -43,7 +43,7 @@ namespace Boards
             //Console.ReadKey();
             //}
         }
-        public void Read()
+        public void Reading()
         {
             using (serialPortx = new SerialPort(portName, 115200))
             {
