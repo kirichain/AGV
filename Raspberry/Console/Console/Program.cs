@@ -16,17 +16,17 @@ mqttClient = new MQTTClient();
 //socketClient.Init();
 Console.WriteLine("Starting now 8:30 AM");
 
+//while (true)
+//{
+    board_1.Init();
+//}
+
 while (true)
 {
-    board_1.Init();
+    board_1.Read();
 }
 //mqttClient.Init();
 
-
-//while (board_1.isPortReady)
-//{
-//    board_1.Read();
-//}
 
 
 

@@ -60,37 +60,34 @@ namespace Boards
         }
         public void Read()
         {
-            Console.WriteLine("Reading");
-
-            //using (serialPort = new SerialPort(portName, 115200))
-            //{
-            //if (!serialPort.IsOpen)
-            //{
-            //    serialPort.Open();
-            //}
-            //else
-            //{
-            //    serialPort.Dispose();
-            //    while (serialPort.IsOpen)
-            //    {
-
-            //    }
-            //    serialPort.Open();
-            //}
-
-            //while (!serialPort.IsOpen)
-            //{
-            //    //Console.WriteLine("Connecting");
-            //}
-            if (isPortReady && isReading)
+            using (serialPort = new SerialPort(portName, 115200))
             {
+                if (!serialPort.IsOpen)
+                {
+                    serialPort.Open();
+                }
+                //else
+                //{
+                //    serialPort.Dispose();
+                //    while (serialPort.IsOpen)
+                //    {
+
+                //    }
+                //    serialPort.Open();
+                //}
+
+                //while (!serialPort.IsOpen)
+                //{
+                //    //Console.WriteLine("Connecting");
+                //}
+
                 try
                 {
                     serialReading = serialPort.ReadLine();
-                    //if (serialReading.Length > 0)
-                    //{
-                    Console.WriteLine(serialReading);
-                    //}
+                    if (serialReading.Length > 0)
+                    {
+                        Console.WriteLine(serialReading);
+                    }
                 }
                 catch (TimeoutException) { }
             }
