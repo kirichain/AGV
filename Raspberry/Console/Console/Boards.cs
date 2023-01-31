@@ -20,27 +20,27 @@ namespace Boards
         {
             Console.WriteLine("Checking boards");
 
-            //using (serialPort = new SerialPort(portName, 115200))
-            //{
-            //serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
-            serialPort = new SerialPort(portName, 115200);
-            if (!serialPort.IsOpen)
+            using (serialPort = new SerialPort(portName, 115200))
             {
-                serialPort.Open();
-            }
+                serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+                serialPort = new SerialPort(portName, 115200);
+                if (!serialPort.IsOpen)
+                {
+                    serialPort.Open();
+                }
 
-            while (!serialPort.IsOpen)
-            {
-                Console.WriteLine("Connecting");
-            }
+                while (!serialPort.IsOpen)
+                {
+                    Console.WriteLine("Connecting");
+                }
 
-            Console.WriteLine("Port " + portName + " opened successfully");
-            isPortReady = true;
-            Console.WriteLine("Board Init Done");
-            //Console.ReadKey();
-            //}
-            serialPort.Close();
-            serialPort.Dispose();
+                Console.WriteLine("Port " + portName + " opened successfully");
+                isPortReady = true;
+                Console.WriteLine("Board Init Done");
+                //Console.ReadKey();
+            }
+            //serialPort.Close();
+            //serialPort.Dispose();
         }
         public void Read()
         {
