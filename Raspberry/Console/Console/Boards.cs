@@ -53,6 +53,8 @@ namespace Boards
                 {
                     serialPort.Open();
                 }
+
+                Console.WriteLine("Reading config done");
                 //try
                 //{
                 //    serialReading = serialPort.ReadLine();
