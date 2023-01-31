@@ -15,7 +15,7 @@ mqttClient = new MQTTClient();
 
 //socketClient.Init();
 Console.WriteLine("Starting now 9:30 AM");
-board_1.Init();
+//board_1.Init();
 
 Console.WriteLine("Starting reading");
 board_1.Read();
