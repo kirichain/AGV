@@ -14,11 +14,11 @@ board_1 = new Board("/dev/ttyUSB0");
 mqttClient = new MQTTClient();
 
 //socketClient.Init();
-Console.WriteLine("Starting now 8:30 AM");
+Console.WriteLine("Starting now 9:30 AM");
 
 //while (true)
 //{
-    board_1.Init();
+    //board_1.Init();
 //}
 
 while (true)
