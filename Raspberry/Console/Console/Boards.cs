@@ -16,6 +16,7 @@ namespace Boards
             isReading = false;
             isDisconnect = false;
             serialPort = new SerialPort(portName, 115200);
+            serialPortx = new SerialPort(portName, 115200);
         }
         public void Check()
         {
