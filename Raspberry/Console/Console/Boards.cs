@@ -18,7 +18,7 @@ namespace Boards
             //serialPort = new SerialPort(portName, 115200);
             //serialPortx = new SerialPort(portName, 115200);
         }
-        public void Check()
+        public void Init()
         {
             Console.WriteLine("Checking boards");
 
