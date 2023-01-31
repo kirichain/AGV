@@ -53,15 +53,15 @@ namespace Boards
                 {
                     serialPort.Open();
                 }
-                try
-                {
-                    serialReading = serialPort.ReadLine();
-                    if (serialReading.Length > 0)
-                    {
-                        Console.WriteLine(serialReading);
-                    }
-                }
-                catch (TimeoutException) { }
+                //try
+                //{
+                //    serialReading = serialPort.ReadLine();
+                //    if (serialReading.Length > 0)
+                //    {
+                //        Console.WriteLine(serialReading);
+                //    }
+                //}
+                //catch (TimeoutException) { }
             }
         }
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
