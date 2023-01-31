@@ -38,7 +38,19 @@ namespace Boards
                 Console.WriteLine("Port " + portName + " opened successfully");
                 isPortReady = true;
                 Console.WriteLine("Board Init Done");
-                Console.ReadKey();
+                //Console.ReadKey();
+            }
+        }
+        public void Read()
+        {
+            using (serialPort = new SerialPort(portName, 115200))
+            {
+                serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+
+                if (!serialPort.IsOpen)
+                {
+                    serialPort.Open();
+                }
             }
         }
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
@@ -47,17 +59,6 @@ namespace Boards
             string indata = sp.ReadExisting();
             //Console.WriteLine("Data Received:");
             Console.WriteLine(indata);
-        }
-        public void Read()
-        {
-            using (serialPort = new SerialPort(portName, 115200))
-            {
-                serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
-                if (!serialPort.IsOpen)
-                {
-                    serialPort.Open();
-                }
-            }
         }
     }
 
