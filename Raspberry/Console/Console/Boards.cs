@@ -23,26 +23,17 @@ namespace Boards
 
             using (serialPort = new SerialPort(portName, 115200))
             {
-                serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+                //serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
 
                 if (!serialPort.IsOpen)
                 {
                     serialPort.Open();
                 }
-                //else
-                //{
-                //    serialPort.Close();
-                //    while (serialPort.IsOpen)
-                //    {
 
-                //    }
-                //    serialPort.Open();
-                //}
-
-                //while (!serialPort.IsOpen)
-                //{
-                //    Console.WriteLine("Connecting");
-                //}
+                while (!serialPort.IsOpen)
+                {
+                    Console.WriteLine("Connecting");
+                }
 
                 Console.WriteLine("Port " + portName + " opened successfully");
                 isPortReady = true;
@@ -50,7 +41,6 @@ namespace Boards
                 Console.ReadKey();
             }
         }
-
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort sp = (SerialPort)sender;
@@ -62,36 +52,12 @@ namespace Boards
         {
             using (serialPort = new SerialPort(portName, 115200))
             {
+                serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
                 if (!serialPort.IsOpen)
                 {
                     serialPort.Open();
                 }
-                //else
-                //{
-                //    serialPort.Dispose();
-                //    while (serialPort.IsOpen)
-                //    {
-
-                //    }
-                //    serialPort.Open();
-                //}
-
-                //while (!serialPort.IsOpen)
-                //{
-                //    //Console.WriteLine("Connecting");
-                //}
-
-                try
-                {
-                    serialReading = serialPort.ReadLine();
-                    if (serialReading.Length > 0)
-                    {
-                        Console.WriteLine(serialReading);
-                    }
-                }
-                catch (TimeoutException) { }
             }
-            //}
         }
     }
 
