@@ -45,9 +45,7 @@ namespace Boards
                 //}
 
                 Console.WriteLine("Port " + portName + " opened successfully");
-
                 isPortReady = true;
-
                 Console.WriteLine("Board Init Done");
                 Console.ReadKey();
             }
