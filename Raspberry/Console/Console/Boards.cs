@@ -39,13 +39,6 @@ namespace Boards
                 Console.ReadKey();
             }
         }
-        private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
-        {
-            SerialPort sp = (SerialPort)sender;
-            string indata = sp.ReadExisting();
-            Console.WriteLine("Data Received:");
-            Console.WriteLine(indata);
-        }
         public void ReadSerial()
         {
             using (serialPort = new SerialPort(portName, 115200))
@@ -59,18 +52,16 @@ namespace Boards
 
                 Console.WriteLine("Reading config done");
                 Console.ReadKey();
-                //try
-                //{
-                //    serialReading = serialPort.ReadLine();
-                //    if (serialReading.Length > 0)
-                //    {
-                //        Console.WriteLine(serialReading);
-                //    }
-                //}
-                //catch (TimeoutException) { }
             }
         }
-        
+        private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            string indata = sp.ReadExisting();
+            //Console.WriteLine("Data Received:");
+            Console.WriteLine(indata);
+        }
+
     }
 
 
