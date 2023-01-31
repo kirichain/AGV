@@ -40,6 +40,7 @@ namespace Boards
                 Console.WriteLine("Board Init Done");
                 //Console.ReadKey();
             }
+            serialPort.Close();
         }
         public void Read()
         {
