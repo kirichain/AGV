@@ -15,8 +15,6 @@ namespace Boards
             isPortReady = false;
             isReading = false;
             isDisconnect = false;
-            //serialPort = new SerialPort(portName, 115200);
-            //serialPortx = new SerialPort(portName, 115200);
         }
         public void Init()
         {
@@ -24,7 +22,7 @@ namespace Boards
 
             using (serialPort = new SerialPort(portName, 115200))
             {
-                serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler1);
+                serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
 
                 if (!serialPort.IsOpen)
                 {
@@ -38,27 +36,29 @@ namespace Boards
                 Console.WriteLine("Port " + portName + " opened successfully");
                 isPortReady = true;
                 Console.WriteLine("Board Init Done");
+                Console.ReadKey();
             }
         }
-        private static void DataReceivedHandler1(object sender, SerialDataReceivedEventArgs e)
+        private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort sp = (SerialPort)sender;
             string indata = sp.ReadExisting();
             Console.WriteLine("Data Received:");
             Console.WriteLine(indata);
         }
-        public void Reading()
+        public void ReadSerial()
         {
-            using (serialPortx = new SerialPort(portName, 115200))
+            using (serialPort = new SerialPort(portName, 115200))
             {
-                //serialPortx.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+                serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
 
-                if (!serialPortx.IsOpen)
+                if (!serialPort.IsOpen)
                 {
-                    serialPortx.Open();
+                    serialPort.Open();
                 }
 
                 Console.WriteLine("Reading config done");
+                Console.ReadKey();
                 //try
                 //{
                 //    serialReading = serialPort.ReadLine();
