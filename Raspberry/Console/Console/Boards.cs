@@ -15,32 +15,32 @@ namespace Boards
             isPortReady = false;
             isReading = false;
             isDisconnect = false;
-            serialPort = new SerialPort(portName, 115200);
         }
         public void Init()
         {
             Console.WriteLine("Checking boards");
 
-            using (serialPort = new SerialPort(portName, 115200))
+            //using (serialPort = new SerialPort(portName, 115200))
+            //{
+            //serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+            serialPort = new SerialPort(portName, 115200);
+            if (!serialPort.IsOpen)
             {
-                //serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
-
-                if (!serialPort.IsOpen)
-                {
-                    serialPort.Open();
-                }
-
-                while (!serialPort.IsOpen)
-                {
-                    Console.WriteLine("Connecting");
-                }
-
-                Console.WriteLine("Port " + portName + " opened successfully");
-                isPortReady = true;
-                Console.WriteLine("Board Init Done");
-                //Console.ReadKey();
+                serialPort.Open();
             }
+
+            while (!serialPort.IsOpen)
+            {
+                Console.WriteLine("Connecting");
+            }
+
+            Console.WriteLine("Port " + portName + " opened successfully");
+            isPortReady = true;
+            Console.WriteLine("Board Init Done");
+            //Console.ReadKey();
+            //}
             serialPort.Close();
+            serialPort.Dispose();
         }
         public void Read()
         {
@@ -52,13 +52,14 @@ namespace Boards
                 {
                     serialPort.Open();
                 }
+                Console.WriteLine("Port " + portName + " opened successfully");
             }
         }
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort sp = (SerialPort)sender;
             string indata = sp.ReadExisting();
-            //Console.WriteLine("Data Received:");
+            Console.WriteLine("Data Received:");
             Console.WriteLine(indata);
         }
     }
