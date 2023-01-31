@@ -6,7 +6,7 @@ namespace Boards
 {
     public class Board
     {
-        public SerialPort serialPort;
+        public SerialPort serialPort, serialPortx;
         public bool isPortReady, isReading, isDisconnect;
         public string portName, serialReading;
         public Board(string _portName)
@@ -45,13 +45,13 @@ namespace Boards
         }
         public void Read()
         {
-            using (serialPort = new SerialPort(portName, 115200))
+            using (serialPortx = new SerialPort(portName, 115200))
             {
-                serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+                serialPortx.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
 
-                if (!serialPort.IsOpen)
+                if (!serialPortx.IsOpen)
                 {
-                    serialPort.Open();
+                    serialPortx.Open();
                 }
 
                 Console.WriteLine("Reading config done");
