@@ -18,10 +18,10 @@ Console.WriteLine("Starting now 9:30 AM");
 
 board_1.Init();
 
-while (true)
-{
-    board_1.Init();
-}
+//while (true)
+//{
+//    board_1.Init();
+//}
 //mqttClient.Init();
 
 
