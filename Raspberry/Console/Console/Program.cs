@@ -2,27 +2,34 @@
 using SocketClients;
 using MQTTClients;
 using GuidanceSystems;
+using APIs;
 
 SocketClient socketClient;
 MQTTClient mqttClient;
-Board board_1;
+Board beacon_scanner;
 GuidanceSystem guider;
+API api;
 
 socketClient = new SocketClient();
-board_1 = new Board("/dev/ttyUSB0");
-//board_1 = new Board("COM4");
+//beacon_scanner = new Board("/dev/ttyUSB0");
+beacon_scanner = new Board("COM4");
 mqttClient = new MQTTClient();
-
+guider= new GuidanceSystem();
+api= new API();
 //socketClient.Init();
-Console.WriteLine("Starting now 13:00 PM");
-board_1.Init();
 
-Console.WriteLine("Starting reading");
-board_1.ReadSerial();
-//while (true)
-//{
-//    board_1.Init();
-//}
+beacon_scanner.Init();
+if (beacon_scanner.isPortReady)
+{
+    Console.WriteLine("Start reading from beacon scanner");
+    beacon_scanner.ReadSerial();
+} else
+{
+    Console.WriteLine("Beacon Scanner fails to connect");
+}
+
+Console.ReadKey();
+
 //mqttClient.Init();
 
 

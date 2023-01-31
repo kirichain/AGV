@@ -2,6 +2,9 @@
 {
     public class Mapper
     {
-
+        public Mapper()
+        {
+            Console.WriteLine("Mapper Init Done");
+        }
     }
 }

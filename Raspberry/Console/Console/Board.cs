@@ -6,17 +6,19 @@ namespace Boards
 {
     public class Board
     {
-        public SerialPort serialPort, serialPortx;
-        public bool isPortReady, isReading, isDisconnect;
-        static string portName, serialReading, buffer;
+        static SerialPort serialPort;
+        public bool isPortReady, isReading, isDisconnected;
+        //LF character used for determining if data from serial port reading contains break line character 
         static char LF = (char)10;
         static bool isNewReading;
+        public static string portName, serialReading, buffer;
+
         public Board(string _portName)
         {
             portName = _portName;
             isPortReady = false;
             isReading = false;
-            isDisconnect = false;
+            isDisconnected = false;
             serialReading = "";
             isNewReading = false;
         }
@@ -34,7 +36,7 @@ namespace Boards
                 }
                 while (!serialPort.IsOpen)
                 {
-                    Console.WriteLine("Connecting");
+                    Console.WriteLine("Connecting to serial port " + portName);
                 }
 
                 Console.WriteLine("Port " + portName + " opened successfully");
@@ -69,7 +71,7 @@ namespace Boards
                     if (c == '*')
                     {
                         serialReading = buffer;
-                        if ((serialReading != "") && (serialReading != " ") && (serialReading[1] != ' '))
+                        if ((serialReading != "") && (serialReading != " "))
                         {
                             Console.WriteLine(serialReading);
                         }
