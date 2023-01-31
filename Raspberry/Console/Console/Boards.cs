@@ -39,7 +39,7 @@ namespace Boards
             isPortReady = true;
             Console.WriteLine("Board Init Done");
             serialPort.Close();
-            serialPort.Dispose();
+            //serialPort.Dispose();
             //Console.ReadKey();
             //}
         }
