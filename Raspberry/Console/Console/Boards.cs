@@ -16,33 +16,33 @@ namespace Boards
             isReading = false;
             isDisconnect = false;
             //serialPort = new SerialPort(portName, 115200);
-            serialPortx = new SerialPort(portName, 115200);
+            //serialPortx = new SerialPort(portName, 115200);
         }
         public void Check()
         {
             Console.WriteLine("Checking boards");
 
-            //using (serialPort = new SerialPort(portName, 115200))
-            //{
-            //serialPort = new SerialPort(portName, 115200);
-            //serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
-
-            if (!serialPort.IsOpen)
+            using (serialPort = new SerialPort(portName, 115200))
             {
-                serialPort.Open();
-            }
-            //while (!serialPort.IsOpen)
-            //{
-            //    Console.WriteLine("Connecting");
-            //}
+                //serialPort = new SerialPort(portName, 115200);
+                serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
 
-            Console.WriteLine("Port " + portName + " opened successfully");
-            isPortReady = true;
-            Console.WriteLine("Board Init Done");
-            serialPort.Close();
-            //serialPort.Dispose();
-            //Console.ReadKey();
-            //}
+                if (!serialPort.IsOpen)
+                {
+                    serialPort.Open();
+                }
+                //while (!serialPort.IsOpen)
+                //{
+                //    Console.WriteLine("Connecting");
+                //}
+
+                Console.WriteLine("Port " + portName + " opened successfully");
+                isPortReady = true;
+                Console.WriteLine("Board Init Done");
+                //serialPort.Close();
+                //serialPort.Dispose();
+                //Console.ReadKey();
+            }
         }
         public void Reading()
         {
