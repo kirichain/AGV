@@ -4,20 +4,19 @@
 
 <div class="row">
     <!--Left Column-->
-    <div class="col-sm-3 border border-danger border-3 px-3">
-        <div class="container d-flex border border-primary border-3 my-3 p-2">
-            <select class="form-select">
-                <option selected>Select AGV</option>
-                <option value="001">001</option>
-                <option value="002">002</option>
-                <option value="003">003</option>
-            </select>
-        </div>
+    <div class="col-sm-3 border-end border-bottom border-secondary border-2 px-3">
+        <select class="form-select my-2">
+            <option selected>Select AGV</option>
+            <option value="001">001</option>
+            <option value="002">002</option>
+            <option value="003">003</option>
+        </select>
 
+        <p class="text-danger">Not connected</p>
         <!-- Left Tabs navs -->
         <ul class="nav nav-tabs nav-justified mb-3" id="left-nav" role="tablist">
             <li class="nav-item" role="presentation">
-                <a class="nav-link active"
+                <a class="nav-link active text-white"
                    id="controlTab"
                    data-mdb-toggle="tab"
                    href="#control-tab"
@@ -26,7 +25,7 @@
                    aria-selected="true">Control</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link"
+                <a class="nav-link text-white"
                    id="monitorTab"
                    data-mdb-toggle="tab"
                    href="#monitor-tab"
@@ -34,7 +33,6 @@
                    aria-controls="monitor-tab"
                    aria-selected="false">Monitor</a>
             </li>
-
         </ul>
         <!-- Left Tabs navs -->
         <!-- Left Tabs content -->
@@ -44,14 +42,19 @@
                  role="tabpanel"
                  aria-labelledby="controlTab">
                 <!--Control tab content-->
-                <div class="container d-flex flex-column border border-primary border-3 my-3">
-                    <h5 class="text-center my-1 border border-primary">Camera View</h5>
+                <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
+                    <h5 class="text-center my-1">Camera View</h5>
+                    <!-- Camera checked switch -->
+                    <div class="form-check form-switch mb-3 d-flex justify-content-center">
+                        <input class="form-check-input" type="checkbox" role="switch" id="cameraSwitch" />
+                        <label class="form-check-label" for="cameraSwitch">Off</label>
+                    </div>
                     <div class="my-1" id="cameraView">
-                        <img id="stream" src="http://192.168.227.128:81/stream" style="object-fit: contain; height: 100%; width: 100%; background-color: #353535" />
+                        <img id="stream" style="object-fit: contain; height: 100%; width: 100%; background-color: #353535" />
                     </div>
                 </div>
-                <div class="container d-flex flex-column border border-primary border-3 my-3">
-                    <h5 class="text-center my-1 border border-primary">Control</h5>
+                <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
+                    <h5 class="text-center my-1">Control</h5>
                     <div class="my-1" id="controlPanel">
                         <div class="d-flex justify-content-center">
                             <button type="button" class="btn btn-info btn-square-sm">W</button>
@@ -68,7 +71,7 @@
                             <input type="range" class="form-range" min="0" max="255" step="1" id="speedSlider">
                             <!-- Checked switch -->
                             <div class="form-check form-switch mb-3 d-flex justify-content-center">
-                                <input class="form-check-input" type="checkbox" role="switch" id="steeringAssistSwitch" checked />
+                                <input class="form-check-input" type="checkbox" role="switch" id="steeringAssistSwitch" />
                                 <label class="form-check-label" for="steeringAssistSwitch">Steering Assist</label>
                             </div>
                             <button type="button" class="btn btn-danger btn-md mb-3">Emergency Stop</button>
@@ -82,15 +85,15 @@
                  role="tabpanel"
                  aria-labelledby="monitorTab">
                 <!--Monitor tab content-->
-                <div class="container d-flex flex-column border border-primary border-3 my-3">
-                    <h5 class="text-center my-1 border border-primary">Data</h5>
+                <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
+                    <h5 class="text-center my-1">Data</h5>
                     <div class="my-1" id="hardwareDataPanel">Hardwares Data Panel</div>
                     <div class="my-1" id="mqttDataPanel">MQTT Data Panel</div>
                     <div class="my-1" id="hardwareDataPanel">Hardwares Data Panel</div>
                     <div class="my-1" id="socketDataPanel">Socket Data Panel</div>
                 </div>
-                <div class="container d-flex flex-column border border-primary border-3 my-3">
-                    <h5 class="text-center my-1 border border-primary">Laser Sensors</h5>
+                <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
+                    <h5 class="text-center my-1">Laser Sensors</h5>
                     <div class="my-1" id="laserSensorPanel">Laser Sensors Panel</div>
                 </div>
             </div>
@@ -100,21 +103,19 @@
     </div>
     <!--Left Column-->
     <!--Map Display-->
-    <div class="col-sm-6 border border-white border-3">
+    <div class="col-sm-6 border-end border-bottom border-secondary border-2">
         <div class="container d-flex">
         </div>
     </div>
     <!--Map Display-->
     <!--Right Column-->
-    <div class="col-sm-3 border border-danger border-3 px-3">
-        <div class="container d-flex flex-column border border-primary border-3 my-3">
-            <h5 class="text-center my-1 border border-primary">System</h5>
-        </div>
+    <div class="col-sm-3 border-bottom border-secondary border-2 px-3">
+        <h5 class="text-center my-2">System</h5>
 
         <!-- Right Tabs navs -->
         <ul class="nav nav-tabs nav-justified mb-3" id="right-nav" role="tablist">
             <li class="nav-item" role="presentation">
-                <a class="nav-link active"
+                <a class="nav-link active text-white"
                    id="systemControlTab"
                    data-mdb-toggle="tab"
                    href="#system-control-tab"
@@ -123,7 +124,7 @@
                    aria-selected="true">Control</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link"
+                <a class="nav-link text-white"
                    id="systemMonitorTab"
                    data-mdb-toggle="tab"
                    href="#system-monitor-tab"
@@ -141,8 +142,8 @@
                  role="tabpanel"
                  aria-labelledby="systemControlTab">
                 <!--System Control tab content-->
-                <div class="container d-flex flex-column border border-primary border-3 my-3">
-                    <h5 class="text-center my-1 border border-primary">AGVs</h5>
+                <div class="container d-flex flex-column border border-secondary border-3 my-3">
+                    <h5 class="text-center my-1">AGVs</h5>
                     <div class="my-1" id="agvPanel">AGV Panel</div>
                 </div>
                 <!--System Control tab content-->
@@ -152,16 +153,16 @@
                  role="tabpanel"
                  aria-labelledby="systemMonitorTab">
                 <!--System Monitor tab content-->
-                <div class="container d-flex flex-column border border-primary border-3 my-3">
-                    <h5 class="text-center my-1 border border-primary">MQTT Broker</h5>
+                <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
+                    <h5 class="text-center my-1">MQTT Broker</h5>
                     <div class="my-1" id="mqttPanel">MQTT Panel</div>
                 </div>
-                <div class="container d-flex flex-column border border-primary border-3 my-3">
-                    <h5 class="text-center my-1 border border-primary">Socket Server</h5>
+                <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
+                    <h5 class="text-center my-1">Socket Server</h5>
                     <div class="my-1" id="socketPanel">Socket Panel</div>
                 </div>
-                <div class="container d-flex flex-column border border-primary border-3 my-3">
-                    <h5 class="text-center my-1 border border-primary">Charging Stations</h5>
+                <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
+                    <h5 class="text-center my-1">Charging Stations</h5>
                     <div class="my-1" id="chargingStationPanel">Charging Station Panel</div>
                 </div>
                 <!--System Monitor tab content-->
@@ -171,12 +172,3 @@
     </div>
     <!--Right Column-->
 </div>
-<!--Footer-->
-<div class="row">
-    <div class="col-12">
-        <div class="container border-top footer text-muted py-3">
-            Pungkook AGV Dashboard - Updated at 02/02/2023-9:30.AM
-        </div>
-    </div>
-</div>
-<!--Footer-->
