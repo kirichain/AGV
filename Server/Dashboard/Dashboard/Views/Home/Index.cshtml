@@ -12,7 +12,12 @@
             <option value="003">003</option>
         </select>
 
-        <p class="text-danger">Not connected</p>
+        <p class="text-danger" id="agvConnectingIndicator">Not connected</p>
+
+        <p class="text-primary" id="agvMQTTLatency">MQTT Latency: </p>
+
+        <p class="text-primary" itemid="agvSocketLatency">Socket Latency: </p>
+
         <!-- Left Tabs navs -->
         <ul class="nav nav-tabs nav-justified mb-3" id="left-nav" role="tablist">
             <li class="nav-item" role="presentation">
@@ -103,8 +108,26 @@
     </div>
     <!--Left Column-->
     <!--Map Display-->
-    <div class="col-sm-6 border-end border-bottom border-secondary border-2">
-        <div class="container d-flex">
+    <div class="col-sm-6 border-end border-bottom border-secondary border-2 p-0">
+        <div class="container-fluid min-vh-100 d-flex flex-column align-content-between p-0" id="mapView">
+            <div class="container-fluid min-vh-100 border-bottom border-secondary" id="gridMap">
+
+            </div>          
+            <div class="container-fluid d-flex justify-content-between" id="navBar">
+                <div class="container rounded border border-secondary m-2">
+                    Nav Button 1
+                </div>
+                <div class="container rounded border border-secondary m-2">
+                    Nav Button 2
+                </div>
+                <div class="container rounded border border-secondary m-2">
+                    Nav Button 3
+                </div>
+                <div class="container rounded border border-secondary m-2">
+                    Nav Button 4
+                </div>
+
+            </div>
         </div>
     </div>
     <!--Map Display-->
@@ -142,7 +165,7 @@
                  role="tabpanel"
                  aria-labelledby="systemControlTab">
                 <!--System Control tab content-->
-                <div class="container d-flex flex-column border border-secondary border-3 my-3">
+                <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
                     <h5 class="text-center my-1">AGVs</h5>
                     <div class="my-1" id="agvPanel">AGV Panel</div>
                 </div>
