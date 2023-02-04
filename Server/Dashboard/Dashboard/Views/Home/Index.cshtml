@@ -5,7 +5,7 @@
 <div class="row">
     <!--Left Column-->
     <div class="col-sm-3 border-end border-bottom border-secondary border-2 px-3">
-        <select class="form-select my-2">
+        <select class="form-select my-2" id="agvSelector">
             <option selected>Select AGV</option>
             <option value="001">001</option>
             <option value="002">002</option>
@@ -14,9 +14,16 @@
 
         <p class="text-danger" id="agvConnectingIndicator">Not connected</p>
 
+        <select class="form-select my-2" id="modeSelector">
+            <option selected>Mode</option>
+            <option value="idle">Idle</option>
+            <option value="delivery">Delivery</option>
+            <option value="direct">Direct</option>
+        </select>
+
         <p class="text-primary" id="agvMQTTLatency">MQTT Latency: </p>
 
-        <p class="text-primary" itemid="agvSocketLatency">Socket Latency: </p>
+        <p class="text-primary" id="agvSocketLatency">Socket Latency: </p>
 
         <!-- Left Tabs navs -->
         <ul class="nav nav-tabs nav-justified mb-3" id="left-nav" role="tablist">
@@ -52,10 +59,10 @@
                     <!-- Camera checked switch -->
                     <div class="form-check form-switch mb-3 d-flex justify-content-center">
                         <input class="form-check-input" type="checkbox" role="switch" id="cameraSwitch" />
-                        <label class="form-check-label" for="cameraSwitch">Off</label>
+                        <label class="form-check-label" for="cameraSwitch" id="cameraIndicator">Off</label>
                     </div>
                     <div class="my-1" id="cameraView">
-                        <img id="stream" style="object-fit: contain; height: 100%; width: 100%; background-color: #353535" />
+                        <img id="cameraStreamView" style="object-fit: contain; height: 100%; width: 100%; background-color: #353535" />
                     </div>
                 </div>
                 <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
@@ -72,12 +79,12 @@
                             <button type="button" class="btn btn-info btn-square-sm">S</button>
                         </div>
                         <div class="d-flex flex-column justify-content-center my-3">
-                            <label class="text-center" for="speedSlider" class="form-label">Motor Speed: </label>
+                            <label class="text-center" for="speedSlider" class="form-label" id="speedIndicator">Motor Speed: </label>
                             <input type="range" class="form-range" min="0" max="255" step="1" id="speedSlider">
                             <!-- Checked switch -->
                             <div class="form-check form-switch mb-3 d-flex justify-content-center">
                                 <input class="form-check-input" type="checkbox" role="switch" id="steeringAssistSwitch" />
-                                <label class="form-check-label" for="steeringAssistSwitch">Steering Assist</label>
+                                <label class="form-check-label" for="steeringAssistSwitch" id="steeringAssistIndicator">Steering Assist</label>
                             </div>
                             <button type="button" class="btn btn-danger btn-md mb-3">Emergency Stop</button>
                             <button type="button" class="btn btn-warning btn-md mb-3">Restart</button>
@@ -92,9 +99,8 @@
                 <!--Monitor tab content-->
                 <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
                     <h5 class="text-center my-1">Data</h5>
-                    <div class="my-1" id="hardwareDataPanel">Hardwares Data Panel</div>
+                    <div class="my-1" id="hardwareDataPanel">Hardware Data Panel</div>
                     <div class="my-1" id="mqttDataPanel">MQTT Data Panel</div>
-                    <div class="my-1" id="hardwareDataPanel">Hardwares Data Panel</div>
                     <div class="my-1" id="socketDataPanel">Socket Data Panel</div>
                 </div>
                 <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
@@ -111,20 +117,42 @@
     <div class="col-sm-6 border-end border-bottom border-secondary border-2 p-0">
         <div class="container-fluid min-vh-100 d-flex flex-column align-content-between p-0" id="mapView">
             <div class="container-fluid min-vh-100 border-bottom border-secondary" id="gridMap">
+            </div>
+            <div class="container-fluid d-flex justify-content-between border-bottom border-secondary">
+                <button type="button" class="btn btn-success my-2 mx-5"><</button>
 
-            </div>          
+                <select class="form-select my-2 mx-5" id="mapSelector">
+                    <option selected value="1">Warehouse 1</option>
+                    <option value="2">Warehouse 2</option>
+                    <option value="3">Warehouse 3</option>
+                </select>
+
+                <button type="button" class="btn btn-success my-2 mx-5">></button>
+            </div>
             <div class="container-fluid d-flex justify-content-between" id="navBar">
-                <div class="container rounded border border-secondary m-2">
-                    Nav Button 1
+                <div class="container d-flex flex-column align-items-center m-2">
+                    <button type="button" class="btn bg-transparent">
+                        <img src="https://www.clker.com/cliparts/m/C/I/q/h/r/ble.svg.hi.png" width="75" height="75" class="m-2" />
+                    </button>
+                    <p class="text-center mx-2">BLE Scanner</p>
                 </div>
-                <div class="container rounded border border-secondary m-2">
-                    Nav Button 2
+                <div class="container d-flex flex-column align-items-center m-2">
+                    <button type="button" class="btn bg-transparent">
+                        <img src="https://cdn4.iconfinder.com/data/icons/driverless-autonomous/104/silicon_chip_lidar_automotive_sensors_solid_state_lidar_technology_internet_of_things-512.png" width="75" height="75" class="m-2" />
+                    </button>
+                    <p class="text-center mx-2">Laser Sensors</p>
                 </div>
-                <div class="container rounded border border-secondary m-2">
-                    Nav Button 3
+                <div class="container d-flex flex-column align-items-center m-2">
+                    <button type="button" class="btn bg-transparent">
+                        <img src="https://www.svgrepo.com/show/491659/map-pin.svg" width="75" height="75" class="m-2" />
+                    </button>
+                    <p class="text-center mx-2">Map View</p>
                 </div>
-                <div class="container rounded border border-secondary m-2">
-                    Nav Button 4
+                <div class="container d-flex flex-column align-items-center m-2">
+                    <button type="button" class="btn bg-transparent">
+                        <img src="https://www.svgrepo.com/show/488308/package.svg" width="75" height="75" class="m-2" />
+                    </button>
+                    <p class="text-center mx-2">Delivery Control</p>
                 </div>
 
             </div>
@@ -167,7 +195,19 @@
                 <!--System Control tab content-->
                 <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
                     <h5 class="text-center my-1">AGVs</h5>
-                    <div class="my-1" id="agvPanel">AGV Panel</div>
+                    <div class="my-1" id="agvPanel">
+                        <p class="text-secondary" id="totalAgvCount">Total: </p>
+                        <p class="text-secondary" id="connectedAgvCount">Connected:</p>
+                        <p class=""></p>
+                    </div>
+                </div>
+                <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
+                    <h5 class="text-center my-1">Create Map</h5>
+                    <div class="my-1" id="createMapPanel">Create map panel</div>
+                </div>
+                <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
+                    <h5 class="text-center my-1">Edit Maps</h5>
+                    <div class="my-1" id="selectMapPanel">Edit map panel</div>
                 </div>
                 <!--System Control tab content-->
             </div>
