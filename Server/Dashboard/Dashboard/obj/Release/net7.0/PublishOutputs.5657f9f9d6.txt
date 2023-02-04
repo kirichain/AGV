@@ -1,0 +1,7 @@
+H:\Dropbox\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\PubTmp\Out\Dashboard.exe
+H:\Dropbox\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\PubTmp\Out\appsettings.Development.json
+H:\Dropbox\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\PubTmp\Out\appsettings.json
+H:\Dropbox\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\PubTmp\Out\Dashboard.dll
+H:\Dropbox\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\PubTmp\Out\Dashboard.deps.json
+H:\Dropbox\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\PubTmp\Out\Dashboard.runtimeconfig.json
+H:\Dropbox\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\PubTmp\Out\Dashboard.pdb

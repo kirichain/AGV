@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "rV+tXgSJN0XIvAc1qUUM7LbSZA4m3BuitylW9bhB9AuBR3p/gdODqTD32lIFRR3LsEOpv8EgDElsKtm2bl6/9w==",
+  "success": true,
+  "projectFilePath": "H:\\Dropbox\\Works\\AGV\\Server\\Dashboard\\Dashboard\\Dashboard.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.0\\microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.runtime.linux-arm64\\7.0.1\\microsoft.netcore.app.runtime.linux-arm64.7.0.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.linux-arm64\\7.0.1\\microsoft.aspnetcore.app.runtime.linux-arm64.7.0.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.host.linux-arm64\\7.0.1\\microsoft.netcore.app.host.linux-arm64.7.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
