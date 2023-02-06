@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>H:\Dropbox\Works\AGV\Server\Dashboard\Dashboard\bin\Release\net7.0\publish\</_PublishTargetUrl>
-    <History>True|2023-02-04T08:03:09.3445543Z;True|2023-02-04T14:57:03.1410973+07:00;True|2023-02-04T14:46:49.3422690+07:00;True|2023-02-04T14:37:40.0475855+07:00;True|2023-02-04T14:14:24.1993502+07:00;</History>
+    <History>True|2023-02-06T06:23:13.4916105Z;True|2023-02-04T15:03:09.3445543+07:00;True|2023-02-04T14:57:03.1410973+07:00;True|2023-02-04T14:46:49.3422690+07:00;True|2023-02-04T14:37:40.0475855+07:00;True|2023-02-04T14:14:24.1993502+07:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

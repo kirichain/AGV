@@ -50,6 +50,27 @@
             $('#steeringAssistIndicator').html('Steering Assist: OFF');
         }
     });
+    //Init map
+    function init_map() {
+        const map = document.createElement("table");
+        var innerHtml = '';
+        map.id = "gridMapTable";
+        //let i = 2;
+        for (let i = 0; i < 15; i++) {
+            innerHtml += '<tr id="x-1">';
+            for (let j = 0; j < 15; j++) {
+                innerHtml += '<td class="border-end border-bottom border-secondary" id="cell-' + j + '"></td>';
+            }
+            innerHtml += '</tr>';
+        }
+        
+        console.log(innerHtml);
+        console.log(map.innerHTML);
 
+        map.innerHTML = innerHtml;
+        console.log(map.innerHTML);
+        document.getElementById('gridMap').appendChild(map);
+    }
 
+    init_map();
 })

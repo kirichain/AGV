@@ -116,7 +116,11 @@
     <!--Map Display-->
     <div class="col-sm-6 border-end border-bottom border-secondary border-2 p-0">
         <div class="container-fluid min-vh-100 d-flex flex-column align-content-between p-0" id="mapView">
-            <div class="container-fluid min-vh-100 border-bottom border-secondary" id="gridMap">
+            <div class="container-fluid vh-100 border-bottom border-secondary overflow-scroll p-0" id="gridMap">
+            </div>
+            <div class="container-fluid border-bottom border-secondary invisible" id="bleScannerView">
+            </div>
+            <div class="container-fluid border-bottom border-secondary invisible" id="laserScannerView">
             </div>
             <div class="container-fluid d-flex justify-content-between border-bottom border-secondary">
                 <button type="button" class="btn btn-success my-2 mx-5"><</button>
