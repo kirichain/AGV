@@ -50,26 +50,39 @@
             $('#steeringAssistIndicator').html('Steering Assist: OFF');
         }
     });
+    //
     //Init map
     function init_map() {
-        const map = document.createElement("table");
-        var innerHtml = '';
-        map.id = "gridMapTable";
-        //let i = 2;
-        for (let i = 0; i < 15; i++) {
-            innerHtml += '<tr id="x-1">';
-            for (let j = 0; j < 15; j++) {
-                innerHtml += '<td class="border-end border-bottom border-secondary" id="cell-' + j + '"></td>';
+        //const map = document.createElement("table");
+        //var innerHtml = '';
+        //map.id = "gridMapTable";
+        ////let i = 2;
+        //for (let i = 0; i < 20; i++) {
+        //    innerHtml += '<tr class="m-0 p-0" id="x-1">';
+        //    for (let j = 0; j < 50; j++) {
+        //        innerHtml += '<td class="border-end border-bottom border-secondary m-0" id="cell-' + j + '"></td>';
+        //    }
+        //    innerHtml += '</tr>';
+        //}
+
+        //console.log(innerHtml);
+        //console.log(map.innerHTML);
+
+        //map.innerHTML = innerHtml;
+        //console.log(map.innerHTML);
+        //document.getElementById('gridMap').appendChild(map);
+        let innerHtml = '';
+        for (let i = 0; i < 20; i++) {
+            innerHtml += '<tr class="m-0 p-0" id="x-1">';
+            for (let j = 0; j < 40; j++) {
+                innerHtml += '<td><div class="squareCell border-end border-bottom border-secondary m-0 p-0"></div></td>';
             }
             innerHtml += '</tr>';
         }
-        
         console.log(innerHtml);
-        console.log(map.innerHTML);
+        $('#gridMap').append(innerHtml);
 
-        map.innerHTML = innerHtml;
-        console.log(map.innerHTML);
-        document.getElementById('gridMap').appendChild(map);
+        console.log('done');
     }
 
     init_map();
