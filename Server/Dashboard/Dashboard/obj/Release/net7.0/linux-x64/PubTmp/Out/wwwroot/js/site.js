@@ -106,7 +106,22 @@
     }
 
     function init_mqtt() {
-        let 
+        let mqttBrokerUrl = 'ws://pirover.xyz:9001';
+        const client = mqtt.connect(mqttBrokerUrl); // you add a ws:// url here
+
+        client.on("connect", function () {
+            client.subscribe("agv/notification/001");
+
+            console.log('Init MQTT done');
+        });
+
+        client.on("message", function (topic, payload) {
+            console.log([topic, payload].join(": "));
+
+            client.publish("agv/notification/001", "Got the message at " + new Date());
+            client.end();
+        });
+
     }
 
     function init_control_key() {
