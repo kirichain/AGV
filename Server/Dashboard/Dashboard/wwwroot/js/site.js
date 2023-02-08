@@ -1,9 +1,25 @@
 ﻿$(document).ready(function () {
     var mapName, mapLength, mapWidth, mapData;
+    var client;
+    var agvSpeed, agvId, agvMode;
     var coords = [];
     //Init, checking dashboard
     console.log('Loaded');
-    //Checking camera
+    //Checking AGV ID selector
+    agvId = $('#agvSelector').val();
+    console.log('AGV ID = ' + agvId);
+    $('#agvSelector').on('change', function () {
+        agvId = $(this).find(':selected').val();
+        console.log('AGV ID = ' + agvId);
+    });
+    //Checking AGV mode selector
+    agvMode = $('#modeSelector').val();
+    console.log('AGV mode = ' + agvMode);
+    $('#modeSelector').on('change', function () {
+        agvMode = $(this).find(':selected').val();
+        console.log('AGV mode = ' + agvMode);
+    });
+    //Checking camera view
     $('#cameraStreamView').addClass('hide');
     if ($('#cameraSwitch').is(':checked')) {
         console.log('Camera ON');
@@ -12,7 +28,7 @@
         console.log('Camera OFF');
         $('#cameraIndicator').html('OFF');
     }
-    //
+    //Checking camera switch
     $('#cameraSwitch').on('change', function () {
         if ($('#cameraSwitch').is(':checked')) {
             console.log('Camera ON');
@@ -28,9 +44,12 @@
     });
     //Checking speed indicator
     $('#speedIndicator').html('Motor speed: ' + $('#speedSlider').val());
+    agvSpeed = $('#speedSlider').val();
 
+    //Watching on speed change
     document.getElementById('speedSlider').oninput = function () {
-        console.log("Speed Slider = " + $('#speedSlider').val());
+        agvSpeed = $('#speedSlider').val();
+        console.log("Speed Slider = " + agvSpeed);
         $('#speedIndicator').html('Motor speed: ' + $('#speedSlider').val());
     };
     //
@@ -107,32 +126,122 @@
 
     function init_mqtt() {
         let mqttBrokerUrl = 'ws://pirover.xyz:9001';
-        const client = mqtt.connect(mqttBrokerUrl); // you add a ws:// url here
+        client = mqtt.connect(mqttBrokerUrl);
 
         client.on("connect", function () {
-            client.subscribe("agv/notification/001");
+            client.subscribe("agv/control/001");
+            client.subscribe("agv/position/001");
+            client.subscribe("agv/status/001");
+            client.subscribe("agv/package/delivery");
+            client.subscribe("agv/package/delivery");
+            client.subscribe("agv/package/delivery");
 
             console.log('Init MQTT done');
         });
 
         client.on("message", function (topic, payload) {
             console.log([topic, payload].join(": "));
+        });
+    }
 
-            client.publish("agv/notification/001", "Got the message at " + new Date());
-            client.end();
+    function mqtt_publish(topic, message, type) {
+        let msg;
+        if (type == 'move') {
+            msg = {
+                direction: message,
+                speed: agvSpeed
+            }
+            client.publish(topic, JSON.stringify(msg));
+        }
+        console.log('Sent ' + JSON.stringify(msg));
+    }
+
+    function init_control_buttons() {
+        //For clicking button
+        $('#goForwardButton').click(function () {
+            mqtt_publish('agv/control/001', 'forward', 'move');
+            console.log('Go Forward');
         });
 
+        $('#goBackwardButton').click(function () {
+            mqtt_publish('agv/control/001', 'backward', 'move');
+            console.log('Go Backward');
+        });
+
+        $('#turnLeftButton').click(function () {
+            mqtt_publish('agv/control/001', 'left', 'move');
+            console.log('Turn Left');
+        });
+
+        $('#turnRightButton').click(function () {
+            mqtt_publish('agv/control/001', 'right', 'move');
+            console.log('Turn Right');
+        });
+
+        //For pressing physical key
+        $(document).keydown(function (e) {
+            if ((e.key == 'w') || (e.key == 'W')) {
+                let button = document.getElementById('goForwardButton');
+                button.classList.remove('bg-info');
+                button.classList.add('bg-success');
+                $('#goForwardButton').click();
+            }
+            if ((e.key == 's') || (e.key == 'S')) {
+                let button = document.getElementById('goBackwardButton');
+                button.classList.remove('bg-info');
+                button.classList.add('bg-success');
+                $('#goBackwardButton').click();
+            }
+            if ((e.key == 'a') || (e.key == 'A')) {
+                let button = document.getElementById('turnLeftButton');
+                button.classList.remove('bg-info');
+                button.classList.add('bg-success');
+                $('#turnLeftButton').click();
+            }
+            if ((e.key == 'd') || (e.key == 'D')) {
+                let button = document.getElementById('turnRightButton');
+                button.classList.remove('bg-info');
+                button.classList.add('bg-success');
+                $('#turnRightButton').click();
+            }
+            //console.log(e.key);
+        });
+
+        //Free key when stop pressing
+        $(document).keyup(function (e) {
+            if ((e.key == 'w') || (e.key == 'W')) {
+                let button = document.getElementById('goForwardButton');
+                button.classList.remove('bg-success');
+                button.classList.add('bg-info');
+                $('#goForwardButton').click();
+            }
+            if ((e.key == 's') || (e.key == 'S')) {
+                let button = document.getElementById('goBackwardButton');
+                button.classList.remove('bg-success');
+                button.classList.add('bg-info');
+                $('#goBackwardButton').click();
+            }
+            if ((e.key == 'a') || (e.key == 'A')) {
+                let button = document.getElementById('turnLeftButton');
+                button.classList.remove('bg-success');
+                button.classList.add('bg-info');
+                $('#turnLeftButton').click();
+            }
+            if ((e.key == 'd') || (e.key == 'D')) {
+                let button = document.getElementById('turnRightButton');
+                button.classList.remove('bg-success');
+                button.classList.add('bg-info');
+                $('#turnRightButton').click();
+            }
+            console.log(e.key);
+        });
     }
 
-    function init_control_key() {
-
-    }
-
+    //Init Map view
     init_map();
     get_map_data();
     visualize_map_data(mapData);
-
+    //Init MQTT and control buttons
     init_mqtt();
-    init_control_key();
-
+    init_control_buttons();
 })
