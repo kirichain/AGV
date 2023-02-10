@@ -40,7 +40,7 @@ void setup() {
   sCmd.addCommand("speed", set_speed);
   sCmd.addCommand("interval", interval);
   sCmd.addCommand("checkName", checkName);
-  sCmd.setDefaultHandler(unrecognized);      // Handler for command that isn't matched  (says "What?")
+  sCmd.setDefaultHandler(unrecognized);      
 }
 
 void loop() {

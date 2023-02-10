@@ -29,6 +29,7 @@ namespace Boards
             using (serialPort = new SerialPort(portName, 115200))
             {
                 //serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+                serialPort.RtsEnable = true;
 
                 if (!serialPort.IsOpen)
                 {
@@ -47,7 +48,20 @@ namespace Boards
         }
         public void checkBoardName()
         {
+            Console.WriteLine("Checking board name");
 
+            using (serialPort = new SerialPort(portName, 115200))
+            {
+                serialPort.DataReceived += new SerialDataReceivedEventHandler(BoardNameDataReceivedHandler);
+
+                if (!serialPort.IsOpen)
+                {
+                    serialPort.Open();
+                }
+
+                serialPort.WriteLine("checkName");
+                Console.ReadKey();
+            }
         }
         public void ReadSerial()
         {
@@ -94,6 +108,26 @@ namespace Boards
                 }
             }
             //Console.WriteLine("Data Received:");
+        }
+
+        private static void BoardNameDataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            string indata = sp.ReadExisting();
+            foreach (char c in indata)
+            {
+                if (c != LF)
+                {
+                    buffer += c;
+                }
+                else if (c == LF)
+                {
+                    boardName = buffer;
+                    buffer = "";
+                    Console.WriteLine("Board name: " + boardName);
+                }
+            }
+
         }
     }
 }
