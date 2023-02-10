@@ -38,6 +38,8 @@ void setup() {
   sCmd.addCommand("turn-left", turn_left);
   sCmd.addCommand("turn-right", turn_right);
   sCmd.addCommand("speed", set_speed);
+  sCmd.addCommand("interval", interval);
+  sCmd.addCommand("checkName", checkName);
   sCmd.setDefaultHandler(unrecognized);      // Handler for command that isn't matched  (says "What?")
 }
 
@@ -71,12 +73,12 @@ void backward() {
   stop();
 }
 
-void turn_right() {
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, HIGH);
+void turn_left() {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
 
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
   
   analogWrite(ENA, motor_speed);
   analogWrite(ENB, motor_speed);
@@ -84,12 +86,12 @@ void turn_right() {
   stop();  
 }
 
-void turn_left() {
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
+void turn_right() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
 
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, HIGH);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
   
   analogWrite(ENA, motor_speed);
   analogWrite(ENB, motor_speed);
@@ -119,7 +121,33 @@ void set_speed() {
   }
 }
 
+void interval() {
+  char *arg;
+  int interval;
+  int i;
+
+  Serial.println("Setting interval");
+  arg = sCmd.next();
+  if (arg != NULL) {
+    interval = atoi(arg);
+    Serial.print("Interval is set to: ");
+    Serial.println(interval);
+    i = 0;
+    while (i < (interval*10)) {
+      i++;
+      forward();           
+    }     
+  }
+  else {
+    Serial.println("No interval argument");
+  }
+}
+
 // This gets set as the default handler, and gets called when no other command matches.
 void unrecognized(const char *command) {
   Serial.println("What?");
+}
+
+void checkName() {
+  Serial.println("motor-controller");
 }

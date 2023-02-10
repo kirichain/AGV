@@ -11,7 +11,7 @@ namespace Boards
         //LF character used for determining if data from serial port reading contains break line character 
         static char LF = (char)10;
         static bool isNewReading;
-        public static string portName, serialReading, buffer;
+        public static string portName, serialReading, buffer, boardName;
 
         public Board(string _portName)
         {
@@ -44,6 +44,10 @@ namespace Boards
                 Console.WriteLine("Board Init Done");
                 //Console.ReadKey();
             }
+        }
+        public void checkBoardName()
+        {
+
         }
         public void ReadSerial()
         {

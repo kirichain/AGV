@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "H:\\Dropbox\\Works\\AGV\\Server\\API\\API-Gateway\\API-Gateway\\API-Gateway.csproj": {}
+    "H:\\Dropbox\\Works\\AGV\\Server\\API-Gateway\\API-Gateway\\API-Gateway.csproj": {}
   },
   "projects": {
-    "H:\\Dropbox\\Works\\AGV\\Server\\API\\API-Gateway\\API-Gateway\\API-Gateway.csproj": {
+    "H:\\Dropbox\\Works\\AGV\\Server\\API-Gateway\\API-Gateway\\API-Gateway.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Dropbox\\Works\\AGV\\Server\\API\\API-Gateway\\API-Gateway\\API-Gateway.csproj",
+        "projectUniqueName": "H:\\Dropbox\\Works\\AGV\\Server\\API-Gateway\\API-Gateway\\API-Gateway.csproj",
         "projectName": "API-Gateway",
-        "projectPath": "H:\\Dropbox\\Works\\AGV\\Server\\API\\API-Gateway\\API-Gateway\\API-Gateway.csproj",
+        "projectPath": "H:\\Dropbox\\Works\\AGV\\Server\\API-Gateway\\API-Gateway\\API-Gateway.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "H:\\Dropbox\\Works\\AGV\\Server\\API\\API-Gateway\\API-Gateway\\obj\\",
+        "outputPath": "H:\\Dropbox\\Works\\AGV\\Server\\API-Gateway\\API-Gateway\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

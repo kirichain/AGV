@@ -6,13 +6,15 @@ using APIs;
 
 SocketClient socketClient;
 MQTTClient mqttClient;
-Board beacon_scanner;
+Board beacon_scanner, motor_controller;
 GuidanceSystem guider;
 API api;
 
 socketClient = new SocketClient();
 //beacon_scanner = new Board("/dev/ttyUSB0");
+//motor_controller = new Board("/dev/ttyUSB1");
 beacon_scanner = new Board("COM4");
+motor_controller = new Board("COM5");
 mqttClient = new MQTTClient();
 guider= new GuidanceSystem();
 api= new API();
@@ -28,9 +30,21 @@ if (beacon_scanner.isPortReady)
     Console.WriteLine("Beacon Scanner fails to connect");
 }
 
-Console.ReadKey();
+motor_controller.Init();
+if (motor_controller.isPortReady)
+{
+    Console.WriteLine("Start Motor Controller now");
+    //motor_controller.ReadSerial();
+}
+else
+{
+    Console.WriteLine("Motor Controller fails to connect");
+}
 
 //mqttClient.Init();
+
+Console.ReadKey();
+
 
 
 
