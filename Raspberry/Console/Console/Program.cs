@@ -3,7 +3,6 @@ using SocketClients;
 using MQTTClients;
 using GuidanceSystems;
 using APIs;
-using System.Threading;
 
 SocketClient socketClient;
 MQTTClient mqttClient;
@@ -43,7 +42,7 @@ else
     Console.WriteLine("Motor Controller fails to connect");
 }
 
-//mqttClient.Init();
+//await mqttClient.Init();
 
 Console.ReadKey();
 

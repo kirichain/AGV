@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "H:\\Dropbox\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj": {}
+    "D:\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj": {}
   },
   "projects": {
-    "H:\\Dropbox\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj": {
+    "D:\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Dropbox\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj",
+        "projectUniqueName": "D:\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj",
         "projectName": "Console",
-        "projectPath": "H:\\Dropbox\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj",
+        "projectPath": "D:\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "H:\\Dropbox\\Works\\AGV\\Raspberry\\Console\\Console\\obj\\",
+        "outputPath": "D:\\Works\\AGV\\Raspberry\\Console\\Console\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,9 +40,37 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "MQTTnet": {
+              "target": "Package",
+              "version": "[4.1.4.563, )"
+            },
+            "MQTTnet.AspNetCore": {
+              "target": "Package",
+              "version": "[4.1.4.563, )"
+            },
+            "MQTTnet.Extensions.ManagedClient": {
+              "target": "Package",
+              "version": "[4.1.4.563, )"
+            },
+            "MQTTnet.Extensions.Rpc": {
+              "target": "Package",
+              "version": "[4.1.4.563, )"
+            },
+            "MQTTnet.Extensions.WebSocket4Net": {
+              "target": "Package",
+              "version": "[4.1.4.563, )"
+            },
             "System.IO.Ports": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "System.Threading.Tasks": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "System.Threading.Tasks.Extensions": {
+              "target": "Package",
+              "version": "[4.5.4, )"
             }
           },
           "imports": [
