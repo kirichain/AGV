@@ -32,7 +32,7 @@ void setup() {
   }
   
   Serial.println();
-  Serial.println("Ready");
+  Serial.println("&Ready*");
   sCmd.addCommand("forward", forward);
   sCmd.addCommand("backward", backward);
   sCmd.addCommand("turn-left", turn_left);

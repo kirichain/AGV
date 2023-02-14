@@ -22,3 +22,34 @@ H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\runtimes\osx-x64
 H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\runtimes\unix\lib\net7.0\System.IO.Ports.dll
 H:\Dropbox\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.IO.Ports.dll
 H:\Dropbox\Works\AGV\Raspberry\Console\Console\obj\Debug\net7.0\Console.csproj.CopyComplete
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\Console.exe
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\Console.deps.json
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\Console.runtimeconfig.json
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\Console.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\Console.pdb
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\MQTTnet.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\MQTTnet.AspNetCore.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\MQTTnet.Extensions.ManagedClient.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\MQTTnet.Extensions.Rpc.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\MQTTnet.Extensions.WebSocket4Net.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\SuperSocket.ClientEngine.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\System.IO.Ports.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\WebSocket4Net.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\runtimes\linux-arm\native\libSystem.IO.Ports.Native.so
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\runtimes\linux-arm64\native\libSystem.IO.Ports.Native.so
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\runtimes\linux-x64\native\libSystem.IO.Ports.Native.so
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\runtimes\osx-arm64\native\libSystem.IO.Ports.Native.dylib
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\runtimes\osx-x64\native\libSystem.IO.Ports.Native.dylib
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\runtimes\unix\lib\net7.0\System.IO.Ports.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.IO.Ports.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\obj\Debug\net7.0\Console.csproj.AssemblyReference.cache
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\obj\Debug\net7.0\Console.GeneratedMSBuildEditorConfig.editorconfig
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\obj\Debug\net7.0\Console.AssemblyInfoInputs.cache
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\obj\Debug\net7.0\Console.AssemblyInfo.cs
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\obj\Debug\net7.0\Console.csproj.CoreCompileInputs.cache
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\obj\Debug\net7.0\Console.csproj.CopyComplete
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\obj\Debug\net7.0\Console.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\obj\Debug\net7.0\refint\Console.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\obj\Debug\net7.0\Console.pdb
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\obj\Debug\net7.0\Console.genruntimeconfig.cache
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\obj\Debug\net7.0\ref\Console.dll

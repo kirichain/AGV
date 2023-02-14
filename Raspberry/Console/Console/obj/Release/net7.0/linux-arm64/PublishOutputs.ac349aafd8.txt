@@ -1,0 +1,3 @@
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\linux-arm64\Console.pdb
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\linux-arm64\libSystem.IO.Ports.Native.so
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\publish\linux-arm64\Console
