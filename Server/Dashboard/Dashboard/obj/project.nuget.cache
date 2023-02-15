@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "wqL1Q2BwGTqquikqMZ0uXk3nVYK3KIgUFpk70iOYCJv9WJh83y3d8Ai0ofMoZU/c13VKxOT1pskbLIElXJS0Ew==",
+  "dgSpecHash": "ZwlqLkMwvrG5Iddeny0cB8hEWOzo+UWI9kfVyXv95l7Wk1V8iTdiXRaFmHUaqk5DQbFyeeSfJ3qm626qTvc10Q==",
   "success": true,
-  "projectFilePath": "H:\\Dropbox\\Works\\AGV\\Server\\Dashboard\\Dashboard\\Dashboard.csproj",
+  "projectFilePath": "C:\\Pi Rover Dropbox\\Duy Tan Nguyen Thanh\\Works\\AGV\\Server\\Dashboard\\Dashboard\\Dashboard.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.0\\microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512"
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.0\\microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512"
   ],
   "logs": []
 }

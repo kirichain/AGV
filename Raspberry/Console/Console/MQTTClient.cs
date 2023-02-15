@@ -10,7 +10,12 @@ namespace MQTTClients
     {
         public static string mqttBrokerUrl = "pirover.xyz";
         public static bool isConnected = false;
-        public static async Task Publish_Message()
+        public static string agvId, controlMessage, statusMessage, packageDeliveryMessage, packagePositionMessage;
+        public static void Init()
+        {
+            controlMessage = "";
+        }
+        public static async Task Publish_Message(string topic, string message)
         {
             /*
              * This sample pushes a simple application message including a topic and a payload.
@@ -32,18 +37,18 @@ namespace MQTTClients
                 await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
 
                 var applicationMessage = new MqttApplicationMessageBuilder()
-                    .WithTopic("agv/control/001")
-                    .WithPayload("From AGV with miss")
+                    .WithTopic(topic)
+                    .WithPayload(message)
                     .Build();
 
                 await mqttClient.PublishAsync(applicationMessage, CancellationToken.None);
 
                 await mqttClient.DisconnectAsync();
 
-                Console.WriteLine("MQTT application message is published.");
+                Console.WriteLine("Message was published.");
             }
         }
-        public static async Task Handle_Received_Message()
+        public static async Task Subscribe_Handle()
         {
             /*
              * This sample subscribes to a topic and processes the received message.
@@ -63,7 +68,17 @@ namespace MQTTClients
                 {
                     Console.WriteLine("Received application message.");
                     Console.WriteLine(Encoding.UTF8.GetString(e.ApplicationMessage.Payload));
-                    //e.DumpToConsole();
+                    switch (e.ApplicationMessage.Topic)
+                    {
+                        case "agv/control/001":
+                            controlMessage = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
+                            break;
+                        case "agv/package/delivery":
+                            break;
+                        case "agv/pacakge/location":
+                            break;
+                    }
+
                     isComingMessage = true;
                     return Task.CompletedTask;
                 };
@@ -76,13 +91,23 @@ namespace MQTTClients
                         {
                             f.WithTopic("agv/control/001");
                         })
+                    .WithTopicFilter(
+                        f =>
+                        {
+                            f.WithTopic("agv/package/delivery");
+                        })
+                    .WithTopicFilter(
+                        f =>
+                        {
+                            f.WithTopic("agv/pacakge/location");
+                        })
                     .Build();
 
                 await mqttClient.SubscribeAsync(mqttSubscribeOptions, CancellationToken.None);
 
-                Console.WriteLine("MQTT client subscribed to topic.");
+                Console.WriteLine("MQTT client subscribed to topics.");
                 isConnected = true;
-                Console.WriteLine("Press enter to exit.");
+                //Console.WriteLine("Press enter to exit.");
                 while (!isComingMessage) {
                     //Console.ReadKey();
                 }

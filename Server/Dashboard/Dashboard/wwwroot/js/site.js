@@ -51,6 +51,7 @@
         agvSpeed = $('#speedSlider').val();
         console.log("Speed Slider = " + agvSpeed);
         $('#speedIndicator').html('Motor speed: ' + $('#speedSlider').val());
+        mqtt_publish('agv/control/001', 'speed ' + agvSpeed, 'move');
     };
     //
     //Checking steering assist
@@ -71,6 +72,14 @@
             $('#steeringAssistIndicator').html('Steering Assist: OFF');
         }
     });
+    //Sleep function
+    function sleep(milliseconds) {
+        const date = Date.now();
+        let currentDate = null;
+        do {
+            currentDate = Date.now();
+        } while (currentDate - date < milliseconds);
+    }
     //Init map
     function init_map() {
         let innerHtml = '';
@@ -147,11 +156,11 @@
     function mqtt_publish(topic, message, type) {
         let msg;
         if (type == 'move') {
-            msg = {
-                direction: message,
-                speed: agvSpeed
-            }
-            client.publish(topic, JSON.stringify(msg));
+            //msg = {
+            //    controller: 'motor-controller',
+            //    command: message,
+            //}
+            client.publish(topic, message);
         }
         console.log('Sent ' + JSON.stringify(msg));
     }
@@ -169,12 +178,12 @@
         });
 
         $('#turnLeftButton').click(function () {
-            mqtt_publish('agv/control/001', 'left', 'move');
+            mqtt_publish('agv/control/001', 'turn-left', 'move');
             console.log('Turn Left');
         });
 
         $('#turnRightButton').click(function () {
-            mqtt_publish('agv/control/001', 'right', 'move');
+            mqtt_publish('agv/control/001', 'turn-right', 'move');
             console.log('Turn Right');
         });
 

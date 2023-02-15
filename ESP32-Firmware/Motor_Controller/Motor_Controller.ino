@@ -149,5 +149,5 @@ void unrecognized(const char *command) {
 }
 
 void checkName() {
-  Serial.println("motor-controller");
+  Serial.println("&motor-controller*");
 }

@@ -5,170 +5,98 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Boards
 {
-    public enum SerialReceiver
+    public enum BoardName
     {
         Motor_Controller,
-        Beacon,
-        Laser_Sensor
+        Beacon_Scanner,
+        Laser_Collector
     }
     public class Board
     {
-        private SerialPort serialPort;
+        private static SerialPort motorControllerPort, beaconScannerPort, laserCollectorPort, serialPort;
+        public static bool isMotorControllerPortReady;
         public bool isPortReady, isReading, isDisconnected;
         //LF character used for determining if data from serial port reading contains break line character 
         private static char LF = (char)10;
-        private bool isNewReading, isCheckingName;
+        private bool isNewMotorControllerReading, isCheckingName, isNewReading;
         public string portName, serialReading, buffer;
-        public string boardName;
+        public BoardName boardName;
         private int waitingCount;
         private static bool isSerialReady;
-        public Board(string _portName)
+        public Board(string _portName, BoardName _boardName)
         {
             portName = _portName;
+            if (boardName == BoardName.Motor_Controller)
+            {
+                isMotorControllerPortReady = false;
+                isNewMotorControllerReading = false;
+                boardName = _boardName;
+            }
             isPortReady = false;
             isReading = false;
             isDisconnected = false;
             serialReading = "";
             isNewReading = false;
         }
-        public async Task Init()
+        public void Init()
         {
-            Console.WriteLine("Checking boards");
+            Console.WriteLine("Checking board");
 
-            using (serialPort = new SerialPort(portName, 115200))
+            if (boardName == BoardName.Motor_Controller)
             {
+                motorControllerPort = new SerialPort(portName, 115200);
+                motorControllerPort.RtsEnable = true;
+                motorControllerPort.DtrEnable = true;
+                motorControllerPort.Parity = Parity.None;
+                motorControllerPort.StopBits = StopBits.One;
+                motorControllerPort.DataBits = 8;
+                motorControllerPort.Handshake = Handshake.None;
 
-                serialPort.RtsEnable = true;
-                serialPort.DtrEnable = true;
+                motorControllerPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
 
-                //serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
-
-                if (!serialPort.IsOpen)
+                if (!motorControllerPort.IsOpen)
                 {
                     Console.WriteLine("Opening port");
-                    serialPort.Open();
+                    motorControllerPort.Open();
                 }
 
-                while (!serialPort.IsOpen)
+                while (!motorControllerPort.IsOpen)
                 {
-                    Console.WriteLine("Connecting to serial port " + portName);
+                    Console.WriteLine(".");
                 }
 
                 Console.WriteLine("Port " + portName + " opened successfully");
-                isPortReady = true;
+                while (!isMotorControllerPortReady)
+                {
+                    Console.WriteLine(".");
+                }
+                Console.WriteLine("Motor controller serial port is ready");
+                checkBoardName(BoardName.Motor_Controller);
                 Console.WriteLine("Board Init Done");
-                return;
             }
+
         }
-        public void checkBoardName()
+        public void checkBoardName(BoardName receiver)
         {
             Console.WriteLine("Checking board name");
-            waitingCount = 0;
-            using (serialPort = new SerialPort(portName, 115200))
+            if (receiver == BoardName.Motor_Controller)
             {
-                serialPort.RtsEnable = true;
-                serialPort.DtrEnable = true;
-                serialPort.Parity = Parity.None;
-                serialPort.StopBits = StopBits.One;
-                serialPort.DataBits = 8;
-                serialPort.Handshake = Handshake.None;
+                motorControllerPort.WriteLine("checkName");
+            }
 
-                serialPort.DataReceived += new SerialDataReceivedEventHandler(BoardNameDataReceivedHandler);
-
-                if (!serialPort.IsOpen)
+        }
+        public static void SendSerial(BoardName receiver, string data)
+        {
+            if (receiver == BoardName.Motor_Controller)
+            {
+                if (isMotorControllerPortReady)
                 {
-                    Console.WriteLine("Opening port");
-                    serialPort.Open();
+                    motorControllerPort.WriteLine(data);
                 }
                 else
                 {
-                    Console.WriteLine("Port Still Opens");
-                    return;
+                    Console.WriteLine("Port is not opened");
                 }
-
-                while (!serialPort.IsOpen)
-                {
-                    Console.WriteLine("Connecting to serial port " + portName);
-                }
-
-                Console.WriteLine("Port " + portName + " opened successfully");
-                Console.WriteLine("Board Init Done");
-                Console.WriteLine("Start checking board name");
-
-                isPortReady = true;
-                isCheckingName = true;
-                serialPort.WriteLine("checkName");
-
-                while (isCheckingName)
-                {
-                    Console.Write(".");
-                    waitingCount++;
-                    if (waitingCount >= 100)
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("Board serial port error");
-                        serialPort.Close();
-                        Thread.Sleep(2000);
-                        return;
-                    }
-                }
-                //serialPort.Close();
-                Console.WriteLine("Checking board name done");
-                return;
-            }
-        }
-        public static void SendSerial(SerialReceiver receiver, string data)
-        {
-            if (receiver == SerialReceiver.Motor_Controller)
-            {
-                using (var serialPort = new SerialPort("COM3", 115200))
-                {
-                    serialPort.RtsEnable = true;
-                    serialPort.DtrEnable = true;
-                    serialPort.Parity = Parity.None;
-                    serialPort.StopBits = StopBits.One;
-                    serialPort.DataBits = 8;
-                    serialPort.Handshake = Handshake.None;
-                    isSerialReady = false;
-                    serialPort.DataReceived += new SerialDataReceivedEventHandler(ConfirmDataReceivedHandler);
-
-                    if (!serialPort.IsOpen)
-                    {
-                        Console.WriteLine("Opening port");
-                        serialPort.Open();
-                    }
-
-                    while (!serialPort.IsOpen)
-                    {
-                        Console.Write(".");
-                    }
-
-                    while (!isSerialReady)
-                    {
-                        //Console.WriteLine("|");
-                    }
-                    serialPort.WriteLine(data);
-                    serialPort.WriteLine(data);
-                    serialPort.WriteLine(data);
-                    Thread.Sleep(1000);
-                    serialPort.Close();
-                }
-                Console.ReadKey();
-            }
-        }
-        public void ReadSerial()
-        {
-            using (serialPort = new SerialPort(portName, 115200))
-            {
-                serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
-
-                if (!serialPort.IsOpen)
-                {
-                    serialPort.Open();
-                }
-
-                Console.WriteLine("Reading config done");
-                //Console.ReadKey();
             }
         }
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
@@ -181,9 +109,13 @@ namespace Boards
                 {
                     if (c == '*')
                     {
-                        serialReading = buffer;
+                        serialReading = buffer.Trim();
                         if ((serialReading != "") && (serialReading != " "))
                         {
+                            if (serialReading == "Ready")
+                            {
+                                isMotorControllerPortReady = true;
+                            }
                             Console.WriteLine(serialReading);
                         }
                         buffer = "";
@@ -207,6 +139,7 @@ namespace Boards
         {
             SerialPort sp = (SerialPort)sender;
             string indata = sp.ReadExisting();
+            string __boardName;
             foreach (char c in indata)
             {
                 if (c != LF)
@@ -215,13 +148,13 @@ namespace Boards
                 }
                 else if (c == LF)
                 {
-                    boardName = buffer;
+                    __boardName = buffer;
                     buffer = "";
-                    boardName = boardName.Trim();
-                    if (boardName == "motor-controller")
+                    __boardName = __boardName.Trim();
+                    if (__boardName == "motor-controller")
                     {
                         Console.WriteLine();
-                        Console.WriteLine("Board name: " + boardName);
+                        Console.WriteLine("Board name: " + __boardName);
                         isCheckingName = false;
                         return;
                     }

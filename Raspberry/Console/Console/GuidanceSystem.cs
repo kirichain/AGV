@@ -1,6 +1,7 @@
 ﻿using Localizers;
 using Mappers;
 using Navigators;
+using MQTTClients;
 
 namespace GuidanceSystems
 {
@@ -29,7 +30,12 @@ namespace GuidanceSystems
             if (mode == Mode.Direct)
             {
                 Console.WriteLine("Operating in direct mode");
-                navigator.nav(mode);
+                if (MQTTClients.MQTTClient.controlMessage != "")
+                {
+                    navigator.nav_command = MQTTClients.MQTTClient.controlMessage;
+                    navigator.nav(mode);
+                    MQTTClients.MQTTClient.controlMessage = "";
+                }
             }
         }
     }
