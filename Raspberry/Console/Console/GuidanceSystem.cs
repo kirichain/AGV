@@ -27,6 +27,7 @@ namespace GuidanceSystems
         }
         public void guide()
         {
+            //Direct Mode (Manual Control)
             if (mode == Mode.Direct)
             {
                 Console.WriteLine("Operating in direct mode");
@@ -36,6 +37,17 @@ namespace GuidanceSystems
                     navigator.nav(mode);
                     MQTTClients.MQTTClient.controlMessage = "";
                 }
+            }
+            //Delivery Mode (Auto Control)
+            if (mode == Mode.Delivery) 
+            {
+                Console.WriteLine("Operating in delivery mode");
+
+            }
+            //Idle Mode (Waiting for signal)
+            if (mode == Mode.Idle)
+            {
+                Console.WriteLine("Operating in idle mode");
             }
         }
     }

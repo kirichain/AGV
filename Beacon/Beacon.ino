@@ -11,14 +11,14 @@
 // See the following for generating UUIDs:
 // https://www.uuidgenerator.net/
 
-#define SERVICE_UUID        "df8b3daf-6383-4b5e-9d18-23e7d042843d"
-#define CHARACTERISTIC_UUID "c11a9227-4f05-49ea-b0dc-3913507bf42a"
+#define SERVICE_UUID        "858daf11-7d33-4f5c-b8b5-36c81841f7ae"
+#define CHARACTERISTIC_UUID "d174dab1-829c-4cf8-b9b2-91c59ebea00e"
 
 void setup() {
   Serial.begin(115200);
   Serial.println("Starting BLE work!");
 
-  BLEDevice::init("Beacon-1");
+  BLEDevice::init("Beacon-6");
   BLEServer *pServer = BLEDevice::createServer();
   BLEService *pService = pServer->createService(SERVICE_UUID);
   BLECharacteristic *pCharacteristic = pService->createCharacteristic(
@@ -27,7 +27,7 @@ void setup() {
                                          BLECharacteristic::PROPERTY_WRITE
                                        );
 
-  pCharacteristic->setValue("Beacon-1 Message");
+  pCharacteristic->setValue("Beacon-6 Message");
   pService->start();
   // BLEAdvertising *pAdvertising = pServer->getAdvertising();  // this still is working for backward compatibility
   BLEAdvertising *pAdvertising = BLEDevice::getAdvertising();

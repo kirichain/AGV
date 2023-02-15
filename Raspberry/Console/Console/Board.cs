@@ -14,7 +14,7 @@ namespace Boards
     public class Board
     {
         private static SerialPort motorControllerPort, beaconScannerPort, laserCollectorPort, serialPort;
-        public static bool isMotorControllerPortReady;
+        public static bool isMotorControllerPortReady, isBeaconScannerPortReady;
         public bool isPortReady, isReading, isDisconnected;
         //LF character used for determining if data from serial port reading contains break line character 
         private static char LF = (char)10;
@@ -62,19 +62,50 @@ namespace Boards
 
                 while (!motorControllerPort.IsOpen)
                 {
-                    Console.WriteLine(".");
+                    Console.Write(".");
                 }
 
                 Console.WriteLine("Port " + portName + " opened successfully");
                 while (!isMotorControllerPortReady)
                 {
-                    Console.WriteLine(".");
+                    Console.Write(".");
                 }
                 Console.WriteLine("Motor controller serial port is ready");
                 checkBoardName(BoardName.Motor_Controller);
-                Console.WriteLine("Board Init Done");
+                //Console.WriteLine("Board Init Done");
             }
 
+            if (boardName == BoardName.Beacon_Scanner)
+            {
+                beaconScannerPort = new SerialPort(portName, 115200);
+                beaconScannerPort.RtsEnable = true;
+                beaconScannerPort.DtrEnable = true;
+                beaconScannerPort.Parity = Parity.None;
+                beaconScannerPort.StopBits = StopBits.One;
+                beaconScannerPort.DataBits = 8;
+                beaconScannerPort.Handshake = Handshake.None;
+
+                //beaconScannerPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+
+                if (!beaconScannerPort.IsOpen)
+                {
+                    Console.WriteLine("Opening port");
+                    beaconScannerPort.Open();
+                }
+
+                while (!beaconScannerPort.IsOpen)
+                {
+                    Console.Write(".");
+                }
+
+                Console.WriteLine("Port " + portName + " opened successfully");
+                //while (!isBeaconScannerPortReady)
+                //{
+                //    Console.WriteLine(".");
+                //}
+                //Console.WriteLine("Motor controller serial port is ready");
+                //checkBoardName(BoardName.Beacon);
+            }
         }
         public void checkBoardName(BoardName receiver)
         {
