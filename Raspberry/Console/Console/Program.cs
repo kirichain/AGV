@@ -14,7 +14,7 @@ API api;
 //motor_controller = new Board("/dev/ttyUSB1");
 //beacon_scanner = new Board("COM6", BoardName.Beacon_Scanner);
 //motor_controller = new Board("COM3", BoardName.Motor_Controller);
-motor_controller = new Board("/dev/ttyUSB1", BoardName.Motor_Controller);
+motor_controller = new Board("/dev/ttyUSB0", BoardName.Motor_Controller);
 guider = new GuidanceSystem();
 api= new API();
 bool systemCheck = true;
