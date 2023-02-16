@@ -67,11 +67,11 @@ namespace MQTTClients
                 mqttClient.ApplicationMessageReceivedAsync += e =>
                 {
                     Console.WriteLine("Received application message.");
-                    Console.WriteLine(Encoding.UTF8.GetString(e.ApplicationMessage.Payload));
                     switch (e.ApplicationMessage.Topic)
                     {
                         case "agv/control/001":
                             controlMessage = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
+                            Console.WriteLine(Encoding.UTF8.GetString(e.ApplicationMessage.Payload));
                             break;
                         case "agv/package/delivery":
                             break;
@@ -80,6 +80,7 @@ namespace MQTTClients
                     }
 
                     isComingMessage = true;
+                    Console.WriteLine("Message done");
                     return Task.CompletedTask;
                 };
 
