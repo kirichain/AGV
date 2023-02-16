@@ -4,7 +4,7 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>Console</ActiveDebugProfile>
+    <ActiveDebugProfile>WSL</ActiveDebugProfile>
     <_LastSelectedProfileId>C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
