@@ -9,7 +9,7 @@ int motor_speed = 255;
 int IN1 = D0;
 int IN2 = D1;
 
-//int ENB = D0;
+//int ENB = D0;ssssssssssssssssssss
 int IN3 = D2;
 int IN4 = D3;
 //Pair of motors 2
@@ -79,7 +79,7 @@ void forward() {
   
   //analogWrite(ENA, motor_speed);
   //analogWrite(ENB, motor_speed);
-  delay(100);
+  delay(200);
   stop();  
 }
 
@@ -98,7 +98,7 @@ void backward() {
 
   //analogWrite(ENA, motor_speed);
   //analogWrite(ENB, motor_speed);
-  delay(100);
+  delay(200);
   stop();
 }
 
@@ -117,7 +117,7 @@ void turn_left() {
   
   //analogWrite(ENA, motor_speed);
   //analogWrite(ENB, motor_speed);
-  delay(100);
+  delay(200);
   stop();  
 }
 
@@ -136,7 +136,7 @@ void turn_right() {
   
   //analogWrite(ENA, motor_speed);
   //analogWrite(ENB, motor_speed);
-  delay(100);
+  delay(200);
   stop();  
 }
 

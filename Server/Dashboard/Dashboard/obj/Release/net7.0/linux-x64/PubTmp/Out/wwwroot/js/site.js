@@ -33,7 +33,7 @@
         if ($('#cameraSwitch').is(':checked')) {
             console.log('Camera ON');
             $('#cameraIndicator').html('ON');
-            $('#cameraStreamView').attr('src', 'https://1e09-203-113-151-208.ap.ngrok.io/stream');
+            $('#cameraStreamView').attr('src', 'https://fea0-203-113-151-208.ap.ngrok.io/stream');
             $('#cameraStreamView').removeClass('hide');
         } else {
             console.log('Camera OFF');
@@ -138,9 +138,8 @@
         client = mqtt.connect(mqttBrokerUrl);
 
         client.on("connect", function () {
-            client.subscribe("agv/control/001");
-            client.subscribe("agv/position/001");
-            client.subscribe("agv/status/001");
+            client.subscribe("agv/control/" + agvId);
+            client.subscribe("agv/status/" + agvId);
             client.subscribe("agv/package/delivery");
             client.subscribe("agv/package/delivery");
             client.subscribe("agv/package/delivery");
@@ -162,28 +161,28 @@
             //}
             client.publish(topic, message);
         }
-        console.log('Sent ' + JSON.stringify(msg));
+        console.log('Sent ' + topic + message);
     }
 
     function init_control_buttons() {
         //For clicking button
         $('#goForwardButton').click(function () {
-            mqtt_publish('agv/control/001', 'forward', 'move');
+            mqtt_publish('agv/control/' + agvId, 'forward', 'move');
             console.log('Go Forward');
         });
 
         $('#goBackwardButton').click(function () {
-            mqtt_publish('agv/control/001', 'backward', 'move');
+            mqtt_publish('agv/control/' + agvId, 'backward', 'move');
             console.log('Go Backward');
         });
 
         $('#turnLeftButton').click(function () {
-            mqtt_publish('agv/control/001', 'turn-left', 'move');
+            mqtt_publish('agv/control/' + agvId, 'turn-left', 'move');
             console.log('Turn Left');
         });
 
         $('#turnRightButton').click(function () {
-            mqtt_publish('agv/control/001', 'turn-right', 'move');
+            mqtt_publish('agv/control/' + agvId, 'turn-right', 'move');
             console.log('Turn Right');
         });
 

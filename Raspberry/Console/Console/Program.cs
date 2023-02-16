@@ -12,7 +12,7 @@ API api;
 //socketClient = new SocketClient();
 //beacon_scanner = new Board("/dev/ttyUSB0");
 //motor_controller = new Board("/dev/ttyUSB1");
-beacon_scanner = new Board("COM6", BoardName.Beacon_Scanner);
+//beacon_scanner = new Board("COM6", BoardName.Beacon_Scanner);
 motor_controller = new Board("COM3", BoardName.Motor_Controller);
 guider = new GuidanceSystem();
 api= new API();
@@ -21,7 +21,7 @@ string agvId = "001";
 //socketClient.Init();
 MQTTClients.MQTTClient.agvId = agvId;
 MQTTClients.MQTTClient.Init();
-beacon_scanner.Init();
+//beacon_scanner.Init();
 //if (beacon_scanner.isPortReady)
 //{
 //    Console.WriteLine("Start reading from beacon scanner");

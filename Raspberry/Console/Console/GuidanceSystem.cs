@@ -42,7 +42,7 @@ namespace GuidanceSystems
             if (mode == Mode.Delivery) 
             {
                 Console.WriteLine("Operating in delivery mode");
-
+                
             }
             //Idle Mode (Waiting for signal)
             if (mode == Mode.Idle)
