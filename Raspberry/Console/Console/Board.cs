@@ -62,13 +62,13 @@ namespace Boards
 
                 while (!motorControllerPort.IsOpen)
                 {
-                    Console.Write(".");
+                    //Console.Write(".");
                 }
 
                 Console.WriteLine("Port " + portName + " opened successfully");
                 while (!isMotorControllerPortReady)
                 {
-                    Console.Write(".");
+                    //Console.Write(".");
                 }
                 Console.WriteLine("Motor controller serial port is ready");
                 checkBoardName(BoardName.Motor_Controller);
@@ -95,7 +95,7 @@ namespace Boards
 
                 while (!beaconScannerPort.IsOpen)
                 {
-                    Console.Write(".");
+                    //Console.Write(".");
                 }
 
                 Console.WriteLine("Port " + portName + " opened successfully");
