@@ -1,0 +1,5 @@
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\win-x64\PubTmp\Out\appsettings.Development.json
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\win-x64\PubTmp\Out\appsettings.json
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\win-x64\PubTmp\Out\Dashboard.pdb
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\win-x64\PubTmp\Out\aspnetcorev2_inprocess.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\win-x64\PubTmp\Out\Dashboard.exe

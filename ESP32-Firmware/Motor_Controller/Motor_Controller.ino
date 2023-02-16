@@ -4,27 +4,44 @@ SerialCommand sCmd;
 
 int motor_speed = 255;
 
-int ENB = D5;
-int IN3 = D6;
-int IN4 = D7;
+//Pair of motor 1
+//int ENA = D0;
+int IN1 = D0;
+int IN2 = D1;
 
-int ENA = D0;
-int IN1 = D1;
-int IN2 = D2;
+//int ENB = D0;
+int IN3 = D2;
+int IN4 = D3;
+//Pair of motors 2
+//int ENC = D5;
+int IN5 = D4;
+int IN6 = D5;
+
+//int END = D0;
+int IN7 = D6;
+int IN8 = D7;
 
 void setup() {
   //Setting motors pin
-  pinMode(ENA, OUTPUT);
+  //pinMode(ENA, OUTPUT);
+  //pinMode(ENB, OUTPUT);
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT); 
-  pinMode(ENB, OUTPUT);
   pinMode(IN3, OUTPUT);
   pinMode(IN4, OUTPUT); 
-  
+  pinMode(IN5, OUTPUT);
+  pinMode(IN6, OUTPUT); 
+  pinMode(IN7, OUTPUT);
+  pinMode(IN8, OUTPUT); 
+
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, LOW);
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, LOW);
+  digitalWrite(IN5, LOW);
+  digitalWrite(IN6, LOW);
+  digitalWrite(IN7, LOW);
+  digitalWrite(IN8, LOW);
 
   Serial.begin(115200);
   while (!Serial) {
@@ -53,9 +70,15 @@ void forward() {
 
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, HIGH);
+
+  digitalWrite(IN5, LOW);
+  digitalWrite(IN6, HIGH);
+
+  digitalWrite(IN7, LOW);
+  digitalWrite(IN8, HIGH);
   
-  analogWrite(ENA, motor_speed);
-  analogWrite(ENB, motor_speed);
+  //analogWrite(ENA, motor_speed);
+  //analogWrite(ENB, motor_speed);
   delay(100);
   stop();  
 }
@@ -67,8 +90,14 @@ void backward() {
   digitalWrite(IN3, HIGH);
   digitalWrite(IN4, LOW);
 
-  analogWrite(ENA, motor_speed);
-  analogWrite(ENB, motor_speed);
+  digitalWrite(IN5, HIGH);
+  digitalWrite(IN6, LOW);
+
+  digitalWrite(IN7, HIGH);
+  digitalWrite(IN8, LOW);
+
+  //analogWrite(ENA, motor_speed);
+  //analogWrite(ENB, motor_speed);
   delay(100);
   stop();
 }
@@ -77,11 +106,17 @@ void turn_left() {
   digitalWrite(IN1, HIGH);
   digitalWrite(IN2, LOW);
 
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, HIGH);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+
+  digitalWrite(IN5, LOW);
+  digitalWrite(IN6, HIGH);
+
+  digitalWrite(IN7, LOW);
+  digitalWrite(IN8, HIGH);
   
-  analogWrite(ENA, motor_speed);
-  analogWrite(ENB, motor_speed);
+  //analogWrite(ENA, motor_speed);
+  //analogWrite(ENB, motor_speed);
   delay(100);
   stop();  
 }
@@ -90,11 +125,17 @@ void turn_right() {
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, HIGH);
 
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+
+  digitalWrite(IN5, HIGH);
+  digitalWrite(IN6, LOW);
+
+  digitalWrite(IN7, HIGH);
+  digitalWrite(IN8, LOW);
   
-  analogWrite(ENA, motor_speed);
-  analogWrite(ENB, motor_speed);
+  //analogWrite(ENA, motor_speed);
+  //analogWrite(ENB, motor_speed);
   delay(100);
   stop();  
 }
@@ -104,6 +145,10 @@ void stop() {
   digitalWrite(IN2, LOW);
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, LOW);
+  digitalWrite(IN5, LOW);
+  digitalWrite(IN6, LOW);
+  digitalWrite(IN7, LOW);
+  digitalWrite(IN8, LOW);
 }
 
 void set_speed() {
