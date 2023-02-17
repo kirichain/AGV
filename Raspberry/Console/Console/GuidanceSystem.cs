@@ -39,16 +39,17 @@ namespace GuidanceSystems
                 }
             }
             //Delivery Mode (Auto Control)
-            if (mode == Mode.Delivery) 
+            else if (mode == Mode.Delivery) 
             {
                 Console.WriteLine("Operating in delivery mode");
                 
             }
             //Idle Mode (Waiting for signal)
-            if (mode == Mode.Idle)
+            else if (mode == Mode.Idle)
             {
                 Console.WriteLine("Operating in idle mode");
             }
+            else Console.WriteLine("No mode provided");
         }
     }
 }

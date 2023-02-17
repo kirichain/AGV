@@ -3,6 +3,7 @@
     var client;
     var agvSpeed, agvId, agvMode;
     var coords = [];
+    var recentView;
     //Init, checking dashboard
     console.log('Loaded');
     //Checking AGV ID selector
@@ -90,6 +91,7 @@
             }
             innerHtml += '</tr>';
         }
+        $('#gridMap').removeClass('hide');
         $('#gridMap').append(innerHtml);
         console.log('Init map done');
     }
@@ -162,6 +164,41 @@
             client.publish(topic, message);
         }
         console.log('Sent ' + topic + message);
+    }
+
+    function init_nav_button() {
+        $('#bleScannerButton').click(function () {
+            if (recentView != 'bleScannerView') {
+                $('#bleScannerView').removeClass('invisible');
+                $('#gridMap').addClass('invisible');
+                $('#laserScannerView').addClass('invisible');
+                $('#deliveryControlView').addClass('invisible');
+                recentView = 'bleScannerView';
+            }
+            console.log('bleScannerButton clicked');
+        });
+
+        $('#mapViewButton').click(function () {
+            if (recentView != 'gridMap') {
+                $('#gridMap').removeClass('invisible');
+                $('#bleScannerView').addClass('invisible');
+                $('#laserScannerView').addClass('invisible');
+                $('#deliveryControlView').addClass('invisible');
+                recentView = 'gridMap';
+            }
+            console.log('mapViewButton clicked');
+        });
+
+        $('#deliveryControlButton').click(function () {
+            if (recentView != 'deliveryControlView') {
+                $('#deliveryControlView').removeClass('invisible');
+                $('#bleScannerView').addClass('invisible');
+                $('#laserScannerView').addClass('invisible');
+                $('#gridMap').addClass('invisible');
+                recentView = 'deliveryControlView';
+            }
+            console.log('deliveryControlButton clicked');
+        });
     }
 
     function init_control_buttons() {
@@ -252,4 +289,5 @@
     //Init MQTT and control buttons
     init_mqtt();
     init_control_buttons();
+    init_nav_button();
 })

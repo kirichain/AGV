@@ -116,11 +116,15 @@
     <!--Map Display-->
     <div class="col-sm-6 border-end border-bottom border-secondary border-2 p-0">
         <div class="container-fluid min-vh-100 d-flex flex-column align-content-between p-0" id="mapView">
-            <div class="container-fluid vh-100 border-bottom border-secondary overflow-scroll p-0" id="gridMap">
+            <div class="container-fluid vh-100 border-bottom border-secondary overflow-scroll p-0 invisible" id="gridMap">
             </div>
-            <div class="container-fluid border-bottom border-secondary invisible" id="bleScannerView">
+            <div class="container-fluid border-bottom border-secondary overflow-scroll p-0 invisible" id="bleScannerView">
+                <h5>BLE Scanner View </h5>
             </div>
-            <div class="container-fluid border-bottom border-secondary invisible" id="laserScannerView">
+            <div class="container-fluid border-bottom border-secondary overflow-scroll p-0 invisible" id="laserScannerView">
+            </div>
+            <div class="container-fluid border-bottom border-secondary overflow-scroll p-0 invisible" id="deliveryControlView">
+                <h5>Delivery View </h5>
             </div>
             <div class="container-fluid d-flex justify-content-between border-bottom border-secondary">
                 <button type="button" class="btn btn-success my-2 mx-5"><</button>
@@ -135,7 +139,7 @@
             </div>
             <div class="container-fluid d-flex justify-content-between" id="navBar">
                 <div class="container d-flex flex-column align-items-center m-2">
-                    <button type="button" class="btn bg-transparent">
+                    <button type="button" class="btn bg-transparent" id="bleScannerButton">
                         <img src="https://www.clker.com/cliparts/m/C/I/q/h/r/ble.svg.hi.png" width="75" height="75" class="m-2" />
                     </button>
                     <p class="text-center mx-2">BLE Scanner</p>
@@ -147,13 +151,13 @@
                     <p class="text-center mx-2">Laser Sensors</p>
                 </div>
                 <div class="container d-flex flex-column align-items-center m-2">
-                    <button type="button" class="btn bg-transparent">
+                    <button type="button" class="btn bg-transparent" id="mapViewButton">
                         <img src="https://www.svgrepo.com/show/491659/map-pin.svg" width="75" height="75" class="m-2" />
                     </button>
                     <p class="text-center mx-2">Map View</p>
                 </div>
                 <div class="container d-flex flex-column align-items-center m-2">
-                    <button type="button" class="btn bg-transparent">
+                    <button type="button" class="btn bg-transparent" id="deliveryControlButton">
                         <img src="https://www.svgrepo.com/show/488308/package.svg" width="75" height="75" class="m-2" />
                     </button>
                     <p class="text-center mx-2">Delivery Control</p>
@@ -212,6 +216,7 @@
                 <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
                     <h5 class="text-center my-1">Edit Maps</h5>
                     <div class="my-1" id="selectMapPanel">Edit map panel</div>
+
                 </div>
                 <!--System Control tab content-->
             </div>
