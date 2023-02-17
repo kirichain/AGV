@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     var mapName, mapLength, mapWidth, mapData;
+    var recentX, recentY;
     var client;
     var agvSpeed, agvId, agvMode;
     var coords = [];
@@ -82,11 +83,14 @@
         } while (currentDate - date < milliseconds);
     }
     //Init map
-    function init_map() {
+    function init_map(length, width, resolution) {
         let innerHtml = '';
-        for (let i = 0; i < 20; i++) {
+        $('#editMapLength').attr('placeholder', length);
+        $('#editMapWidth').attr('placeholder', width);
+
+        for (let i = 0; i < length; i++) {
             innerHtml += '<tr class="m-0 p-0">';
-            for (let j = 0; j < 20; j++) {
+            for (let j = 0; j < width; j++) {
                 innerHtml += '<td><div class="squareCell border-end border-bottom border-secondary m-0 p-0" id="' + j + ':' + i + '"></div></td>';
             }
             innerHtml += '</tr>';
@@ -94,11 +98,29 @@
         $('#gridMap').removeClass('hide');
         $('#gridMap').append(innerHtml);
         console.log('Init map done');
-    }
 
+        $(".squareCell").click(function () {
+            $('#cellCoordIndicator').text("Cell coordinate: " + this.id);
+            let cellCoord = this.id.split(":");
+            recentX = cellCoord[0];
+            recentY = cellCoord[1];
+            console.log('Cell with coordinate choosen: ' + this.id);
+        })
+
+        $('#cellTypeSelector').on('change', function () {
+            let cellType = $(this).find(':selected').val();
+            visualize_cell(cellType, recentX, recentY);
+            console.log('Cell type = ' + cellType + ' changed');
+        });
+    }
+    //Clear grid map
+    function clearGridMap() {
+        $('#gridMap').empty();  
+        console.log('Cleared grid map');
+    }
     //Get map data from API server
     function get_map_data() {
-        let jsonRepsonse = '{"name":"Warehouse 1", "length":4, "width":4, "coordinates":[{"x":"0", "y":"0", "value":"blank"},{"x":"1", "y":"0", "value":"package"},{"x":"2", "y":"0", "value":"blank"},{"x":"3", "y":"0", "value":"blank"},{"x":"0", "y":"1", "value":"blank"},{"x":"1", "y":"1", "value":"blank"},{"x":"2", "y":"1", "value":"blank"},{"x":"3", "y":"1", "value":"blank"},{"x":"0", "y":"2", "value":"blank"},{"x":"1", "y":"2", "value":"blank"},{"x":"2", "y":"2", "value":"blank"},{"x":"3", "y":"2", "value":"blank"},{"x":"0", "y":"3", "value":"blank"},{"x":"1", "y":"3", "value":"blank"},{"x":"2", "y":"3", "value":"package"},{"x":"3", "y":"3", "value":"package"}]}';
+        let jsonRepsonse = '{"name":"Warehouse 1", "length":4, "width":4, "coordinates":[{"x":"0", "y":"0", "value":"blank"},{"x":"1", "y":"0", "value":"#"},{"x":"2", "y":"0", "value":"1"},{"x":"3", "y":"0", "value":"1"},{"x":"0", "y":"1", "value":"blank"},{"x":"1", "y":"1", "value":"*"},{"x":"2", "y":"1", "value":"blank"},{"x":"3", "y":"1", "value":"blank"},{"x":"0", "y":"2", "value":"1"},{"x":"1", "y":"2", "value":"1"},{"x":"2", "y":"2", "value":"blank"},{"x":"3", "y":"2", "value":"blank"},{"x":"0", "y":"3", "value":"blank"},{"x":"1", "y":"3", "value":"*"},{"x":"2", "y":"3", "value":"#"},{"x":"3", "y":"3", "value":"#"}]}';
 
         mapData = jsonRepsonse;
         console.log('Get map data done');
@@ -119,12 +141,7 @@
                 if ((coords[coordIndex] != null) || (coords[coordIndex] != undefined)) {
                     let coord = coords[coordIndex];
                     //console.log(coord);
-
-                    if (coord.value == 'package') {
-                        //console.log('id = ' + x + ':' + y);
-                        let cell = document.getElementById(x + ':' + y);
-                        cell.classList.add("bg-info");
-                    }
+                    visualize_cell(coord.value, x, y);
                 }
                 coordIndex++;
             }
@@ -133,6 +150,41 @@
         console.log('Visualize data done');
         //console.log(_mapData);
         //console.log(coords);
+    }
+
+    function visualize_cell(cellValue, x, y) {
+        if (cellValue == '#') {
+            //console.log('id = ' + x + ':' + y);
+            let cell = document.getElementById(x + ':' + y);
+            cell.classList.remove("bg-success");
+            cell.classList.remove("bg-transparent");
+            cell.classList.remove("bg-warning");
+            cell.classList.add("bg-info");
+        }
+        else if (cellValue == '*') {
+            //console.log('id = ' + x + ':' + y);
+            let cell = document.getElementById(x + ':' + y);
+            cell.classList.remove("bg-transparent");
+            cell.classList.remove("bg-info");
+            cell.classList.remove("bg-warning");
+            cell.classList.add("bg-success");
+        }
+        else if (cellValue == '1') {
+            //console.log('id = ' + x + ':' + y);
+            let cell = document.getElementById(x + ':' + y);
+            cell.classList.remove("bg-transparent");
+            cell.classList.remove("bg-info");
+            cell.classList.remove("bg-success");
+            cell.classList.add("bg-warning");
+        }
+        else if (cellValue == '0') {
+            //console.log('id = ' + x + ':' + y);
+            let cell = document.getElementById(x + ':' + y);
+            cell.classList.remove("bg-warning");
+            cell.classList.remove("bg-info");
+            cell.classList.remove("bg-success");
+            cell.classList.add("bg-transparent");
+        }
     }
 
     function init_mqtt() {
@@ -282,12 +334,22 @@
         });
     }
 
+    function init_right_tab_buttons() {
+        $('#saveMapButton').click(function () {
+            mapLength = $('#editMapLength').val();
+            mapWidth = $('#editMapWidth').val();
+            clearGridMap();
+            init_map(mapLength, mapWidth, 20);
+            console.log('Saved map data');
+        });
+    }
     //Init Map view
-    init_map();
+    init_map(10, 20, 20);
     get_map_data();
     visualize_map_data(mapData);
     //Init MQTT and control buttons
     init_mqtt();
     init_control_buttons();
     init_nav_button();
+    init_right_tab_buttons();
 })

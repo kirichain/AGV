@@ -124,7 +124,6 @@
             <div class="container-fluid border-bottom border-secondary overflow-scroll p-0 invisible" id="laserScannerView">
             </div>
             <div class="container-fluid border-bottom border-secondary overflow-scroll p-0 invisible" id="deliveryControlView">
-                <h5>Delivery View </h5>
             </div>
             <div class="container-fluid d-flex justify-content-between border-bottom border-secondary">
                 <button type="button" class="btn btn-success my-2 mx-5"><</button>
@@ -211,12 +210,44 @@
                 </div>
                 <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
                     <h5 class="text-center my-1">Create Map</h5>
-                    <div class="my-1" id="createMapPanel">Create map panel</div>
+                    <div class="my-1" id="createMapPanel">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Length" aria-label="Map length" aria-describedby="length-metric">
+                            <span class="input-group-text" id="length-metric">cm</span>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Width" aria-label="Map width" aria-describedby="width-metric">
+                            <span class="input-group-text" id="width-metric">cm</span>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Resolution" aria-label="Map resolution" aria-describedby="resolution-metric">
+                            <span class="input-group-text" id="resolution-metric">cm</span>
+                        </div>
+                        <center><button class="btn btn-outline-secondary" type="button" id="createMapButton">Create map</button></center>
+                    </div>
                 </div>
                 <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
-                    <h5 class="text-center my-1">Edit Maps</h5>
-                    <div class="my-1" id="selectMapPanel">Edit map panel</div>
-
+                    <h5 class="text-center my-1">Edit Map</h5>
+                    <div class="my-1" id="selectMapPanel">
+                        <p id="cellCoordIndicator">Cell coordinate:</p>
+                        <select class="form-select" aria-label="Default select example" id="cellTypeSelector">
+                            <option selected>Type of cell</option>
+                            <option value="0">Blank space</option>
+                            <option value="*">Beacon</option>
+                            <option value="1">Obstacle</option>
+                        </select>
+                        <p class="mt-3">Map length:</p>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Edit Map Length" aria-label="Edit Map Length" aria-describedby="editLength-metric" id="editMapLength">
+                            <span class="input-group-text" id="editLength-metric">cm</span>
+                        </div>
+                        <p class="mt-3">Map width:</p>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Edit Map Width" aria-label="Edit Map Width" aria-describedby="editWidth-metric" id="editMapWidth">
+                            <span class="input-group-text" id="editWidth-metric">cm</span>
+                        </div>
+                        <center><button class="btn btn-outline-secondary mt-3" type="button" id="saveMapButton">Save map</button></center>
+                    </div>
                 </div>
                 <!--System Control tab content-->
             </div>
