@@ -30,9 +30,9 @@ namespace GuidanceSystems
             //Direct Mode (Manual Control)
             if (mode == Mode.Direct)
             {
-                Console.WriteLine("Operating in direct mode");
                 if (MQTTClients.MQTTClient.controlMessage != "")
                 {
+                    Console.WriteLine("Operating in direct mode");
                     navigator.nav_command = MQTTClients.MQTTClient.controlMessage;
                     navigator.nav(mode);
                     MQTTClients.MQTTClient.controlMessage = "";

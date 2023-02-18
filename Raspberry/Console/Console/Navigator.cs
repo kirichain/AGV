@@ -20,7 +20,7 @@ namespace Navigators
         {
             if (mode == Mode.Direct)
             {
-                Console.WriteLine("Navigating in direct mode");
+                //Console.WriteLine("Navigating in direct mode");
                 move(MQTTClient.controlMessage);
             }
         }

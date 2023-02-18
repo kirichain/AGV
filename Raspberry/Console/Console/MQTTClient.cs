@@ -53,20 +53,16 @@ namespace MQTTClients
             /*
              * This sample subscribes to a topic and processes the received message.
              */
-
-            var mqttFactory = new MqttFactory();
-            bool isComingMessage = false;
-
-            using (var mqttClient = mqttFactory.CreateMqttClient())
+            if (!isConnected)
             {
+                var mqttFactory = new MqttFactory();
+                var mqttClient = mqttFactory.CreateMqttClient();
+
+
                 var mqttClientOptions = new MqttClientOptionsBuilder().WithTcpServer(mqttBrokerUrl).Build();
 
-                // Setup message handling before connecting so that queued messages
-                // are also handled properly. When there is no event handler attached all
-                // received messages get lost.
                 mqttClient.ApplicationMessageReceivedAsync += e =>
                 {
-                    Console.WriteLine("Received application message.");
                     switch (e.ApplicationMessage.Topic)
                     {
                         case "agv/control/001":
@@ -79,7 +75,6 @@ namespace MQTTClients
                             break;
                     }
 
-                    isComingMessage = true;
                     Console.WriteLine("Message done");
                     return Task.CompletedTask;
                 };
@@ -105,13 +100,8 @@ namespace MQTTClients
                     .Build();
 
                 await mqttClient.SubscribeAsync(mqttSubscribeOptions, CancellationToken.None);
-
                 Console.WriteLine("MQTT client subscribed to topics.");
                 isConnected = true;
-                //Console.WriteLine("Press enter to exit.");
-                while (!isComingMessage) {
-                    //Console.ReadKey();
-                }
                 return;
             }
         }

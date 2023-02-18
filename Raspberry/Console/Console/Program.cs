@@ -51,12 +51,12 @@ if (systemCheck)
     guider.mode = Mode.Idle;
     Console.WriteLine("Mode: " + guider.mode);
     guider.mode = Mode.Direct;
+    MQTTClient.Subscribe_Handle();
     while (true)
     {
         //Boards.Board.SendSerial(SerialReceiver.Motor_Controller, "forward");
         //guider.mode = Mode.Direct;
-        await MQTTClient.Subscribe_Handle();
-        Console.WriteLine("Message come. Start to guide now");
+        //Console.WriteLine("Message come. Start to guide now");
         guider.guide();
         //return;
     }
