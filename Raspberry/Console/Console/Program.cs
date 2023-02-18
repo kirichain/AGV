@@ -13,10 +13,26 @@ API api;
 //beacon_scanner = new Board("/dev/ttyUSB0");
 //motor_controller = new Board("/dev/ttyUSB1");
 //beacon_scanner = new Board("COM6", BoardName.Beacon_Scanner);
-motor_controller = new Board("COM3", BoardName.Motor_Controller);
+//motor_controller = new Board("COM3", BoardName.Motor_Controller);
 //motor_controller = new Board("/dev/ttyUSB0", BoardName.Motor_Controller);
+motor_controller = new Board();
+
+Console.WriteLine("Press key to select port");
+
+if (Console.ReadKey().Key == ConsoleKey.Enter)
+{
+    Console.WriteLine("Windows port");
+    motor_controller.Init("COM3", BoardName.Motor_Controller);
+
+}
+else if (Console.ReadKey().Key == ConsoleKey.Spacebar)
+{
+    Console.WriteLine("Linux port");
+    motor_controller.Init("/dev/ttyUSB0", BoardName.Motor_Controller);
+
+}
 guider = new GuidanceSystem();
-api= new API();
+api = new API();
 bool systemCheck = true;
 string agvId = "001";
 //socketClient.Init();
@@ -32,7 +48,6 @@ MQTTClients.MQTTClient.Init();
 //    Console.WriteLine("Beacon Scanner fails to connect");
 //}
 
-motor_controller.Init();
 
 //await MQTTClient.Publish_Message();
 //await MQTTClient.Subscribe_Handle();
@@ -40,7 +55,8 @@ motor_controller.Init();
 if (MQTTClient.isConnected)
 {
     Console.WriteLine("MQTT Client Connection init done");
-} else
+}
+else
 {
     systemCheck = false;
 }

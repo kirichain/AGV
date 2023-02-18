@@ -23,7 +23,11 @@ namespace Boards
         public BoardName boardName;
         private int waitingCount;
         private static bool isSerialReady;
-        public Board(string _portName, BoardName _boardName)
+        public Board()
+        {
+            
+        }
+        public void Init(string _portName, BoardName _boardName)
         {
             portName = _portName;
             if (boardName == BoardName.Motor_Controller)
@@ -37,9 +41,7 @@ namespace Boards
             isDisconnected = false;
             serialReading = "";
             isNewReading = false;
-        }
-        public void Init()
-        {
+
             Console.WriteLine("Checking board");
 
             if (boardName == BoardName.Motor_Controller)
