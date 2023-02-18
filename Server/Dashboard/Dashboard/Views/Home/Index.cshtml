@@ -229,13 +229,22 @@
                 <div class="container d-flex flex-column border border-secondary border-3 my-3 rounded">
                     <h5 class="text-center my-1">Edit Map</h5>
                     <div class="my-1" id="selectMapPanel">
-                        <p id="cellCoordIndicator">Cell coordinate:</p>
+                        <p class="mt-3" id="cellCoordIndicator">Cell coordinate:</p>
+                        <p class="mt-3">Map Layer</p>
+                        <select class="form-select" aria-label="Default select example" id="mapLayerSelector">
+                            <option value="baseLayer">Base Layer</option>
+                            <option value="beaconLayer">Beacon Layer</option>
+                            <option value="packageLayer">Package Layer</option>
+                        </select>
+                        <p class="mt-3">Cell type</p>
                         <select class="form-select" aria-label="Default select example" id="cellTypeSelector">
-                            <option selected>Type of cell</option>
-                            <option value="0">Blank space</option>
+                            <option value="0">Blank</option>
                             <option value="*">Beacon</option>
                             <option value="1">Obstacle</option>
+                            <option value="#">AGV</option>
                         </select>
+                        <p class="mt-3">Cell value:</p>
+                        <input type="text" class="form-control" placeholder="Edit Cell Value" aria-label="Edit Cell Value" aria-describedby="editCellValue" id="editCellValue">
                         <p class="mt-3">Map length:</p>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Edit Map Length" aria-label="Edit Map Length" aria-describedby="editLength-metric" id="editMapLength">

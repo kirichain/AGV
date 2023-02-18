@@ -1,10 +1,12 @@
 ﻿$(document).ready(function () {
-    var mapName, mapLength, mapWidth, mapData;
+    var mapName, mapLength, mapWidth, mapData, baseLayer, beaconLayer, packageLayer;
     var recentX, recentY;
     var client;
     var agvSpeed, agvId, agvMode;
     var coords = [];
     var recentView;
+    var cellId, cellIndex, cellValue, cellType;
+    var isByUserCellSelectorChange = true;
     //Init, checking dashboard
     console.log('Loaded');
     //Checking AGV ID selector
@@ -84,6 +86,7 @@
     }
     //Init map
     function init_map(length, width, resolution) {
+        previousCellType = '';
         let innerHtml = '';
         $('#editMapLength').attr('placeholder', length);
         $('#editMapWidth').attr('placeholder', width);
@@ -102,31 +105,54 @@
         $(".squareCell").click(function () {
             $('#cellCoordIndicator').text("Cell coordinate: " + this.id);
             let cellCoord = this.id.split(":");
+
+            cellId = this.id;
             recentX = cellCoord[0];
             recentY = cellCoord[1];
-            console.log('Cell with coordinate choosen: ' + this.id);
+            console.log(coords);
+            cellIndex = (((parseInt(recentY) + 1) * mapWidth) - (mapWidth - recentX));
+            cellType = coords[cellIndex].value;
+
+            console.log('Cell type = ' + cellType);
+
+            $('#cellTypeSelector option').removeAttr("selected");
+            $('#cellTypeSelector option[value="' + cellType + '"]').attr('selected', 'selected');
+            $("#cellTypeSelector").val(cellType).change();
+
+            console.log('Cell index: ' + cellIndex);
+            console.log('Cell with choosen coordinate : ' + this.id);
+            console.log('Cell data');
+            console.log(coords[cellIndex]);
         })
 
         $('#cellTypeSelector').on('change', function () {
-            let cellType = $(this).find(':selected').val();
-            visualize_cell(cellType, recentX, recentY);
+            console.log('Change event');
+            cellType = $(this).find(':selected').val();
+            coords[cellIndex].value = cellType;
+            render_cell(cellType, recentX, recentY);
             console.log('Cell type = ' + cellType + ' changed');
         });
     }
     //Clear grid map
     function clearGridMap() {
-        $('#gridMap').empty();  
+        $('#gridMap').empty();
         console.log('Cleared grid map');
     }
     //Get map data from API server
     function get_map_data() {
-        let jsonRepsonse = '{"name":"Warehouse 1", "length":4, "width":4, "coordinates":[{"x":"0", "y":"0", "value":"blank"},{"x":"1", "y":"0", "value":"#"},{"x":"2", "y":"0", "value":"1"},{"x":"3", "y":"0", "value":"1"},{"x":"0", "y":"1", "value":"blank"},{"x":"1", "y":"1", "value":"*"},{"x":"2", "y":"1", "value":"blank"},{"x":"3", "y":"1", "value":"blank"},{"x":"0", "y":"2", "value":"1"},{"x":"1", "y":"2", "value":"1"},{"x":"2", "y":"2", "value":"blank"},{"x":"3", "y":"2", "value":"blank"},{"x":"0", "y":"3", "value":"blank"},{"x":"1", "y":"3", "value":"*"},{"x":"2", "y":"3", "value":"#"},{"x":"3", "y":"3", "value":"#"}]}';
+        let jsonRepsonse = '{"name":"Warehouse 1", "length":12, "width":10, "coordinates":[{"x":"0", "y":"0", "value":"0"},{"x":"1", "y":"0", "value":"#"},{"x":"2", "y":"0", "value":"1"},{"x":"3", "y":"0", "value":"1"},{"x":"0", "y":"1", "value":"0"},{"x":"1", "y":"1", "value":"*"},{"x":"2", "y":"1", "value":"0"},{"x":"3", "y":"1", "value":"0"},{"x":"0", "y":"2", "value":"1"},{"x":"1", "y":"2", "value":"1"},{"x":"2", "y":"2", "value":"0"},{"x":"3", "y":"2", "value":"0"},{"x":"0", "y":"3", "value":"0"},{"x":"1", "y":"3", "value":"*"},{"x":"2", "y":"3", "value":"#"},{"x":"3", "y":"3", "value":"#"}]}';
 
         mapData = jsonRepsonse;
         console.log('Get map data done');
     }
 
-    function visualize_map_data(data) {
+    function init_map_layer() {
+        baseLayer = mapData;
+        beaconLayer = mapData;
+        packageLayer = mapData;
+    }
+
+    function render_map_data(data) {
         let _mapData = JSON.parse(data);
 
         mapName = _mapData.name;
@@ -141,7 +167,7 @@
                 if ((coords[coordIndex] != null) || (coords[coordIndex] != undefined)) {
                     let coord = coords[coordIndex];
                     //console.log(coord);
-                    visualize_cell(coord.value, x, y);
+                    render_cell(coord.value, x, y);
                 }
                 coordIndex++;
             }
@@ -152,8 +178,8 @@
         //console.log(coords);
     }
 
-    function visualize_cell(cellValue, x, y) {
-        if (cellValue == '#') {
+    function render_cell(cellType, x, y) {
+        if (cellType == '#') {
             //console.log('id = ' + x + ':' + y);
             let cell = document.getElementById(x + ':' + y);
             cell.classList.remove("bg-success");
@@ -161,7 +187,7 @@
             cell.classList.remove("bg-warning");
             cell.classList.add("bg-info");
         }
-        else if (cellValue == '*') {
+        else if (cellType == '*') {
             //console.log('id = ' + x + ':' + y);
             let cell = document.getElementById(x + ':' + y);
             cell.classList.remove("bg-transparent");
@@ -169,7 +195,7 @@
             cell.classList.remove("bg-warning");
             cell.classList.add("bg-success");
         }
-        else if (cellValue == '1') {
+        else if (cellType == '1') {
             //console.log('id = ' + x + ':' + y);
             let cell = document.getElementById(x + ':' + y);
             cell.classList.remove("bg-transparent");
@@ -177,7 +203,7 @@
             cell.classList.remove("bg-success");
             cell.classList.add("bg-warning");
         }
-        else if (cellValue == '0') {
+        else if (cellType == '0') {
             //console.log('id = ' + x + ':' + y);
             let cell = document.getElementById(x + ':' + y);
             cell.classList.remove("bg-warning");
@@ -185,6 +211,8 @@
             cell.classList.remove("bg-success");
             cell.classList.add("bg-transparent");
         }
+
+        console.log('Rendered cell');
     }
 
     function init_mqtt() {
@@ -340,13 +368,16 @@
             mapWidth = $('#editMapWidth').val();
             clearGridMap();
             init_map(mapLength, mapWidth, 20);
+            init_map_layer();
+            visualize_map_data(mapData);
             console.log('Saved map data');
         });
     }
     //Init Map view
-    init_map(10, 20, 20);
     get_map_data();
-    visualize_map_data(mapData);
+    init_map(10, 20, 20);
+    init_map_layer();
+    render_map_data(mapData);
     //Init MQTT and control buttons
     init_mqtt();
     init_control_buttons();
