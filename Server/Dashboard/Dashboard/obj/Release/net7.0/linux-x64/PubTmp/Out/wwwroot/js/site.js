@@ -249,10 +249,10 @@
     function init_nav_button() {
         $('#bleScannerButton').click(function () {
             if (recentView != 'bleScannerView') {
-                $('#bleScannerView').removeClass('invisible');
-                $('#gridMap').addClass('invisible');
-                $('#laserScannerView').addClass('invisible');
-                $('#deliveryControlView').addClass('invisible');
+                $('#bleScannerView').removeClass('d-none');
+                $('#gridMap').addClass('d-none');
+                $('#laserScannerView').addClass('d-none');
+                $('#deliveryControlView').addClass('d-none');
                 recentView = 'bleScannerView';
             }
             console.log('bleScannerButton clicked');
@@ -260,10 +260,10 @@
 
         $('#mapViewButton').click(function () {
             if (recentView != 'gridMap') {
-                $('#gridMap').removeClass('invisible');
-                $('#bleScannerView').addClass('invisible');
-                $('#laserScannerView').addClass('invisible');
-                $('#deliveryControlView').addClass('invisible');
+                $('#gridMap').removeClass('d-none');
+                $('#bleScannerView').addClass('d-none');
+                $('#laserScannerView').addClass('d-none');
+                $('#deliveryControlView').addClass('d-none');
                 recentView = 'gridMap';
             }
             console.log('mapViewButton clicked');
@@ -271,10 +271,10 @@
 
         $('#deliveryControlButton').click(function () {
             if (recentView != 'deliveryControlView') {
-                $('#deliveryControlView').removeClass('invisible');
-                $('#bleScannerView').addClass('invisible');
-                $('#laserScannerView').addClass('invisible');
-                $('#gridMap').addClass('invisible');
+                $('#deliveryControlView').removeClass('d-none');
+                $('#bleScannerView').addClass('d-none');
+                $('#laserScannerView').addClass('d-none');
+                $('#gridMap').addClass('d-none');
                 recentView = 'deliveryControlView';
             }
             console.log('deliveryControlButton clicked');
@@ -383,4 +383,5 @@
     init_control_buttons();
     init_nav_button();
     init_right_tab_buttons();
+
 })

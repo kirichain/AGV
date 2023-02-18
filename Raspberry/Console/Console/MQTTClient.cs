@@ -57,8 +57,6 @@ namespace MQTTClients
             {
                 var mqttFactory = new MqttFactory();
                 var mqttClient = mqttFactory.CreateMqttClient();
-
-
                 var mqttClientOptions = new MqttClientOptionsBuilder().WithTcpServer(mqttBrokerUrl).Build();
 
                 mqttClient.ApplicationMessageReceivedAsync += e =>
@@ -67,15 +65,16 @@ namespace MQTTClients
                     {
                         case "agv/control/001":
                             controlMessage = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
-                            Console.WriteLine(Encoding.UTF8.GetString(e.ApplicationMessage.Payload));
                             break;
                         case "agv/package/delivery":
                             break;
                         case "agv/pacakge/location":
                             break;
+                        case "agv/status":
+                            break;
                     }
-
-                    Console.WriteLine("Message done");
+                    Console.WriteLine(Encoding.UTF8.GetString(e.ApplicationMessage.Payload));
+                    Console.WriteLine("Message processing done");
                     return Task.CompletedTask;
                 };
 
@@ -96,6 +95,11 @@ namespace MQTTClients
                         f =>
                         {
                             f.WithTopic("agv/pacakge/location");
+                        })
+                    .WithTopicFilter(
+                        f =>
+                        {
+                            f.WithTopic("agv/status");
                         })
                     .Build();
 
