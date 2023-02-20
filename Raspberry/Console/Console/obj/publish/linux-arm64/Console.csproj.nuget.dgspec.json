@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
             "System.Threading.Tasks": {
               "target": "Package",
               "version": "[4.3.0, )"

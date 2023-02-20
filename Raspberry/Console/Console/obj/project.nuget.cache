@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "aC31YCyg0YdfJcKNvx6UWxCx3xL4+ujMoMDofTgl3eiSXAXYinNMacQXgigJj5l0nrGbhARDaI/eM0X6fztbPQ==",
+  "dgSpecHash": "yD7byjDA1FNPVqAnJ6g2p5TXRo3xikc7oBsbPQJ5fhypyRfEpAIJxLO3qrTvi6uXVu5PwmLCctDXEKNsVynxng==",
   "success": true,
   "projectFilePath": "C:\\Pi Rover Dropbox\\Duy Tan Nguyen Thanh\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj",
   "expectedPackageFiles": [
@@ -72,6 +72,8 @@
     "C:\\Users\\DELL\\.nuget\\packages\\system.security.principal\\4.3.0\\system.security.principal.4.3.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.security.principal.windows\\4.3.0\\system.security.principal.windows.4.3.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\system.text.json\\7.0.2\\system.text.json.7.0.2.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.text.regularexpressions\\4.3.0\\system.text.regularexpressions.4.3.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",

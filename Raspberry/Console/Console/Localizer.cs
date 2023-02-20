@@ -9,6 +9,7 @@ namespace Localizers
         public static string[] beaconData;
         public static string[] beaconName;
         public static string[] beaconRSSI;
+        public static string recentPosition;
         public Localizer()
         {
             Console.WriteLine("Localizer Init Done");
@@ -22,7 +23,10 @@ namespace Localizers
                 foreach (var b in beacon)
                 {
                     beaconData = b.Split('=');
+                    beaconName.Append(beaconData[0]).ToArray();
+                    beaconRSSI.Append(beaconData[1]).ToArray();
                     Console.Write("Name = " + beaconData[0] + " - RSSI = " + beaconData[1]);
+                    
                     //Console.WriteLine($"{b}");
                 }
                 //Console.WriteLine("Beacon Scanner Result = " + beaconScannerData);
