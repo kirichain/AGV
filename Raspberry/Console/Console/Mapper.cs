@@ -1,4 +1,6 @@
-﻿namespace Mappers
+﻿using GuidanceSystems;
+
+namespace Mappers
 {
     public class Mapper
     {

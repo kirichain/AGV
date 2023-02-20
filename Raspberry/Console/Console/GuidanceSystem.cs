@@ -2,6 +2,7 @@
 using Mappers;
 using Navigators;
 using MQTTClients;
+using Boards;
 
 namespace GuidanceSystems
 {
@@ -16,33 +17,40 @@ namespace GuidanceSystems
         public Localizer localizer;
         public Mapper mapper;
         public Navigator navigator;
-        
+
         public Mode mode;
+        public static string beaconScannerReading;
         public GuidanceSystem()
         {
             mode = Mode.Idle;
-            localizer= new Localizer();
-            mapper= new Mapper();
-            navigator= new Navigator();
+            localizer = new Localizer();
+            mapper = new Mapper();
+            navigator = new Navigator();
+            beaconScannerReading = "";
         }
-        public void guide()
+        public void Guide()
         {
+            beaconScannerReading = Board.beaconScannerReading;
             //Direct Mode (Manual Control)
             if (mode == Mode.Direct)
             {
                 if (MQTTClients.MQTTClient.controlMessage != "")
                 {
                     Console.WriteLine("Operating in direct mode");
-                    navigator.nav_command = MQTTClients.MQTTClient.controlMessage;
-                    navigator.nav(mode);
+                    navigator.nav_command = MQTTClient.controlMessage;
+                    navigator.Nav(mode);
                     MQTTClients.MQTTClient.controlMessage = "";
                 }
             }
             //Delivery Mode (Auto Control)
-            else if (mode == Mode.Delivery) 
+            else if (mode == Mode.Delivery)
             {
-                Console.WriteLine("Operating in delivery mode");
-                
+                //if (MQTTClient.controlMessage != "")
+                //{
+                    Console.WriteLine("Operating in delivery mode");
+                    navigator.PathFinder();
+                    MQTTClient.controlMessage = "";
+                //}
             }
             //Idle Mode (Waiting for signal)
             else if (mode == Mode.Idle)

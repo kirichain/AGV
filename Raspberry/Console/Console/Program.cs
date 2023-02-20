@@ -9,32 +9,36 @@ Board beacon_scanner, motor_controller;
 GuidanceSystem guider;
 API api;
 
+bool systemCheck = true;
+string agvId = "001";
+
 //socketClient = new SocketClient();
-//beacon_scanner = new Board("/dev/ttyUSB0");
 //motor_controller = new Board("/dev/ttyUSB1");
 //beacon_scanner = new Board("COM6", BoardName.Beacon_Scanner);
 //motor_controller = new Board("COM3", BoardName.Motor_Controller);
 //motor_controller = new Board("/dev/ttyUSB0", BoardName.Motor_Controller);
 motor_controller = new Board();
+beacon_scanner = new Board();
+guider = new GuidanceSystem();
+api = new API();
 
+//Give user to choose the port 
 Console.WriteLine("Press key to select port");
 
 if (Console.ReadKey().Key == ConsoleKey.Enter)
 {
     Console.WriteLine("Windows port");
     motor_controller.Init("COM3", BoardName.Motor_Controller);
-
+    beacon_scanner.Init("COM6", BoardName.Beacon_Scanner);
 }
 else if (Console.ReadKey().Key == ConsoleKey.Spacebar)
 {
     Console.WriteLine("Linux port");
     motor_controller.Init("/dev/ttyUSB0", BoardName.Motor_Controller);
-
+    beacon_scanner.Init("/dev/ttyUSB1", BoardName.Beacon_Scanner);
 }
-guider = new GuidanceSystem();
-api = new API();
-bool systemCheck = true;
-string agvId = "001";
+
+
 //socketClient.Init();
 MQTTClients.MQTTClient.agvId = agvId;
 MQTTClients.MQTTClient.Init();
@@ -48,7 +52,6 @@ MQTTClients.MQTTClient.Init();
 //    Console.WriteLine("Beacon Scanner fails to connect");
 //}
 
-
 //await MQTTClient.Publish_Message();
 //await MQTTClient.Subscribe_Handle();
 
@@ -61,19 +64,21 @@ else
     systemCheck = false;
 }
 systemCheck = true;
+
 if (systemCheck)
 {
     Console.WriteLine("System check done. Switch to idle mode");
     guider.mode = Mode.Idle;
-    Console.WriteLine("Mode: " + guider.mode);
     guider.mode = Mode.Direct;
+    guider.mode = Mode.Delivery;
+    Console.WriteLine("Mode: " + guider.mode);
     MQTTClient.Subscribe_Handle();
     while (true)
     {
         //Boards.Board.SendSerial(SerialReceiver.Motor_Controller, "forward");
         //guider.mode = Mode.Direct;
         //Console.WriteLine("Message come. Start to guide now");
-        guider.guide();
+        guider.Guide();
         //return;
     }
 }

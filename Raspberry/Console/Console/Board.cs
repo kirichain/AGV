@@ -18,11 +18,12 @@ namespace Boards
         public bool isPortReady, isReading, isDisconnected;
         //LF character used for determining if data from serial port reading contains break line character 
         private static char LF = (char)10;
-        private bool isNewMotorControllerReading, isCheckingName, isNewReading;
+        private bool isNewMotorControllerReading, isNewBeaconReading,isCheckingName, isNewReading;
         public string portName, serialReading, buffer;
         public BoardName boardName;
         private int waitingCount;
         private static bool isSerialReady;
+        public static string beaconScannerReading;
         public Board()
         {
             
@@ -30,12 +31,19 @@ namespace Boards
         public void Init(string _portName, BoardName _boardName)
         {
             portName = _portName;
+            boardName = _boardName;
+
             if (boardName == BoardName.Motor_Controller)
             {
                 isMotorControllerPortReady = false;
                 isNewMotorControllerReading = false;
-                boardName = _boardName;
             }
+            if (boardName == BoardName.Beacon_Scanner)
+            {
+                isBeaconScannerPortReady = false;
+                isNewBeaconReading = false;
+            }
+
             isPortReady = false;
             isReading = false;
             isDisconnected = false;
@@ -87,7 +95,7 @@ namespace Boards
                 beaconScannerPort.DataBits = 8;
                 beaconScannerPort.Handshake = Handshake.None;
 
-                //beaconScannerPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+                beaconScannerPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
 
                 if (!beaconScannerPort.IsOpen)
                 {
@@ -95,17 +103,16 @@ namespace Boards
                     beaconScannerPort.Open();
                 }
 
-                while (!beaconScannerPort.IsOpen)
-                {
-                    //Console.Write(".");
-                }
+                //while (!beaconScannerPort.IsOpen)
+                //{
+                //    //Console.Write(".");
+                //}
 
                 Console.WriteLine("Port " + portName + " opened successfully");
                 //while (!isBeaconScannerPortReady)
                 //{
                 //    Console.WriteLine(".");
                 //}
-                //Console.WriteLine("Motor controller serial port is ready");
                 //checkBoardName(BoardName.Beacon);
             }
         }
@@ -149,7 +156,13 @@ namespace Boards
                             {
                                 isMotorControllerPortReady = true;
                             }
-                            Console.WriteLine(serialReading);
+                            if (boardName == BoardName.Beacon_Scanner)
+                            {
+                                beaconScannerReading = serialReading;
+                            }
+                            if (boardName != BoardName.Beacon_Scanner) {
+                                Console.WriteLine(serialReading);
+                            } 
                         }
                         buffer = "";
                         isNewReading = false;

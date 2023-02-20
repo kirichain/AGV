@@ -49,10 +49,7 @@ namespace MQTTClients
             }
         }
         public static async Task Subscribe_Handle()
-        {
-            /*
-             * This sample subscribes to a topic and processes the received message.
-             */
+        {      
             if (!isConnected)
             {
                 var mqttFactory = new MqttFactory();
@@ -63,15 +60,15 @@ namespace MQTTClients
                 {
                     switch (e.ApplicationMessage.Topic)
                     {
+                        case "agv/status":
+                            break;
                         case "agv/control/001":
                             controlMessage = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
                             break;
                         case "agv/package/delivery":
                             break;
                         case "agv/pacakge/location":
-                            break;
-                        case "agv/status":
-                            break;
+                            break;                      
                     }
                     Console.WriteLine(Encoding.UTF8.GetString(e.ApplicationMessage.Payload));
                     Console.WriteLine("Message processing done");
@@ -81,6 +78,11 @@ namespace MQTTClients
                 await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
 
                 var mqttSubscribeOptions = mqttFactory.CreateSubscribeOptionsBuilder()
+                    .WithTopicFilter(
+                        f =>
+                        {
+                            f.WithTopic("agv/status");
+                        })
                     .WithTopicFilter(
                         f =>
                         {
@@ -95,12 +97,7 @@ namespace MQTTClients
                         f =>
                         {
                             f.WithTopic("agv/pacakge/location");
-                        })
-                    .WithTopicFilter(
-                        f =>
-                        {
-                            f.WithTopic("agv/status");
-                        })
+                        })                  
                     .Build();
 
                 await mqttClient.SubscribeAsync(mqttSubscribeOptions, CancellationToken.None);
