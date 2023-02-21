@@ -11,15 +11,15 @@ namespace Navigators
         public string nav_command;
         public Navigator()
         {
-            Localizer.recentPosition = Mapper.baseLayer[0, 0];
+            Localizer.recentCoord = Mapper.baseLayer[1, 1];
 
             Console.WriteLine("Navigator Init Done");
         }
         public void PathFinder()
         {
             Localizer.ScanBeacon();
-
-            Console.WriteLine("Recent position = " + Localizer.recentPosition);
+            Localizer.FindNearbyBeacon();
+            Console.WriteLine("Recent position = " + Localizer.recentCoord);
         }
         public void CollisionDetector()
         {

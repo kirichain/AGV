@@ -70,7 +70,7 @@ if (systemCheck)
     Console.WriteLine("System check done. Switch to idle mode");
     guider.mode = Mode.Idle;
     guider.mode = Mode.Direct;
-    guider.mode = Mode.Delivery;
+    //guider.mode = Mode.Delivery;
     Console.WriteLine("Mode: " + guider.mode);
     MQTTClient.Subscribe_Handle();
     while (true)
