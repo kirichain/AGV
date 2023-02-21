@@ -35,7 +35,7 @@ else if (Console.ReadKey().Key == ConsoleKey.Spacebar)
 {
     Console.WriteLine("Linux port");
     motor_controller.Init("/dev/ttyUSB0", BoardName.Motor_Controller);
-    beacon_scanner.Init("/dev/ttyUSB1", BoardName.Beacon_Scanner);
+    //beacon_scanner.Init("/dev/ttyUSB1", BoardName.Beacon_Scanner);
 }
 
 
