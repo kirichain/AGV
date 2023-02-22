@@ -10,6 +10,7 @@ namespace Localizers
         public static string[] beaconData;
         public static string[] beaconName;
         public static string[] beaconRSSI;
+        //EN/ES/WN/WS stand for eeastern north, eastern south, western north, western south
         public static int enBeaconRssi, esBeaconRssi, wnBeaconRssi, wsBeaconRssi, recentX, recentY;
         public static string enBeaconName, esBeaconName, wnBeaconName, wsBeaconName;
         public Localizer()
@@ -44,7 +45,7 @@ namespace Localizers
             {
                 if (Mapper.baseLayer[recentX - 1, recentY + 1] == "*")
                 {
-
+                    
                 }
             }
             //Check western north cell

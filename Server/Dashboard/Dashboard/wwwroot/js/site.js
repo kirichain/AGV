@@ -37,7 +37,7 @@
         if ($('#cameraSwitch').is(':checked')) {
             console.log('Camera ON');
             $('#cameraIndicator').html('ON');
-            $('#cameraStreamView').attr('src', 'https://c488-203-113-151-208.ap.ngrok.io/stream');
+            $('#cameraStreamView').attr('src', ' https://3e26-203-113-151-208.ap.ngrok.io/stream');
             $('#cameraStreamView').removeClass('hide');
         } else {
             console.log('Camera OFF');
@@ -284,23 +284,39 @@
     function init_control_buttons() {
         //For clicking button
         $('#goForwardButton').click(function () {
-            mqtt_publish('agv/control/' + agvId, 'forward', 'move');
-            console.log('Go Forward');
+            if ((agvMode == 'direct') && (agvId != 'Select AGV')) {
+                mqtt_publish('agv/control/' + agvId, 'forward', 'move');
+                console.log('Go Forward');
+            } else {
+                alert('AGV ID or Direct mode is not chosen');
+            }        
         });
 
         $('#goBackwardButton').click(function () {
-            mqtt_publish('agv/control/' + agvId, 'backward', 'move');
-            console.log('Go Backward');
+            if ((agvMode == 'direct') && (agvId != 'Select AGV')) {
+                mqtt_publish('agv/control/' + agvId, 'backward', 'move');
+                console.log('Go Backward');
+            } else {
+                alert('AGV ID or Direct mode is not chosen');
+            }             
         });
 
         $('#turnLeftButton').click(function () {
-            mqtt_publish('agv/control/' + agvId, 'turn-left', 'move');
-            console.log('Turn Left');
+            if ((agvMode == 'direct') && (agvId != 'Select AGV')) {
+                mqtt_publish('agv/control/' + agvId, 'turn-left', 'move');
+                console.log('Turn Left');
+            } else {
+                alert('AGV ID or Direct mode is not chosen');
+            }       
         });
 
         $('#turnRightButton').click(function () {
-            mqtt_publish('agv/control/' + agvId, 'turn-right', 'move');
-            console.log('Turn Right');
+            if ((agvMode == 'direct') && (agvId != 'Select AGV')) {
+                mqtt_publish('agv/control/' + agvId, 'turn-right', 'move');
+                console.log('Turn Right');
+            } else {
+                alert('AGV ID or Direct mode is not chosen');
+            }   
         });
 
         //For pressing physical key
