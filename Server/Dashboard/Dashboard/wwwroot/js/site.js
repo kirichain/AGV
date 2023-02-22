@@ -37,7 +37,7 @@
         if ($('#cameraSwitch').is(':checked')) {
             console.log('Camera ON');
             $('#cameraIndicator').html('ON');
-            $('#cameraStreamView').attr('src', 'https://fea0-203-113-151-208.ap.ngrok.io/stream');
+            $('#cameraStreamView').attr('src', 'https://c488-203-113-151-208.ap.ngrok.io/stream');
             $('#cameraStreamView').removeClass('hide');
         } else {
             console.log('Camera OFF');
