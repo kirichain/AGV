@@ -26,7 +26,7 @@ namespace GuidanceSystems
             localizer = new Localizer();
             mapper = new Mapper();
             navigator = new Navigator();
-            beaconScannerReading = "";
+            beaconScannerReading = "";          
         }
         public void Guide()
         {
@@ -48,7 +48,7 @@ namespace GuidanceSystems
                 //if (MQTTClient.controlMessage != "")
                 //{
                     Console.WriteLine("Operating in delivery mode");
-                    navigator.PathFinder();
+                    navigator.PlanPath();
                     MQTTClient.controlMessage = "";
                 //}
             }

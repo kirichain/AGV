@@ -45,7 +45,7 @@ namespace Localizers
             {
                 if (Mapper.baseLayer[recentX - 1, recentY + 1] == "*")
                 {
-                    
+                    Console.WriteLine("Western South Beacon");
                 }
             }
             //Check western north cell
@@ -53,7 +53,7 @@ namespace Localizers
             {
                 if (Mapper.baseLayer[recentX - 1, recentY - 1] == "*")
                 {
-
+                    Console.WriteLine("Western North Beacon");
                 }
             }
             //Check estern north cell
@@ -61,7 +61,7 @@ namespace Localizers
             {
                 if (Mapper.baseLayer[recentX + 1, recentY - 1] == "*")
                 {
-
+                    Console.WriteLine("Eastern North Beacon");
                 }
             }
             //Check eastern south cell
@@ -69,7 +69,7 @@ namespace Localizers
             {
                 if (Mapper.baseLayer[recentX + 1, recentY + 1] == "*")
                 {
-
+                    Console.WriteLine("Eastern South Beacon");
                 }
             }
         }

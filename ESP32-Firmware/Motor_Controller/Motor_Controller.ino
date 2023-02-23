@@ -79,7 +79,7 @@ void forward() {
   
   //analogWrite(ENA, motor_speed);
   //analogWrite(ENB, motor_speed);
-  delay(100);
+  delay(300);
   stop();  
 }
 
@@ -98,7 +98,7 @@ void backward() {
 
   //analogWrite(ENA, motor_speed);
   //analogWrite(ENB, motor_speed);
-  delay(100);
+  delay(300);
   stop();
 }
 
@@ -117,7 +117,7 @@ void turn_left() {
   
   //analogWrite(ENA, motor_speed);
   //analogWrite(ENB, motor_speed);
-  delay(100);
+  delay(300);
   stop();  
 }
 
@@ -136,7 +136,7 @@ void turn_right() {
   
   //analogWrite(ENA, motor_speed);
   //analogWrite(ENB, motor_speed);
-  delay(100);
+  delay(300);
   stop();  
 }
 

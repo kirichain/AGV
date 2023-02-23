@@ -8,20 +8,33 @@ namespace Navigators
 {
     public class Navigator
     {
-        public string nav_command;
+        public string nav_command, nav_route;
+        public int deliveryX, deliveryY, pickingX, pickingY, baseX, baseY;
+        public bool isPathPlanned, isRoutePlanned, isDeliveryDone;
         public Navigator()
         {
-            Localizer.recentCoord = Mapper.baseLayer[1, 1];
-
+            baseX = 0;
+            baseY = 0;
             Console.WriteLine("Navigator Init Done");
         }
-        public void PathFinder()
+        public void PlanPath()
         {
-            Localizer.ScanBeacon();
-            Localizer.FindNearbyBeacon();
-            Console.WriteLine("Recent position = " + Localizer.recentCoord);
+            Mapper.LoadMap("Warehouse 1", LayerName.BaseLayer);
+            if ((baseX == 0 ) && (baseY == 0))
+            {
+                Console.WriteLine("Delivery request receiving position is root");
+            } else
+            {
+                Console.WriteLine("Delivery request receiving position is not root");
+            }
+            //Localizer.ScanBeacon();
+            //Localizer.FindNearbyBeacon();
         }
-        public void CollisionDetector()
+        public void DetectObstacle()
+        {
+
+        }
+        public void DetectHuman()
         {
 
         }

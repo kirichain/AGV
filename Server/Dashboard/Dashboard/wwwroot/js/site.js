@@ -111,7 +111,7 @@
             recentY = cellCoord[1];
             console.log(coords);
             cellIndex = (((parseInt(recentY) + 1) * mapWidth) - (mapWidth - recentX));
-            cellType = coords[cellIndex].value;
+            cellType = coords[cellIndex].type;
 
             console.log('Cell type = ' + cellType);
 
@@ -128,7 +128,7 @@
         $('#cellTypeSelector').on('change', function () {
             console.log('Change event');
             cellType = $(this).find(':selected').val();
-            coords[cellIndex].value = cellType;
+            coords[cellIndex].type = cellType;
             render_cell(cellType, recentX, recentY);
             console.log('Cell type = ' + cellType + ' changed');
         });
@@ -140,7 +140,7 @@
     }
     //Get map data from API server
     function get_map_data() {
-        let jsonRepsonse = '{"name":"Warehouse 1", "length":12, "width":10, "coordinates":[{"x":"0", "y":"0", "value":"0"},{"x":"1", "y":"0", "value":"#"},{"x":"2", "y":"0", "value":"1"},{"x":"3", "y":"0", "value":"1"},{"x":"0", "y":"1", "value":"0"},{"x":"1", "y":"1", "value":"*"},{"x":"2", "y":"1", "value":"0"},{"x":"3", "y":"1", "value":"0"},{"x":"0", "y":"2", "value":"1"},{"x":"1", "y":"2", "value":"1"},{"x":"2", "y":"2", "value":"0"},{"x":"3", "y":"2", "value":"0"},{"x":"0", "y":"3", "value":"0"},{"x":"1", "y":"3", "value":"*"},{"x":"2", "y":"3", "value":"#"},{"x":"3", "y":"3", "value":"#"}]}';
+        let jsonRepsonse = '{"name":"Warehouse 1", "length":12, "width":10, "coordinates":[{"x":"0", "y":"0", "type":"0"},{"x":"1", "y":"0", "type":"#"},{"x":"2", "y":"0", "type":"1"},{"x":"3", "y":"0", "type":"1"},{"x":"0", "y":"1", "type":"0"},{"x":"1", "y":"1", "type":"*"},{"x":"2", "y":"1", "type":"0"},{"x":"3", "y":"1", "type":"0"},{"x":"0", "y":"2", "type":"1"},{"x":"1", "y":"2", "type":"1"},{"x":"2", "y":"2", "type":"0"},{"x":"3", "y":"2", "type":"0"},{"x":"0", "y":"3", "type":"0"},{"x":"1", "y":"3", "type":"*"},{"x":"2", "y":"3", "type":"#"},{"x":"3", "y":"3", "type":"#"}]}';
 
         mapData = jsonRepsonse;
         console.log('Get map data done');
@@ -152,7 +152,7 @@
         packageLayer = mapData;
     }
 
-    function render_map_data(data) {
+    function render_map(data) {
         let _mapData = JSON.parse(data);
 
         mapName = _mapData.name;
@@ -167,7 +167,7 @@
                 if ((coords[coordIndex] != null) || (coords[coordIndex] != undefined)) {
                     let coord = coords[coordIndex];
                     //console.log(coord);
-                    render_cell(coord.value, x, y);
+                    render_cell(coord.type, x, y);
                 }
                 coordIndex++;
             }
@@ -393,7 +393,7 @@
     get_map_data();
     init_map(10, 20, 20);
     init_map_layer();
-    render_map_data(mapData);
+    render_map(mapData);
     //Init MQTT and control buttons
     init_mqtt();
     init_control_buttons();
