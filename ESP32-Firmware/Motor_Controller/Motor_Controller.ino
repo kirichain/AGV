@@ -2,8 +2,8 @@
 
 SerialCommand sCmd;   
 
-int motor_speed = 255;
-
+byte motor_speed = 255;
+byte currentMilis, previousMillis;
 //Pair of motor 1
 //int ENA = D0;
 int IN1 = D0;

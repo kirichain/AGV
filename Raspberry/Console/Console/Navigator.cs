@@ -19,7 +19,7 @@ namespace Navigators
         }
         public void PlanPath()
         {
-            Mapper.LoadMap("Warehouse 1", LayerName.BaseLayer);
+            Mapper.LoadMap("Warehouse 1", LayerName.Base);
             if ((baseX == 0 ) && (baseY == 0))
             {
                 Console.WriteLine("Delivery request receiving position is root");

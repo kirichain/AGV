@@ -40,6 +40,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Iot.Device.Bindings": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "MQTTnet": {
               "target": "Package",
               "version": "[4.1.4.563, )"
@@ -59,6 +63,10 @@
             "MQTTnet.Extensions.WebSocket4Net": {
               "target": "Package",
               "version": "[4.1.4.563, )"
+            },
+            "System.Device.Gpio": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "System.IO.Ports": {
               "target": "Package",
