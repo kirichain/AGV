@@ -160,9 +160,10 @@ namespace Boards
                             {
                                 beaconScannerReading = serialReading;
                             }
-                            if (boardName != BoardName.Beacon_Scanner) {
-                                Console.WriteLine(serialReading);
-                            } 
+                            //if (boardName != BoardName.Beacon_Scanner) {
+                            //    Console.WriteLine(serialReading);
+                            //}
+                            Console.WriteLine(serialReading);
                         }
                         buffer = "";
                         isNewReading = false;

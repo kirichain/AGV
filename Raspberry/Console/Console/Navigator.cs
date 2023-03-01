@@ -20,15 +20,16 @@ namespace Navigators
         public void PlanPath()
         {
             Mapper.LoadMap("Warehouse 1", LayerName.Base);
-            if ((baseX == 0 ) && (baseY == 0))
+            Mapper.LoadMap("Warehouse 1", LayerName.BeaconId);
+            if ((baseX == 1 ) && (baseY == 1))
             {
-                Console.WriteLine("Delivery request receiving position is root");
+                //Console.WriteLine("Delivery request receiving position is root");
             } else
             {
-                Console.WriteLine("Delivery request receiving position is not root");
+                //Console.WriteLine("Delivery request receiving position is not root");
             }
-            //Localizer.ScanBeacon();
-            //Localizer.FindNearbyBeacon();
+            Localizer.ScanBeacon();
+            Localizer.FindNearbyBeacon();
         }
         public void DetectObstacle()
         {

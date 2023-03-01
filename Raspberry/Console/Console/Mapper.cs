@@ -9,7 +9,9 @@ namespace Mappers
         Base,
         BeaconId,
         BeaconData,
-        PackageId
+        PackageId,
+        Rfid,
+        RfidData
     }
     public enum CellType
     {
@@ -26,36 +28,38 @@ namespace Mappers
         public static string baseLayerData, beaconIdLayerData;
         public Mapper()
         {
-            mapLength = 10;
-            mapWidth = 10;
+            mapLength = 4;
+            mapWidth = 4;
             baseLayer = new string[mapLength, mapWidth];
+            beaconIdLayer = new string[mapLength, mapWidth];
             for (int i = 0; i < mapLength; i++)
             {
                 for (int j = 0; j < mapWidth; j++)
                 {
                     baseLayer[i, j] = "0";
-                    Console.WriteLine("Cell data = " + baseLayer[i, j]);
+                    beaconIdLayer[i, j] = "0";
                 }
             }
-            beaconIdLayer = baseLayer;
-            //beaconIdLayer[0, 0] = "Beacon-1";
-            Console.WriteLine("Mapper Init Done");
         }
         public static void LoadMap(string name, LayerName layer)
         {
-            if (layer == LayerName.Base)
+            baseLayerData = @"{""name"":""Warehouse 1"", ""layer"":""base"", ""length"":4, ""width"":4, ""coordinates"":[{""x"":""0"", ""y"":""0"", ""type"":""*""},{""x"":""1"", ""y"":""0"", ""type"":""#""},{""x"":""2"", ""y"":""0"", ""type"":""*""},{""x"":""3"", ""y"":""0"", ""type"":""1""},{""x"":""0"", ""y"":""1"", ""type"":""0""},{""x"":""1"", ""y"":""1"", ""type"":""#""},{""x"":""2"", ""y"":""1"", ""type"":""0""},{""x"":""3"", ""y"":""1"", ""type"":""0""},{""x"":""0"", ""y"":""2"", ""type"":""*""},{""x"":""1"", ""y"":""2"", ""type"":""1""},{""x"":""2"", ""y"":""2"", ""type"":""*""},{""x"":""3"", ""y"":""2"", ""type"":""0""},{""x"":""0"", ""y"":""3"", ""type"":""0""},{""x"":""1"", ""y"":""3"", ""type"":""*""},{""x"":""2"", ""y"":""3"", ""type"":""#""},{""x"":""3"", ""y"":""3"", ""type"":""#""}]}";
+
+            beaconIdLayerData = @"{""name"":""Warehouse 1"", ""layer"":""beaconId"", ""length"":4, ""width"":4, ""coordinates"":[{""x"":""0"", ""y"":""0"", ""name"":""Beacon-6""},{""x"":""1"",""y"":""0"", ""name"":""""},{""x"":""2"", ""y"":""0"", ""name"":""Beacon-2""},{""x"":""3"", ""y"":""0"", ""name"":""""},{""x"":""0"", ""y"":""1"", ""name"":""""},{""x"":""1"", ""y"":""1"", ""name"":""""},{""x"":""2"", ""y"":""1"", ""name"":""""},{""x"":""3"", ""y"":""1"", ""name"":""""},{""x"":""0"", ""y"":""2"", ""name"":""Beacon-3""},{""x"":""1"", ""y"":""2"", ""name"":""""},{""x"":""2"", ""y"":""2"", ""name"":""Beacon-4""},{""x"":""3"", ""y"":""2"", ""name"":""""},{""x"":""0"", ""y"":""3"", ""name"":""""},{""x"":""1"", ""y"":""3"", ""name"":""""},{""x"":""2"", ""y"":""3"", ""name"":""""},{""x"":""3"", ""y"":""3"", ""name"":""""}]}";
+
+            switch (layer)
             {
-                Console.WriteLine("Loading base layer");
-            }
-
-            baseLayerData = @"{""name"":""Warehouse 1"", ""layer"":""base"", ""length"":12, ""width"":10, ""coordinates"":[{""x"":""0"", ""y"":""0"", ""type"":""0""},{""x"":""1"", ""y"":""0"", ""type"":""#""},{""x"":""2"", ""y"":""0"", ""type"":""1""},{""x"":""3"", ""y"":""0"", ""type"":""1""},{""x"":""0"", ""y"":""1"", ""type"":""0""},{""x"":""1"", ""y"":""1"", ""type"":""*""},{""x"":""2"", ""y"":""1"", ""type"":""0""},{""x"":""3"", ""y"":""1"", ""type"":""0""},{""x"":""0"", ""y"":""2"", ""type"":""1""},{""x"":""1"", ""y"":""2"", ""type"":""1""},{""x"":""2"", ""y"":""2"", ""type"":""0""},{""x"":""3"", ""y"":""2"", ""type"":""0""},{""x"":""0"", ""y"":""3"", ""type"":""0""},{""x"":""1"", ""y"":""3"", ""type"":""*""},{""x"":""2"", ""y"":""3"", ""type"":""#""},{""x"":""3"", ""y"":""3"", ""type"":""#""}]}";
-
-            beaconIdLayerData = @"{""name"":""Warehouse 1"", ""layer"":""beaconId"", ""length"":12, ""width"":10, ""coordinates"":[{""x"":""0"", ""y"":""0"", ""name"":""Beacon-1""},{""x"":""1"", ""name"":""""},{""x"":""2"", ""y"":""0"", ""name"":""Beacon-2""},{""x"":""3"", ""y"":""0"", ""name"":""""},{""x"":""0"", ""y"":""1"", ""name"":""""},{""x"":""1"", ""y"":""1"", ""name"":""""},{""x"":""2"", ""y"":""1"", ""name"":""""},{""x"":""3"", ""y"":""1"", ""name"":""""},{""x"":""0"", ""y"":""2"", ""name"":""Beacon-3""},{""x"":""1"", ""y"":""2"", ""name"":""""},{""x"":""2"", ""y"":""2"", ""name"":""Beacon-4""},{""x"":""3"", ""y"":""2"", ""name"":""""},{""x"":""0"", ""y"":""3"", ""name"":""""},{""x"":""1"", ""y"":""3"", ""name"":""""},{""x"":""2"", ""y"":""3"", ""name"":""""},{""x"":""3"", ""y"":""3"", ""name"":""""}]}";
-
-            InitMap(baseLayer, baseLayerData, LayerName.Base);
-            InitMap(beaconIdLayer, beaconIdLayerData, LayerName.BeaconId);
+                case LayerName.Base:
+                    InitMap(baseLayerData, LayerName.Base);
+                    break;
+                case LayerName.BeaconId:
+                    InitMap(beaconIdLayerData, LayerName.BeaconId);
+                    break;
+                default:
+                    break;
+            }         
         }
-        public static void InitMap(string[,] layer, string layerData, LayerName layerName)
+        public static void InitMap(string layerData, LayerName layerName)
         {
             JsonNode document = JsonNode.Parse(layerData)!;
 
@@ -65,20 +69,21 @@ namespace Mappers
 
             foreach (JsonNode? coord in coords)
             {
-                var x = Convert.ToByte(coord["x"].ToString());
-                var y = Convert.ToByte(coord["y"].ToString());
+                int x = Convert.ToInt32(coord["x"].ToString());
+                int y = Convert.ToInt32(coord["y"].ToString());
 
                 if (layerName == LayerName.Base)
                 {
-                    layer[x, y] = coord["type"].ToString();
+                    baseLayer[x, y] = coord["type"].ToString();
+
                 }
                 else if (layerName == LayerName.BeaconId)
                 {
-                    layer[x, y] = coord["name"].ToString();
+                    beaconIdLayer[x, y] = coord["name"].ToString();
                 }
                 else if (layerName == LayerName.BeaconData)
                 {
-                    layer[x, y] = coord["data"].ToString();
+                    //layer[x, y] = coord["data"].ToString();
                 }
                 //Console.WriteLine("Cell type = " + coord["type"] + " coord = " + x + " " + y);
             }

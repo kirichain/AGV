@@ -47,7 +47,7 @@ namespace GuidanceSystems
             {
                 //if (MQTTClient.controlMessage != "")
                 //{
-                    Console.WriteLine("Operating in delivery mode");
+                    //Console.WriteLine("Operating in delivery mode");
                     navigator.PlanPath();
                     MQTTClient.controlMessage = "";
                 //}

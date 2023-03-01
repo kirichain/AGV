@@ -29,7 +29,7 @@ if (Console.ReadKey().Key == ConsoleKey.Enter)
 {
     Console.WriteLine("Windows port");
     //motor_controller.Init("COM3", BoardName.Motor_Controller);
-    //beacon_scanner.Init("COM6", BoardName.Beacon_Scanner);
+    beacon_scanner.Init("COM3", BoardName.Beacon_Scanner);
 }
 else if (Console.ReadKey().Key == ConsoleKey.Spacebar)
 {
@@ -79,7 +79,7 @@ if (systemCheck)
         //guider.mode = Mode.Direct;
         //Console.WriteLine("Message come. Start to guide now");
         guider.Guide();
-        return;
+        //return;
     }
 }
 else
