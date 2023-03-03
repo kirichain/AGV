@@ -30,6 +30,7 @@ namespace Navigators
             }
             Localizer.ScanBeacon();
             Localizer.FindNearbyBeacon();
+            Localizer.CheckLocation();
         }
         public void DetectObstacle()
         {

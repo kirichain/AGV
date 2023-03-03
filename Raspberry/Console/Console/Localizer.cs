@@ -21,9 +21,10 @@ namespace Localizers
         public static string[] beaconName;
         public static double[] beaconRssi;
         //NE/NW/SE/SW stand for northeast, southeast, northwest, southwest
-        public static int neBeaconRssi, seBeaconRssi, nwBeaconRssi, swBeaconRssi, recentX, recentY;
+        public static int recentX, recentY;
         public static string enBeaconName, esBeaconName, wnBeaconName, wsBeaconName;
-        public static double neDistance, seDistance, nwDistance, swDistance;
+        public static double neDistance, seDistance, nwDistance, swDistance, neBeaconRssi, seBeaconRssi, nwBeaconRssi, swBeaconRssi;
+        public static bool isLocationCenter, isLocationInside;
         public Localizer()
         {
             beaconName = new string[6];
@@ -36,26 +37,84 @@ namespace Localizers
         {
 
         }
+        public static int GetRssiRange(double rssi)
+        {
+            int range;
+
+            switch ((int)rssi)
+            {            
+                case int n when n >= -90 && n < -80:
+                    range = 9;
+                    break;
+                case int n when n >= -80 && n < -70:
+                    range = 8;
+                    break;
+                case int n when n >= -70 && n < -60:
+                    range = 7;
+                    break;
+                case int n when n >= -60 && n < -50:
+                    range = 6;
+                    break;
+                case int n when n >= -50 && n <= -40:
+                    range = 5;
+                    break;
+                case int n when n >= -40 && n <= -30:
+                    range = 4;
+                    break;
+                case int n when n >= -30 && n <= 0:
+                    range = 3;
+                    break;
+                default:
+                    range = -1; // Out of range
+                    break;
+            }
+
+            return range;
+        }
+
         public static bool IsLocationInside()
         {
+            if ((neBeaconRssi < 0) || (nwBeaconRssi < 0) || (swBeaconRssi < 0) || (seBeaconRssi < 0))
+            {
+                if ((neBeaconRssi >= -60) && (nwBeaconRssi >= -60) && (swBeaconRssi >= -60) && (seBeaconRssi >= -60))
+                {
+                    return true;
+                }
+            }
             return false;
         }
         public static bool IsLocationCenter()
         {
+            if (GetRssiRange(nwBeaconRssi) <= 6)
+            {
+                return true;
+            }
             return false;
         }
-        public static void CalculateDistance(double rssi)
+        public static double CalculateDistanceFromRssi(int rssi)
         {
-            double A = -60; // reference signal strength at 1 meter
-            double n = 2;   // path loss exponent
-            double RSSI = rssi; // received signal strength
+            // Constants used to calculate distance
+            const int txPower = -59; // RSSI at 1 meter
+            const double nValue = 3.0; // Path loss exponent
 
-            double distance = Math.Pow(10, (RSSI - A) / (10 * n));
+            // Calculate distance using the log-normal shadowing model
+            double ratioDb = txPower - rssi;
+            double ratioLinear = Math.Pow(10, ratioDb / 10);
+            double distance = Math.Pow(ratioLinear, 1 / nValue);
 
-            Console.WriteLine($"Distance: {distance} meters");          
+            // Convert distance to centimeters
+            distance *= 100;
+
+            return distance;
         }
+
         public static void ScanBeacon()
         {
+            swBeaconRssi = 0;
+            seBeaconRssi = 0;
+            neBeaconRssi = 0;
+            nwBeaconRssi = 0;
+
             int i = 0;
             if ((GuidanceSystem.beaconScannerReading != "") && (GuidanceSystem.beaconScannerReading != null))
             {
@@ -75,7 +134,7 @@ namespace Localizers
             }
 
         }
-        public static bool IsBeaconExisting(string _beaconName)
+        public static bool IsBeaconExisting(string _beaconName, Direction direction)
         {
             Console.WriteLine("Checking existing " + _beaconName);
             if (beaconName.Contains(_beaconName))
@@ -86,6 +145,21 @@ namespace Localizers
                 {
                     if (beaconRssi[index] != 0)
                     {
+                        switch (direction)
+                        {
+                            case Direction.Southeast:
+                                seBeaconRssi = beaconRssi[index];
+                                break;
+                            case Direction.Southwest:
+                                swBeaconRssi = beaconRssi[index];
+                                break;
+                            case Direction.Northeast:
+                                neBeaconRssi = beaconRssi[index];
+                                break;
+                            case Direction.Northwest:
+                                nwBeaconRssi = beaconRssi[index];
+                                break;
+                        }
                         //CalculateDistance(beaconRssi[index]);
                         return true;
                     }
@@ -100,15 +174,16 @@ namespace Localizers
         }
         public static void FindNearbyBeacon()
         {
+            isLocationInside = false;
             //Check western south cell
             if ((Mapper.baseLayer[recentX - 1, recentY + 1] != null) && (Mapper.baseLayer[recentX - 1, recentY + 1] != ""))
             {
                 if (Mapper.baseLayer[recentX - 1, recentY + 1] == "*")
                 {
-                    Console.WriteLine("Checking " + Mapper.beaconIdLayer[recentX - 1, recentY + 1]);
-                    if (IsBeaconExisting(Mapper.beaconIdLayer[recentX - 1, recentY + 1]))
+                    //Console.WriteLine("Checking " + Mapper.beaconIdLayer[recentX - 1, recentY + 1]);
+                    if (IsBeaconExisting(Mapper.beaconIdLayer[recentX - 1, recentY + 1], Direction.Southwest))
                     {
-                        Console.WriteLine("Western South Beacon Found " + Mapper.beaconIdLayer[recentX - 1, recentY + 1]);
+                        Console.WriteLine("Southwest Beacon Found " + Mapper.beaconIdLayer[recentX - 1, recentY + 1]);
                     }
                 }
             }
@@ -117,10 +192,10 @@ namespace Localizers
             {
                 if (Mapper.baseLayer[recentX - 1, recentY - 1] == "*")
                 {
-                    Console.WriteLine("Checking " + Mapper.beaconIdLayer[recentX - 1, recentY - 1]);
-                    if (IsBeaconExisting(Mapper.beaconIdLayer[recentX - 1, recentY - 1]))
+                    //Console.WriteLine("Checking " + Mapper.beaconIdLayer[recentX - 1, recentY - 1]);
+                    if (IsBeaconExisting(Mapper.beaconIdLayer[recentX - 1, recentY - 1], Direction.Northwest))
                     {
-                        Console.WriteLine("Western North Beacon Found " + Mapper.beaconIdLayer[recentX - 1, recentY - 1]);
+                        Console.WriteLine("Northwest Beacon Found " + Mapper.beaconIdLayer[recentX - 1, recentY - 1]);
                     }
                 }
             }
@@ -129,10 +204,10 @@ namespace Localizers
             {
                 if (Mapper.baseLayer[recentX + 1, recentY - 1] == "*")
                 {
-                    Console.WriteLine("Checking " + Mapper.beaconIdLayer[recentX + 1, recentY - 1]);
-                    if (IsBeaconExisting(Mapper.beaconIdLayer[recentX + 1, recentY - 1]))
+                    //Console.WriteLine("Checking " + Mapper.beaconIdLayer[recentX + 1, recentY - 1]);
+                    if (IsBeaconExisting(Mapper.beaconIdLayer[recentX + 1, recentY - 1], Direction.Northeast))
                     {
-                        Console.WriteLine("Eastern North Beacon Found " + Mapper.beaconIdLayer[recentX + 1, recentY - 1]);
+                        Console.WriteLine("Northeast Beacon Found " + Mapper.beaconIdLayer[recentX + 1, recentY - 1]);
                     }
                 }
             }
@@ -141,11 +216,25 @@ namespace Localizers
             {
                 if (Mapper.baseLayer[recentX + 1, recentY + 1] == "*")
                 {
-                    Console.WriteLine("Checking " + Mapper.beaconIdLayer[recentX + 1, recentY + 1]);
-                    if (IsBeaconExisting(Mapper.beaconIdLayer[recentX + 1, recentY + 1]))
+                    //Console.WriteLine("Checking " + Mapper.beaconIdLayer[recentX + 1, recentY + 1]);
+                    if (IsBeaconExisting(Mapper.beaconIdLayer[recentX + 1, recentY + 1], Direction.Southeast))
                     {
-                        Console.WriteLine("Eastern South Beacon Found " + Mapper.beaconIdLayer[recentX + 1, recentY + 1]);
+                        Console.WriteLine("Southeast Beacon Found " + Mapper.beaconIdLayer[recentX + 1, recentY + 1]);
                     }
+                }
+            }
+        }
+        public static void CheckLocation()
+        {
+            Console.WriteLine("Range = " + GetRssiRange(nwBeaconRssi));
+            Console.WriteLine("Distance = " + CalculateDistanceFromRssi((int)nwBeaconRssi));
+            Console.WriteLine("Checking if AGV location is valid");
+            if (IsLocationInside())
+            {
+                Console.WriteLine("AGV is inside the cell");
+                if (IsLocationCenter())
+                {
+                    Console.WriteLine("AGV is center the cell");
                 }
             }
         }

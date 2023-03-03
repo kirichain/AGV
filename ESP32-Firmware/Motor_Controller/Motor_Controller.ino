@@ -1,9 +1,10 @@
 #include <SerialCommand.h>
 
-SerialCommand sCmd;   
+SerialCommand sCmd;
 
 byte motor_speed = 255;
-byte currentMilis, previousMillis;
+unsigned long currentMilis, previousMillis;
+bool isStop;
 //Pair of motor 1
 //int ENA = D0;
 int IN1 = D0;
@@ -22,177 +23,178 @@ int IN7 = D6;
 int IN8 = D7;
 
 void setup() {
-  //Setting motors pin
-  //pinMode(ENA, OUTPUT);
-  //pinMode(ENB, OUTPUT);
-  pinMode(IN1, OUTPUT);
-  pinMode(IN2, OUTPUT); 
-  pinMode(IN3, OUTPUT);
-  pinMode(IN4, OUTPUT); 
-  pinMode(IN5, OUTPUT);
-  pinMode(IN6, OUTPUT); 
-  pinMode(IN7, OUTPUT);
-  pinMode(IN8, OUTPUT); 
+    isStop = true;
+    previousMillis = 0;
+    //Setting motors pin
+    //pinMode(ENA, OUTPUT);
+    //pinMode(ENB, OUTPUT);
+    pinMode(IN1, OUTPUT);
+    pinMode(IN2, OUTPUT);
+    pinMode(IN3, OUTPUT);
+    pinMode(IN4, OUTPUT);
+    pinMode(IN5, OUTPUT);
+    pinMode(IN6, OUTPUT);
+    pinMode(IN7, OUTPUT);
+    pinMode(IN8, OUTPUT);
 
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, LOW);
-  digitalWrite(IN5, LOW);
-  digitalWrite(IN6, LOW);
-  digitalWrite(IN7, LOW);
-  digitalWrite(IN8, LOW);
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, LOW);
+    digitalWrite(IN3, LOW);
+    digitalWrite(IN4, LOW);
+    digitalWrite(IN5, LOW);
+    digitalWrite(IN6, LOW);
+    digitalWrite(IN7, LOW);
+    digitalWrite(IN8, LOW);
 
-  Serial.begin(115200);
-  while (!Serial) {
-    
-  }
-  
-  Serial.println();
-  Serial.println("&Ready*");
-  sCmd.addCommand("forward", forward);
-  sCmd.addCommand("backward", backward);
-  sCmd.addCommand("turn-left", turn_left);
-  sCmd.addCommand("turn-right", turn_right);
-  sCmd.addCommand("speed", set_speed);
-  sCmd.addCommand("interval", interval);
-  sCmd.addCommand("checkName", checkName);
-  sCmd.setDefaultHandler(unrecognized);      
+    Serial.begin(115200);
+    while (!Serial) {
+
+    }
+
+    Serial.println();
+    Serial.println("&Ready*");
+    sCmd.addCommand("forward", forward);
+    sCmd.addCommand("backward", backward);
+    sCmd.addCommand("turn-left", turn_left);
+    sCmd.addCommand("turn-right", turn_right);
+    sCmd.addCommand("speed", set_speed);
+    sCmd.addCommand("interval", interval);
+    sCmd.addCommand("checkName", checkName);
+    sCmd.setDefaultHandler(unrecognized);
 }
 
 void loop() {
-  sCmd.readSerial();
+    currentMillis = millis();
+    if (!isStop) {
+        if ((currentMillis - previousMillis) > = 300) {
+            previousMillis = currentMillis;
+            isStop = true;
+            stop();
+        }
+    }
+    sCmd.readSerial();
 }
 
 void forward() {
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, HIGH);
 
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, HIGH);
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, HIGH);
 
-  digitalWrite(IN5, LOW);
-  digitalWrite(IN6, HIGH);
+    digitalWrite(IN3, LOW);
+    digitalWrite(IN4, HIGH);
 
-  digitalWrite(IN7, LOW);
-  digitalWrite(IN8, HIGH);
-  
-  //analogWrite(ENA, motor_speed);
-  //analogWrite(ENB, motor_speed);
-  delay(300);
-  stop();  
+    digitalWrite(IN5, LOW);
+    digitalWrite(IN6, HIGH);
+
+    digitalWrite(IN7, LOW);
+    digitalWrite(IN8, HIGH);
+
+    //analogWrite(ENA, motor_speed);
+    //analogWrite(ENB, motor_speed);
 }
 
 void backward() {
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
+    digitalWrite(IN1, HIGH);
+    digitalWrite(IN2, LOW);
 
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
+    digitalWrite(IN3, HIGH);
+    digitalWrite(IN4, LOW);
 
-  digitalWrite(IN5, HIGH);
-  digitalWrite(IN6, LOW);
+    digitalWrite(IN5, HIGH);
+    digitalWrite(IN6, LOW);
 
-  digitalWrite(IN7, HIGH);
-  digitalWrite(IN8, LOW);
+    digitalWrite(IN7, HIGH);
+    digitalWrite(IN8, LOW);
 
-  //analogWrite(ENA, motor_speed);
-  //analogWrite(ENB, motor_speed);
-  delay(300);
-  stop();
+    //analogWrite(ENA, motor_speed);
+    //analogWrite(ENB, motor_speed);
 }
 
 void turn_left() {
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
+    digitalWrite(IN1, HIGH);
+    digitalWrite(IN2, LOW);
 
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
+    digitalWrite(IN3, HIGH);
+    digitalWrite(IN4, LOW);
 
-  digitalWrite(IN5, LOW);
-  digitalWrite(IN6, HIGH);
+    digitalWrite(IN5, LOW);
+    digitalWrite(IN6, HIGH);
 
-  digitalWrite(IN7, LOW);
-  digitalWrite(IN8, HIGH);
-  
-  //analogWrite(ENA, motor_speed);
-  //analogWrite(ENB, motor_speed);
-  delay(300);
-  stop();  
+    digitalWrite(IN7, LOW);
+    digitalWrite(IN8, HIGH);
+
+    //analogWrite(ENA, motor_speed);
+    //analogWrite(ENB, motor_speed);
 }
 
 void turn_right() {
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, HIGH);
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, HIGH);
 
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, HIGH);
+    digitalWrite(IN3, LOW);
+    digitalWrite(IN4, HIGH);
 
-  digitalWrite(IN5, HIGH);
-  digitalWrite(IN6, LOW);
+    digitalWrite(IN5, HIGH);
+    digitalWrite(IN6, LOW);
 
-  digitalWrite(IN7, HIGH);
-  digitalWrite(IN8, LOW);
-  
-  //analogWrite(ENA, motor_speed);
-  //analogWrite(ENB, motor_speed);
-  delay(300);
-  stop();  
+    digitalWrite(IN7, HIGH);
+    digitalWrite(IN8, LOW);
+
+    //analogWrite(ENA, motor_speed);
+    //analogWrite(ENB, motor_speed);
 }
 
 void stop() {
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, LOW);
-  digitalWrite(IN5, LOW);
-  digitalWrite(IN6, LOW);
-  digitalWrite(IN7, LOW);
-  digitalWrite(IN8, LOW);
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, LOW);
+    digitalWrite(IN3, LOW);
+    digitalWrite(IN4, LOW);
+    digitalWrite(IN5, LOW);
+    digitalWrite(IN6, LOW);
+    digitalWrite(IN7, LOW);
+    digitalWrite(IN8, LOW);
 }
 
 void set_speed() {
-  char *arg;
+    char *arg;
 
-  Serial.println("Setting speed");
-  arg = sCmd.next();
-  if (arg != NULL) {
-    motor_speed = atoi(arg);
-    Serial.print("Motor speed is set to: ");
-    Serial.println(motor_speed);
-  }
-  else {
-    Serial.println("No speed argument");
-  }
+    Serial.println("Setting speed");
+    arg = sCmd.next();
+    if (arg != NULL) {
+        motor_speed = atoi(arg);
+        Serial.print("Motor speed is set to: ");
+        Serial.println(motor_speed);
+    } else {
+        Serial.println("No speed argument");
+    }
 }
 
 void interval() {
-  char *arg;
-  int interval;
-  int i;
+    char *arg;
+    int interval;
+    int i;
 
-  Serial.println("Setting interval");
-  arg = sCmd.next();
-  if (arg != NULL) {
-    interval = atoi(arg);
-    Serial.print("Interval is set to: ");
-    Serial.println(interval);
-    i = 0;
-    while (i < (interval*10)) {
-      i++;
-      forward();           
-    }     
-  }
-  else {
-    Serial.println("No interval argument");
-  }
+    Serial.println("Setting interval");
+    arg = sCmd.next();
+    if (arg != NULL) {
+        interval = atoi(arg);
+        Serial.print("Interval is set to: ");
+        Serial.println(interval);
+        i = 0;
+        while (i < (interval * 10)) {
+            i++;
+            forward();
+        }
+    } else {
+        Serial.println("No interval argument");
+    }
 }
 
 // This gets set as the default handler, and gets called when no other command matches.
 void unrecognized(const char *command) {
-  Serial.println("What?");
+    Serial.println("What?");
 }
 
 void checkName() {
-  Serial.println("&motor-controller*");
+    Serial.println("&motor-controller*");
 }
