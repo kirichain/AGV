@@ -7,6 +7,7 @@
     var recentView;
     var cellId, cellIndex, cellValue, cellType;
     var isByUserCellSelectorChange = true;
+    var isKeyPressed;
     //Init, checking dashboard
     console.log('Loaded');
     //Checking AGV ID selector
@@ -282,6 +283,7 @@
     }
 
     function init_control_buttons() {
+        isKeyPressed = false;
         //For clicking button
         $('#goForwardButton').click(function () {
             if ((agvMode == 'direct') && (agvId != 'Select AGV')) {
@@ -321,25 +323,25 @@
 
         //For pressing physical key
         $(document).keydown(function (e) {
-            if ((e.key == 'w') || (e.key == 'W')) {
+            if ((e.key == 'w') || (e.key == 'W')) {             
                 let button = document.getElementById('goForwardButton');
                 button.classList.remove('bg-info');
                 button.classList.add('bg-success');
                 $('#goForwardButton').click();
             }
-            if ((e.key == 's') || (e.key == 'S')) {
+            if ((e.key == 's') || (e.key == 'S')) {            
                 let button = document.getElementById('goBackwardButton');
                 button.classList.remove('bg-info');
                 button.classList.add('bg-success');
                 $('#goBackwardButton').click();
             }
-            if ((e.key == 'a') || (e.key == 'A')) {
+            if ((e.key == 'a') || (e.key == 'A')) {             
                 let button = document.getElementById('turnLeftButton');
                 button.classList.remove('bg-info');
                 button.classList.add('bg-success');
                 $('#turnLeftButton').click();
             }
-            if ((e.key == 'd') || (e.key == 'D')) {
+            if ((e.key == 'd') || (e.key == 'D')) {              
                 let button = document.getElementById('turnRightButton');
                 button.classList.remove('bg-info');
                 button.classList.add('bg-success');
@@ -350,29 +352,25 @@
 
         //Free key when stop pressing
         $(document).keyup(function (e) {
-            if ((e.key == 'w') || (e.key == 'W')) {
+            if ((e.key == 'w') || (e.key == 'W')) {              
                 let button = document.getElementById('goForwardButton');
                 button.classList.remove('bg-success');
                 button.classList.add('bg-info');
-                $('#goForwardButton').click();
             }
-            if ((e.key == 's') || (e.key == 'S')) {
+            if ((e.key == 's') || (e.key == 'S')) {              
                 let button = document.getElementById('goBackwardButton');
                 button.classList.remove('bg-success');
                 button.classList.add('bg-info');
-                $('#goBackwardButton').click();
             }
-            if ((e.key == 'a') || (e.key == 'A')) {
+            if ((e.key == 'a') || (e.key == 'A')) {            
                 let button = document.getElementById('turnLeftButton');
                 button.classList.remove('bg-success');
                 button.classList.add('bg-info');
-                $('#turnLeftButton').click();
             }
-            if ((e.key == 'd') || (e.key == 'D')) {
+            if ((e.key == 'd') || (e.key == 'D')) {             
                 let button = document.getElementById('turnRightButton');
                 button.classList.remove('bg-success');
                 button.classList.add('bg-info');
-                $('#turnRightButton').click();
             }
             console.log(e.key);
         });

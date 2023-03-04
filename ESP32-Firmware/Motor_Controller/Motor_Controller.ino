@@ -3,7 +3,7 @@
 SerialCommand sCmd;
 
 byte motor_speed = 255;
-unsigned long currentMilis, previousMillis;
+unsigned long currentMillis, previousMillis;
 bool isStop;
 //Pair of motor 1
 //int ENA = D0;
@@ -66,7 +66,7 @@ void setup() {
 void loop() {
     currentMillis = millis();
     if (!isStop) {
-        if ((currentMillis - previousMillis) > = 300) {
+        if ((currentMillis - previousMillis) >= 300) {
             previousMillis = currentMillis;
             isStop = true;
             stop();
@@ -76,6 +76,7 @@ void loop() {
 }
 
 void forward() {
+    isStop = false;
 
     digitalWrite(IN1, LOW);
     digitalWrite(IN2, HIGH);
@@ -94,6 +95,8 @@ void forward() {
 }
 
 void backward() {
+    isStop = false;
+
     digitalWrite(IN1, HIGH);
     digitalWrite(IN2, LOW);
 
@@ -111,6 +114,8 @@ void backward() {
 }
 
 void turn_left() {
+    isStop = false;
+
     digitalWrite(IN1, HIGH);
     digitalWrite(IN2, LOW);
 
@@ -128,6 +133,8 @@ void turn_left() {
 }
 
 void turn_right() {
+    isStop = false;
+
     digitalWrite(IN1, LOW);
     digitalWrite(IN2, HIGH);
 
