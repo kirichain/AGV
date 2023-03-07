@@ -28,8 +28,8 @@ Console.WriteLine("Press key to select port");
 if (Console.ReadKey().Key == ConsoleKey.Enter)
 {
     Console.WriteLine("Windows port");
-    //motor_controller.Init("COM3", BoardName.Motor_Controller);
-    beacon_scanner.Init("COM3", BoardName.Beacon_Scanner);
+    motor_controller.Init("COM3", BoardName.Motor_Controller);
+    //beacon_scanner.Init("COM3", BoardName.Beacon_Scanner);
 }
 else if (Console.ReadKey().Key == ConsoleKey.Spacebar)
 {
@@ -70,15 +70,15 @@ if (systemCheck)
     Console.WriteLine("System check done. Switch to idle mode");
     guider.mode = Mode.Idle;
     guider.mode = Mode.Direct;
-    guider.mode = Mode.Delivery;
+    //guider.mode = Mode.Delivery;
     Console.WriteLine("Mode: " + guider.mode);
     MQTTClient.Subscribe_Handle();
     while (true)
     {
         //Boards.Board.SendSerial(SerialReceiver.Motor_Controller, "forward");
-        //guider.mode = Mode.Direct;
+        guider.mode = Mode.Direct;
         //Console.WriteLine("Message come. Start to guide now");
-        guider.Guide();
+        //guider.Guide();
         //return;
     }
 }

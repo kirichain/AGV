@@ -24,7 +24,7 @@ namespace Localizers
         public static int recentX, recentY;
         public static string enBeaconName, esBeaconName, wnBeaconName, wsBeaconName;
         public static double neDistance, seDistance, nwDistance, swDistance, neBeaconRssi, seBeaconRssi, nwBeaconRssi, swBeaconRssi;
-        public static bool isLocationCenter, isLocationInside;
+        public static bool isLocationCenter, isLocationInside, isCheckLocationDone;
         public Localizer()
         {
             beaconName = new string[6];
@@ -227,7 +227,7 @@ namespace Localizers
         public static void CheckLocation()
         {
             Console.WriteLine("Range = " + GetRssiRange(nwBeaconRssi));
-            Console.WriteLine("Distance = " + CalculateDistanceFromRssi((int)nwBeaconRssi));
+            //Console.WriteLine("Distance = " + CalculateDistanceFromRssi((int)nwBeaconRssi));
             Console.WriteLine("Checking if AGV location is valid");
             if (IsLocationInside())
             {

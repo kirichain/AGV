@@ -30,7 +30,23 @@ namespace Navigators
             }
             Localizer.ScanBeacon();
             Localizer.FindNearbyBeacon();
+            //Check if the AGV is inside and center the cell
             Localizer.CheckLocation();
+
+            //If checking step is done, then create a new path or continue the planned one
+            if (Localizer.isCheckLocationDone)
+            {
+                Console.WriteLine("AGV is center the cell. Start navigating now");
+            } else
+            {
+                if (Localizer.isLocationInside)
+                {
+                    Console.WriteLine("AGV is not in center of the cell. Start calibrating now");
+                } else
+                {
+                    Console.WriteLine("Location check done but AGV position is not correct. End navigating");
+                }
+            }
         }
         public void DetectObstacle()
         {

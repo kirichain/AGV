@@ -539,3 +539,11 @@ C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\obj
 C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\obj\Release\net7.0\linux-arm64\Console.pdb
 C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\obj\Release\net7.0\linux-arm64\Console.genruntimeconfig.cache
 C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\obj\Release\net7.0\linux-arm64\ref\Console.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\linux-arm64\Iot.Device.Bindings.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\linux-arm64\Microsoft.Win32.SystemEvents.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\linux-arm64\SixLabors.ImageSharp.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\linux-arm64\System.CodeDom.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\linux-arm64\System.Device.Gpio.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\linux-arm64\System.Drawing.Common.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\linux-arm64\System.Management.dll
+C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\bin\Release\net7.0\linux-arm64\UnitsNet.dll

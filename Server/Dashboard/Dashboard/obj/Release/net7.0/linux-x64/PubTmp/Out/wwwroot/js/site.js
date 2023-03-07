@@ -244,7 +244,7 @@
             //}
             client.publish(topic, message);
         }
-        console.log('Sent ' + topic + message);
+        console.log('Sent ' + topic + " " + message);
     }
 
     function init_nav_button() {
@@ -356,21 +356,29 @@
                 let button = document.getElementById('goForwardButton');
                 button.classList.remove('bg-success');
                 button.classList.add('bg-info');
+                mqtt_publish('agv/control/' + agvId, 'stop', 'move');
+                console.log('Released button');
             }
             if ((e.key == 's') || (e.key == 'S')) {              
                 let button = document.getElementById('goBackwardButton');
                 button.classList.remove('bg-success');
                 button.classList.add('bg-info');
+                mqtt_publish('agv/control/' + agvId, 'stop', 'move');
+                console.log('Released button');
             }
             if ((e.key == 'a') || (e.key == 'A')) {            
                 let button = document.getElementById('turnLeftButton');
                 button.classList.remove('bg-success');
                 button.classList.add('bg-info');
+                mqtt_publish('agv/control/' + agvId, 'stop', 'move');
+                console.log('Released button');
             }
             if ((e.key == 'd') || (e.key == 'D')) {             
                 let button = document.getElementById('turnRightButton');
                 button.classList.remove('bg-success');
                 button.classList.add('bg-info');
+                mqtt_publish('agv/control/' + agvId, 'stop', 'move');
+                console.log('Released button');
             }
             console.log(e.key);
         });
@@ -397,5 +405,4 @@
     init_control_buttons();
     init_nav_button();
     init_right_tab_buttons();
-
 })

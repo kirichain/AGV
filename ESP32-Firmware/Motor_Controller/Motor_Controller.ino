@@ -76,60 +76,66 @@ void loop() {
 }
 
 void forward() {
-    isStop = false;
+    if (isStop) {
+        isStop = false;
 
-    digitalWrite(IN1, LOW);
-    digitalWrite(IN2, HIGH);
+        digitalWrite(IN1, LOW);
+        digitalWrite(IN2, HIGH);
 
-    digitalWrite(IN3, LOW);
-    digitalWrite(IN4, HIGH);
+        digitalWrite(IN3, LOW);
+        digitalWrite(IN4, HIGH);
 
-    digitalWrite(IN5, LOW);
-    digitalWrite(IN6, HIGH);
+        digitalWrite(IN5, LOW);
+        digitalWrite(IN6, HIGH);
 
-    digitalWrite(IN7, LOW);
-    digitalWrite(IN8, HIGH);
+        digitalWrite(IN7, LOW);
+        digitalWrite(IN8, HIGH);
 
-    //analogWrite(ENA, motor_speed);
-    //analogWrite(ENB, motor_speed);
+        //analogWrite(ENA, motor_speed);
+        //analogWrite(ENB, motor_speed);
+    }
 }
 
 void backward() {
-    isStop = false;
+    if (isStop) {
+        isStop = false;
 
-    digitalWrite(IN1, HIGH);
-    digitalWrite(IN2, LOW);
+        digitalWrite(IN1, HIGH);
+        digitalWrite(IN2, LOW);
 
-    digitalWrite(IN3, HIGH);
-    digitalWrite(IN4, LOW);
+        digitalWrite(IN3, HIGH);
+        digitalWrite(IN4, LOW);
 
-    digitalWrite(IN5, HIGH);
-    digitalWrite(IN6, LOW);
+        digitalWrite(IN5, HIGH);
+        digitalWrite(IN6, LOW);
 
-    digitalWrite(IN7, HIGH);
-    digitalWrite(IN8, LOW);
+        digitalWrite(IN7, HIGH);
+        digitalWrite(IN8, LOW);
 
-    //analogWrite(ENA, motor_speed);
-    //analogWrite(ENB, motor_speed);
+        //analogWrite(ENA, motor_speed);
+        //analogWrite(ENB, motor_speed);
+    }
 }
 
 void turn_left() {
-    isStop = false;
+    if (isStop) {
+        isStop = false;
 
-    digitalWrite(IN1, HIGH);
-    digitalWrite(IN2, LOW);
+        digitalWrite(IN1, HIGH);
+        digitalWrite(IN2, LOW);
 
-    digitalWrite(IN3, HIGH);
-    digitalWrite(IN4, LOW);
+        digitalWrite(IN3, HIGH);
+        digitalWrite(IN4, LOW);
 
-    digitalWrite(IN5, LOW);
-    digitalWrite(IN6, HIGH);
+        digitalWrite(IN5, LOW);
+        digitalWrite(IN6, HIGH);
 
-    digitalWrite(IN7, LOW);
-    digitalWrite(IN8, HIGH);
+        digitalWrite(IN7, LOW);
+        digitalWrite(IN8, HIGH);
 
-    //analogWrite(ENA, motor_speed);
-    //analogWrite(ENB, motor_speed);
+        //analogWrite(ENA, motor_speed);
+        //analogWrite(ENB, motor_speed);
+    }
 }
 
 void turn_right() {
