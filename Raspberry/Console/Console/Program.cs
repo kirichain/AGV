@@ -78,7 +78,7 @@ if (systemCheck)
         //Boards.Board.SendSerial(SerialReceiver.Motor_Controller, "forward");
         guider.mode = Mode.Direct;
         //Console.WriteLine("Message come. Start to guide now");
-        //guider.Guide();
+        guider.Guide();
         //return;
     }
 }
