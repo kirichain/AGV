@@ -13,6 +13,7 @@ namespace MQTTClients
         public static string agvId, controlMessage, statusMessage, packageDeliveryMessage, packagePositionMessage;
         public static void Init()
         {
+            Console.WriteLine("MQTT Starting");
             controlMessage = "";
         }
         public static async Task Publish_Message(string topic, string message)

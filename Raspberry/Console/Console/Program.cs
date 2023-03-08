@@ -28,7 +28,7 @@ Console.WriteLine("Press key to select port");
 if (Console.ReadKey().Key == ConsoleKey.Enter)
 {
     Console.WriteLine("Windows port");
-    motor_controller.Init("COM3", BoardName.Motor_Controller);
+    //motor_controller.Init("COM3", BoardName.Motor_Controller);
     //beacon_scanner.Init("COM3", BoardName.Beacon_Scanner);
 }
 else if (Console.ReadKey().Key == ConsoleKey.Spacebar)
@@ -61,6 +61,7 @@ if (MQTTClient.isConnected)
 }
 else
 {
+    Console.WriteLine("MQTT Client Connection init failed");
     systemCheck = false;
 }
 systemCheck = true;

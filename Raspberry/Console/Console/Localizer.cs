@@ -107,7 +107,6 @@ namespace Localizers
 
             return distance;
         }
-
         public static void ScanBeacon()
         {
             swBeaconRssi = 0;
