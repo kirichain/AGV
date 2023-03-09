@@ -2,33 +2,28 @@
 using MQTTnet.Client;
 using MQTTnet.Packets;
 using MQTTnet.Protocol;
+using MQTTnet.Server;
 using System.Text;
+using System.Text.Json;
 
 namespace MQTTClients
 {
+
     public static class MQTTClient
     {
         public static string mqttBrokerUrl = "pirover.xyz";
         public static bool isConnected = false;
         public static string agvId, controlMessage, statusMessage, packageDeliveryMessage, packagePositionMessage;
+        static MqttFactory mqttFactory;
+
         public static void Init()
         {
+            mqttFactory = new MqttFactory();
             Console.WriteLine("MQTT Starting");
             controlMessage = "";
         }
         public static async Task Publish_Message(string topic, string message)
         {
-            /*
-             * This sample pushes a simple application message including a topic and a payload.
-             *
-             * Always use builders where they exist. Builders (in this project) are designed to be
-             * backward compatible. Creating an _MqttApplicationMessage_ via its constructor is also
-             * supported but the class might change often in future releases where the builder does not
-             * or at least provides backward compatibility where possible.
-             */
-
-            var mqttFactory = new MqttFactory();
-
             using (var mqttClient = mqttFactory.CreateMqttClient())
             {
                 var mqttClientOptions = new MqttClientOptionsBuilder()
@@ -48,13 +43,14 @@ namespace MQTTClients
 
                 Console.WriteLine("Message was published.");
             }
+
         }
         public static async Task Subscribe_Handle()
-        {      
+        {
             if (!isConnected)
             {
-                var mqttFactory = new MqttFactory();
                 var mqttClient = mqttFactory.CreateMqttClient();
+
                 var mqttClientOptions = new MqttClientOptionsBuilder().WithTcpServer(mqttBrokerUrl).Build();
 
                 mqttClient.ApplicationMessageReceivedAsync += e =>
@@ -69,7 +65,7 @@ namespace MQTTClients
                         case "agv/package/delivery":
                             break;
                         case "agv/pacakge/location":
-                            break;                      
+                            break;
                     }
                     Console.WriteLine(Encoding.UTF8.GetString(e.ApplicationMessage.Payload));
                     Console.WriteLine("Message processing done");
@@ -98,7 +94,7 @@ namespace MQTTClients
                         f =>
                         {
                             f.WithTopic("agv/pacakge/location");
-                        })                  
+                        })
                     .Build();
 
                 await mqttClient.SubscribeAsync(mqttSubscribeOptions, CancellationToken.None);

@@ -21,16 +21,18 @@ namespace Localizers
         public static string[] beaconName;
         public static double[] beaconRssi;
         //NE/NW/SE/SW stand for northeast, southeast, northwest, southwest
-        public static int recentX, recentY;
+        public static int currentX, currentY;
         public static string enBeaconName, esBeaconName, wnBeaconName, wsBeaconName;
         public static double neDistance, seDistance, nwDistance, swDistance, neBeaconRssi, seBeaconRssi, nwBeaconRssi, swBeaconRssi;
         public static bool isLocationCenter, isLocationInside, isCheckLocationDone;
+        public static string workingMap;
         public Localizer()
         {
+            workingMap = "";
             beaconName = new string[6];
             beaconRssi = new double[6];
-            recentX = 1;
-            recentY = 1;
+            currentX = 1;
+            currentY = 1;
             Console.WriteLine("Localizer Init Done");
         }
         public static void GetClosestDirection()
@@ -175,50 +177,50 @@ namespace Localizers
         {
             isLocationInside = false;
             //Check western south cell
-            if ((Mapper.baseLayer[recentX - 1, recentY + 1] != null) && (Mapper.baseLayer[recentX - 1, recentY + 1] != ""))
+            if ((Mapper.baseLayer[currentX - 1, currentY + 1] != null) && (Mapper.baseLayer[currentX - 1, currentY + 1] != ""))
             {
-                if (Mapper.baseLayer[recentX - 1, recentY + 1] == "*")
+                if (Mapper.baseLayer[currentX - 1, currentY + 1] == "*")
                 {
-                    //Console.WriteLine("Checking " + Mapper.beaconIdLayer[recentX - 1, recentY + 1]);
-                    if (IsBeaconExisting(Mapper.beaconIdLayer[recentX - 1, recentY + 1], Direction.Southwest))
+                    //Console.WriteLine("Checking " + Mapper.beaconIdLayer[currentX - 1, currentY + 1]);
+                    if (IsBeaconExisting(Mapper.beaconIdLayer[currentX - 1, currentY + 1], Direction.Southwest))
                     {
-                        Console.WriteLine("Southwest Beacon Found " + Mapper.beaconIdLayer[recentX - 1, recentY + 1]);
+                        Console.WriteLine("Southwest Beacon Found " + Mapper.beaconIdLayer[currentX - 1, currentY + 1]);
                     }
                 }
             }
             //Check western north cell
-            if ((Mapper.baseLayer[recentX - 1, recentY - 1] != null) && (Mapper.baseLayer[recentX - 1, recentY - 1] != ""))
+            if ((Mapper.baseLayer[currentX - 1, currentY - 1] != null) && (Mapper.baseLayer[currentX - 1, currentY - 1] != ""))
             {
-                if (Mapper.baseLayer[recentX - 1, recentY - 1] == "*")
+                if (Mapper.baseLayer[currentX - 1, currentY - 1] == "*")
                 {
-                    //Console.WriteLine("Checking " + Mapper.beaconIdLayer[recentX - 1, recentY - 1]);
-                    if (IsBeaconExisting(Mapper.beaconIdLayer[recentX - 1, recentY - 1], Direction.Northwest))
+                    //Console.WriteLine("Checking " + Mapper.beaconIdLayer[currentX - 1, currentY - 1]);
+                    if (IsBeaconExisting(Mapper.beaconIdLayer[currentX - 1, currentY - 1], Direction.Northwest))
                     {
-                        Console.WriteLine("Northwest Beacon Found " + Mapper.beaconIdLayer[recentX - 1, recentY - 1]);
+                        Console.WriteLine("Northwest Beacon Found " + Mapper.beaconIdLayer[currentX - 1, currentY - 1]);
                     }
                 }
             }
             //Check estern north cell
-            if ((Mapper.baseLayer[recentX + 1, recentY - 1] != null) && (Mapper.baseLayer[recentX + 1, recentY - 1] != ""))
+            if ((Mapper.baseLayer[currentX + 1, currentY - 1] != null) && (Mapper.baseLayer[currentX + 1, currentY - 1] != ""))
             {
-                if (Mapper.baseLayer[recentX + 1, recentY - 1] == "*")
+                if (Mapper.baseLayer[currentX + 1, currentY - 1] == "*")
                 {
-                    //Console.WriteLine("Checking " + Mapper.beaconIdLayer[recentX + 1, recentY - 1]);
-                    if (IsBeaconExisting(Mapper.beaconIdLayer[recentX + 1, recentY - 1], Direction.Northeast))
+                    //Console.WriteLine("Checking " + Mapper.beaconIdLayer[currentX + 1, currentY - 1]);
+                    if (IsBeaconExisting(Mapper.beaconIdLayer[currentX + 1, currentY - 1], Direction.Northeast))
                     {
-                        Console.WriteLine("Northeast Beacon Found " + Mapper.beaconIdLayer[recentX + 1, recentY - 1]);
+                        Console.WriteLine("Northeast Beacon Found " + Mapper.beaconIdLayer[currentX + 1, currentY - 1]);
                     }
                 }
             }
             //Check eastern south cell
-            if ((Mapper.baseLayer[recentX + 1, recentY + 1] != null) && (Mapper.baseLayer[recentX + 1, recentY + 1] != ""))
+            if ((Mapper.baseLayer[currentX + 1, currentY + 1] != null) && (Mapper.baseLayer[currentX + 1, currentY + 1] != ""))
             {
-                if (Mapper.baseLayer[recentX + 1, recentY + 1] == "*")
+                if (Mapper.baseLayer[currentX + 1, currentY + 1] == "*")
                 {
-                    //Console.WriteLine("Checking " + Mapper.beaconIdLayer[recentX + 1, recentY + 1]);
-                    if (IsBeaconExisting(Mapper.beaconIdLayer[recentX + 1, recentY + 1], Direction.Southeast))
+                    //Console.WriteLine("Checking " + Mapper.beaconIdLayer[currentX + 1, currentY + 1]);
+                    if (IsBeaconExisting(Mapper.beaconIdLayer[currentX + 1, currentY + 1], Direction.Southeast))
                     {
-                        Console.WriteLine("Southeast Beacon Found " + Mapper.beaconIdLayer[recentX + 1, recentY + 1]);
+                        Console.WriteLine("Southeast Beacon Found " + Mapper.beaconIdLayer[currentX + 1, currentY + 1]);
                     }
                 }
             }

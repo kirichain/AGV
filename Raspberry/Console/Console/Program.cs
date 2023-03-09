@@ -3,6 +3,7 @@
 using MQTTClients;
 using GuidanceSystems;
 using APIs;
+using Localizers;
 
 //SocketClient socketClient;
 Board beacon_scanner, motor_controller;
@@ -11,6 +12,7 @@ API api;
 
 bool systemCheck = true;
 string agvId = "001";
+string systemStatus;
 
 //socketClient = new SocketClient();
 //motor_controller = new Board("/dev/ttyUSB1");
@@ -66,6 +68,9 @@ else
 }
 systemCheck = true;
 
+systemStatus =
+    @"{""id"":""001"",""workingMap"":"""+ Localizer.workingMap + @""",""currentX"":"""+ Localizer.currentX.ToString() + @""",""currentY"":"""+ Localizer.currentY.ToString() + @""",""motor-controller"":""connected"",""beacon-scanner"":""connected""}";
+
 if (systemCheck)
 {
     Console.WriteLine("System check done. Switch to idle mode");
@@ -74,12 +79,13 @@ if (systemCheck)
     //guider.mode = Mode.Delivery;
     Console.WriteLine("Mode: " + guider.mode);
     MQTTClient.Subscribe_Handle();
+
     while (true)
     {
         //Boards.Board.SendSerial(SerialReceiver.Motor_Controller, "forward");
+        MQTTClients.MQTTClient.Publish_Message("agv/status", systemStatus);
         guider.mode = Mode.Direct;
-        //Console.WriteLine("Message come. Start to guide now");
-        guider.Guide();
+        //guider.Guide();
         //return;
     }
 }
