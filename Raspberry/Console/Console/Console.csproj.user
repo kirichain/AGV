@@ -5,7 +5,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>Console</ActiveDebugProfile>
-    <_LastSelectedProfileId>C:\Pi Rover Dropbox\Duy Tan Nguyen Thanh\Works\AGV\Raspberry\Console\Console\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+    <_LastSelectedProfileId>C:\Dropbox\Works\AGV\Raspberry\Console\Console\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>

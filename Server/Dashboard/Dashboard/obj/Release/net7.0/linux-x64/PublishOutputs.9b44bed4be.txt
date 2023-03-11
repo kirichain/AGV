@@ -1,0 +1,4 @@
+C:\Dropbox\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\linux-x64\PubTmp\Out\appsettings.Development.json
+C:\Dropbox\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\linux-x64\PubTmp\Out\appsettings.json
+C:\Dropbox\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\linux-x64\PubTmp\Out\Dashboard.pdb
+C:\Dropbox\Works\AGV\Server\Dashboard\Dashboard\obj\Release\net7.0\linux-x64\PubTmp\Out\Dashboard

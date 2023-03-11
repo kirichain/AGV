@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YzLWiawubf5bz0zroVnPKkpIvfRR0Oe07EBDzHrb9ki++bhRwq/VZwXsEc0sdEfsdRa/tqROg1hSJ7lEeRe1Nw==",
+  "dgSpecHash": "L5JITSwqU1RlORGsorVDNbVzh5iMV40Clb+VOnHHt/90Ae9/f8HmMQRxyHV9XHWZc/jVZcNQeVuSN0gSnEnXXQ==",
   "success": true,
-  "projectFilePath": "C:\\Pi Rover Dropbox\\Duy Tan Nguyen Thanh\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj",
+  "projectFilePath": "C:\\Dropbox\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\iot.device.bindings\\2.2.0\\iot.device.bindings.2.2.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",

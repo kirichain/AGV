@@ -8,9 +8,11 @@
     var cellId, cellIndex, cellValue, cellType;
     var isByUserCellSelectorChange = true;
     var isKeyPressed;
+    var agvStatusCheckCount;
     //Init, checking dashboard
     console.log('Loaded');
     //Checking AGV ID selector
+    agvStatusCheckCount = 0;
     agvId = $('#agvSelector').val();
     console.log('AGV ID = ' + agvId);
     $('#agvSelector').on('change', function () {
@@ -222,7 +224,7 @@
 
         client.on("connect", function () {
             client.subscribe("agv/control/" + agvId);
-            client.subscribe("agv/status/" + agvId);
+            client.subscribe("agv/status");
             client.subscribe("agv/package/delivery");
             client.subscribe("agv/package/delivery");
             client.subscribe("agv/package/delivery");
@@ -230,8 +232,47 @@
             console.log('Init MQTT done');
         });
 
-        client.on("message", function (topic, payload) {
-            console.log([topic, payload].join(": "));
+        client.on('message', function (topic, message) {
+            //console.log("Message = " + message.toString())
+            switch (topic) {
+                case "agv/status":
+                    let _message = message.toString();
+                    let agvStatus = JSON.parse(_message);
+                    console.log(typeof (agvStatus.id));
+                    if (agvStatus.id == agvId) {
+                        $("#agvConnectingIndicator").removeClass("text-danger");
+                        $("#agvConnectingIndicator").addClass("text-primary");
+                        $("#agvConnectingIndicator").text("Connected");
+                        $("#agvWorkingMapIndicator").removeClass("text-danger");
+                        $("#agvWorkingMapIndicator").addClass("text-primary");
+                        $("#agvWorkingMapIndicator").text("Current Working Map: " + agvStatus.workingMap);
+                        $("#agvCoordinatesIndicator").removeClass("text-danger");
+                        $("#agvCoordinatesIndicator").addClass("text-primary");
+                        $("#agvCoordinatesIndicator").text("Current Coordinates: X = " + agvStatus.currentX + " - Y = " + agvStatus.currentY);
+                    } else if (agvStatusCheckCount < 3) {
+                        agvStatusCheckCount++;
+                    } else if (agvStatusCheckCount = 3) {
+                        $("#agvConnectingIndicator").addClass("text-danger");
+                        $("#agvConnectingIndicator").removeClass("text-primary");
+                        $("#agvConnectingIndicator").text("Not connected");
+                        $("#agvWorkingMapIndicator").addClass("text-danger");
+                        $("#agvWorkingMapIndicator").removeClass("text-primary");
+                        $("#agvWorkingMapIndicator").text("Current Working Map:");
+                        $("#agvCoordinatesIndicator").addClass("text-danger");
+                        $("#agvCoordinatesIndicator").removeClass("text-primary");
+                        $("#agvCoordinatesIndicator").text("Current Coordinates:");
+                        agvStatusCheckCount = 0;
+                    }
+                    break;
+                case "agv/control/" + agvId:
+                    break;
+                case "agv/package/delivery":
+                    break;
+                case "agv/package/location":
+                    break;
+            }
+
+            //console.log([topic, message].join(": "));
         });
     }
 
@@ -291,7 +332,7 @@
                 console.log('Go Forward');
             } else {
                 alert('AGV ID or Direct mode is not chosen');
-            }        
+            }
         });
 
         $('#goBackwardButton').click(function () {
@@ -300,7 +341,7 @@
                 console.log('Go Backward');
             } else {
                 alert('AGV ID or Direct mode is not chosen');
-            }             
+            }
         });
 
         $('#turnLeftButton').click(function () {
@@ -309,7 +350,7 @@
                 console.log('Turn Left');
             } else {
                 alert('AGV ID or Direct mode is not chosen');
-            }       
+            }
         });
 
         $('#turnRightButton').click(function () {
@@ -318,30 +359,30 @@
                 console.log('Turn Right');
             } else {
                 alert('AGV ID or Direct mode is not chosen');
-            }   
+            }
         });
 
         //For pressing physical key
         $(document).keydown(function (e) {
-            if ((e.key == 'w') || (e.key == 'W')) {             
+            if ((e.key == 'w') || (e.key == 'W')) {
                 let button = document.getElementById('goForwardButton');
                 button.classList.remove('bg-info');
                 button.classList.add('bg-success');
                 $('#goForwardButton').click();
             }
-            if ((e.key == 's') || (e.key == 'S')) {            
+            if ((e.key == 's') || (e.key == 'S')) {
                 let button = document.getElementById('goBackwardButton');
                 button.classList.remove('bg-info');
                 button.classList.add('bg-success');
                 $('#goBackwardButton').click();
             }
-            if ((e.key == 'a') || (e.key == 'A')) {             
+            if ((e.key == 'a') || (e.key == 'A')) {
                 let button = document.getElementById('turnLeftButton');
                 button.classList.remove('bg-info');
                 button.classList.add('bg-success');
                 $('#turnLeftButton').click();
             }
-            if ((e.key == 'd') || (e.key == 'D')) {              
+            if ((e.key == 'd') || (e.key == 'D')) {
                 let button = document.getElementById('turnRightButton');
                 button.classList.remove('bg-info');
                 button.classList.add('bg-success');
@@ -352,28 +393,28 @@
 
         //Free key when stop pressing
         $(document).keyup(function (e) {
-            if ((e.key == 'w') || (e.key == 'W')) {              
+            if ((e.key == 'w') || (e.key == 'W')) {
                 let button = document.getElementById('goForwardButton');
                 button.classList.remove('bg-success');
                 button.classList.add('bg-info');
                 mqtt_publish('agv/control/' + agvId, 'stop', 'move');
                 console.log('Released button');
             }
-            if ((e.key == 's') || (e.key == 'S')) {              
+            if ((e.key == 's') || (e.key == 'S')) {
                 let button = document.getElementById('goBackwardButton');
                 button.classList.remove('bg-success');
                 button.classList.add('bg-info');
                 mqtt_publish('agv/control/' + agvId, 'stop', 'move');
                 console.log('Released button');
             }
-            if ((e.key == 'a') || (e.key == 'A')) {            
+            if ((e.key == 'a') || (e.key == 'A')) {
                 let button = document.getElementById('turnLeftButton');
                 button.classList.remove('bg-success');
                 button.classList.add('bg-info');
                 mqtt_publish('agv/control/' + agvId, 'stop', 'move');
                 console.log('Released button');
             }
-            if ((e.key == 'd') || (e.key == 'D')) {             
+            if ((e.key == 'd') || (e.key == 'D')) {
                 let button = document.getElementById('turnRightButton');
                 button.classList.remove('bg-success');
                 button.classList.add('bg-info');
@@ -395,6 +436,7 @@
             console.log('Saved map data');
         });
     }
+
     //Init Map view
     get_map_data();
     init_map(10, 20, 20);

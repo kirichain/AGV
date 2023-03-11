@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Pi Rover Dropbox\\Duy Tan Nguyen Thanh\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj": {}
+    "C:\\Dropbox\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj": {}
   },
   "projects": {
-    "C:\\Pi Rover Dropbox\\Duy Tan Nguyen Thanh\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj": {
+    "C:\\Dropbox\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Pi Rover Dropbox\\Duy Tan Nguyen Thanh\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj",
+        "projectUniqueName": "C:\\Dropbox\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj",
         "projectName": "Console",
-        "projectPath": "C:\\Pi Rover Dropbox\\Duy Tan Nguyen Thanh\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj",
+        "projectPath": "C:\\Dropbox\\Works\\AGV\\Raspberry\\Console\\Console\\Console.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Pi Rover Dropbox\\Duy Tan Nguyen Thanh\\Works\\AGV\\Raspberry\\Console\\Console\\obj\\publish\\linux-arm64\\",
+        "outputPath": "C:\\Dropbox\\Works\\AGV\\Raspberry\\Console\\Console\\obj\\publish\\linux-arm64\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",

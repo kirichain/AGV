@@ -28,7 +28,7 @@ namespace Localizers
         public static string workingMap;
         public Localizer()
         {
-            workingMap = "";
+            workingMap = "Warehouse 1";
             beaconName = new string[6];
             beaconRssi = new double[6];
             currentX = 1;
